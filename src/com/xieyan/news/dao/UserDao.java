@@ -3,7 +3,7 @@ package com.xieyan.news.dao;
 import com.xieyan.news.bean.User;
 
 /**
- * Created by xuliugen on 16/1/6.
+ * Created by xieyan on 16/1/6.
  */
 public interface UserDao {
 

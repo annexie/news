@@ -2,6 +2,10 @@ package com.xieyan.news.control;
 
 import com.xieyan.news.bean.User;
 
+/**
+ * 用户Controler接口
+ * Created by xieyan on 16/1/6.
+ */
 public interface UserControl {
     /**
      * 用户注册

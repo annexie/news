@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by xuliugen on 16/1/6.
+ * Created by xieyan on 16/1/6.
  */
 public class UserDaoImpl implements UserDao {
 

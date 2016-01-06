@@ -1,7 +1,8 @@
 package com.xieyan.news.bean;
 
 /**
- * Created by xuliugen on 16/1/6.
+ * 用户Bean
+ * Created by xieyan on 16/1/6.
  */
 public class User {
 

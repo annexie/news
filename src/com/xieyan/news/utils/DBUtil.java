@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * 数据库访问工具
+ * Created by xieyan on 16/1/6.
+ */
 public class DBUtil {
 
     public static Connection getConn() {

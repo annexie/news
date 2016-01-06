@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * 登录Servlet
+ * Created by xieyan on 16/1/6.
+ */
 public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)

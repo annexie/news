@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 
 /**
  * 过滤中文乱码的问题
+ * Created by xieyan on 16/1/6.
  */
 public class MyFilter implements Filter {
 

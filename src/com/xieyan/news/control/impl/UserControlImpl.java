@@ -5,6 +5,10 @@ import com.xieyan.news.control.UserControl;
 import com.xieyan.news.dao.UserDao;
 import com.xieyan.news.dao.impl.UserDaoImpl;
 
+/**
+ * 用户Controler实现类
+ * Created by xieyan on 16/1/6.
+ */
 public class UserControlImpl implements UserControl {
 
     public boolean register(User user) {

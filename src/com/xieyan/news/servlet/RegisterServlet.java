@@ -12,6 +12,10 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * 注册Servlet
+ * Created by xieyan on 16/1/6.
+ */
 public class RegisterServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
