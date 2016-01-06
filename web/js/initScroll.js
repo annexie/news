@@ -64,7 +64,6 @@ $(document).bind("pageshow", function () {
         /**
          * 初始化iScroll控件
          */
-
         pullDownEl = document.getElementById('pullDown');
         pullDownOffset = pullDownEl.offsetHeight;
         pullUpEl = document.getElementById('pullUp');
@@ -137,7 +136,8 @@ $(document).bind("pageshow", function () {
          * myScroll.refresh();        // 数据加载完成后，调用界面更新方法
          */
         function pullDownAction() {
-            setTimeout(update, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+            loadData();
+            //setTimeout(loadData, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
         }
 
         /**
@@ -145,15 +145,16 @@ $(document).bind("pageshow", function () {
          * myScroll.refresh();        // 数据加载完成后，调用界面更新方法
          */
         function pullUpAction() {
-            setTimeout(loadData, 1000); // <-- Simulate network congestion, remove setTimeout from production!
+            loadData();
+            //setTimeout(loadData, 1000); // <-- Simulate network congestion, remove setTimeout from production!
         }
 
-        var startNum = -1;
-        var count = -1;
+        //var startNum = -1;
+        //var countNum = -1;
 
         function loadData() {
-            console.log("当前页：" + startNum + " || 总页数：" + count)
-            if (startNum != -1 && Number(startNum) >= Number(count)) {
+            console.log("当前页：" + startNum + " || 总页数：" + countNum)
+            if (startNum != -1 && Number(startNum) >= Number(countNum)) {
                 myAlert('已加载完全部信息');
                 myScroll.refresh();
                 return false;
@@ -161,24 +162,33 @@ $(document).bind("pageshow", function () {
             startNum = startNum + 1;
             showLoading();
             console.log("服务器地址：" + serverURL);
-            $.ajax({
-                async: false,
-                url: serverURL, // 跨域URL
-                type: 'get',
-                data: startNum,
-                timeout: 6000,
-                success: function (datas) { //客户端jquery预先定义好的callback函数，成功获取跨域服务器上的json数据后，会动态执行这个callback函数
-                    desplay(datas);
-                },
-                complete: function (XMLHttpRequest, textStatus) {
-                    //alert(textStatus);
-                },
-                error: function (xhr) {
-                    //jsonp 方式此方法不被触发
-                    //请求出错处理
-                    myAlert("请求出错(请检查相关度网络状况.)");
-                    myScroll.refresh();
-                }
+            //$.ajax({
+            //    url: serverURL + "?startNum=" + startNum,
+            //    dataType: "jsonp",
+            //    data: null,
+            //    type: "GET",
+            //    jsonp: 'jsoncallback',
+            //    timeout: 5000,
+            //    contentType: "application/json;utf-8",
+            //
+            //    success: function (result) { //客户端jquery预先定义好的callback函数，成功获取跨域服务器上的json数据后，会动态执行这个callback函数
+            //        alert(result.toString());
+            //        desplay(result);
+            //    },
+            //    complete: function (XMLHttpRequest, textStatus) {
+            //        //alert(textStatus);
+            //    },
+            //    error: function (xhr) {
+            //        //jsonp 方式此方法不被触发
+            //        //请求出错处理
+            //        myAlert("请求出错(请检查相关度网络状况.)");
+            //        myScroll.refresh();
+            //    }
+            //});
+
+            $.get(serverURL + "?startNum=" + startNum, null, function (result) {
+                desplay(result);
+                //alert(result.toString());
             });
         }
 
@@ -188,12 +198,10 @@ $(document).bind("pageshow", function () {
                 console.log("加载后的当前页：" + startNum + "|| 获取数据" + datas);
 
                 $("#fpmxList").append(datas);
-                $("#fpmxList").listview("refresh");
-
                 setTimeout(function () { // <-- Simulate network congestion, remove setTimeout from production!
                     myScroll.refresh(); // 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
                     hideLoading();
-                    if (Number(startNum) >= Number(count)) {
+                    if (Number(startNum) >= Number(countNum)) {
                         myAlert('已加载完全部信息');
                     }
                 }, 1500);

@@ -1,9 +1,9 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/jquery.mobile.min.css"/>
     <link rel="stylesheet" href="../css/theme/theme.min.css"/>
     <link rel="stylesheet" href="../css/styles.css"/>
@@ -22,16 +22,18 @@
     <script type="text/javascript">
         $(document).bind("pageinit", function () {
             isInit = 0;
-            serverURL = "11"; //服务器地址
+            serverURL = "http://192.168.31.203:8080/loadmore"; //服务器地址
             startNum = 1;//当前页
-            count = 5; //总页数
+            countNum = 1000; //总页数
         });
 
     </script>
     <div data-role="header" data-id="myHeader" data-position="fixed" data-tap-toggle="false">
         <h2>下拉刷新demo</h2>
+        <%--Back--%>
         <a data-icon="back" data-rel="back" data-iconpos="notext" data-direction="reverse"></a>
-        <a href="/jsp/news-list.jsp" data-icon="home" data-iconpos="notext" class="ui-btn-right">
+        <%--Home--%>
+        <a href="" data-icon="home" data-iconpos="notext" class="ui-btn-right">
         </a>
     </div>
     <!-- content-->
@@ -42,185 +44,57 @@
                     <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
                 </div>
                 <div style="margin: 10px 0px; padding:5px;">
-                    <b>2013/5/17<span style="margin:0 10px;">~</span>2013/5/17</b>
-
+                    <%--<b>2013/5/17<span style="margin:0 10px;">~</span>2013/5/17</b>--%>
                     <div class="navbar" style="height: 1px; margin-top: 5px"></div>
                 </div>
 
-
                 <ul data-role="listview" data-theme="a" class="list-fpmx" id="fpmxList">
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_normal.png" alt="">
+                    <%--<li>--%>
+                        <%--<a href="fpmx.html">--%>
+                            <%--<img src="../images/ic_normal.png" alt="">--%>
 
-                            <h3>￥5043.00</h3>
+                            <%--<h3>￥5043.00</h3>--%>
 
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
+                            <%--<p>发票代码：<span class="text-no">11155653322</span></p>--%>
 
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
+                            <%--<p>发票号码：<span class="text-no">00001234</span></p>--%>
+                        <%--</a>--%>
 
-                        <p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_back.png" alt="">
+                        <%--<p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>--%>
+                        <%--</p>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="fpmx.html">--%>
+                            <%--<img src="../images/ic_normal.png" alt="">--%>
 
-                            <h3>￥5043.00</h3>
+                            <%--<h3>￥5043.00</h3>--%>
 
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
+                            <%--<p>发票代码：<span class="text-no">11155653322</span></p>--%>
 
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
+                            <%--<p>发票号码：<span class="text-no">00001234</span></p>--%>
+                        <%--</a>--%>
 
-                        <p class="desc-normal desc-back"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_wast.png" alt="">
+                        <%--<p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>--%>
+                        <%--</p>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="fpmx.html">--%>
+                            <%--<img src="../images/ic_normal.png" alt="">--%>
 
-                            <h3>￥0.00</h3>
+                            <%--<h3>￥5043.00</h3>--%>
 
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
+                            <%--<p>发票代码：<span class="text-no">11155653322</span></p>--%>
 
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
+                            <%--<p>发票号码：<span class="text-no">00001234</span></p>--%>
+                        <%--</a>--%>
 
-                        <p class="desc-normal desc-wast"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_normal.png" alt="">
-
-                            <h3>￥5043.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_back.png" alt="">
-
-                            <h3>￥5043.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal desc-back"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_wast.png" alt="">
-
-                            <h3>￥0.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal desc-wast"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_normal.png" alt="">
-
-                            <h3>￥5043.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_back.png" alt="">
-
-                            <h3>￥5043.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal desc-back"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_wast.png" alt="">
-
-                            <h3>￥0.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal desc-wast"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_normal.png" alt="">
-
-                            <h3>￥5043.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_back.png" alt="">
-
-                            <h3>￥5043.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal desc-back"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
-                    <li>
-                        <a href="fpmx.html">
-                            <img src="../images/ic_wast.png" alt="">
-
-                            <h3>￥0.00</h3>
-
-                            <p>发票代码：<span class="text-no">11155653322</span></p>
-
-                            <p>发票号码：<span class="text-no">00001234</span></p>
-                        </a>
-
-                        <p class="desc-normal desc-wast"><span class="left-aside">开票日期：2013/5/17</span><span
-                                class="right-aside">开票员：01</span></p>
-                    </li>
+                        <%--<p class="desc-normal"><span class="left-aside">开票日期：2013/5/17</span><span class="right-aside">开票员：01</span>--%>
+                        <%--</p>--%>
+                    <%--</li>--%>
                 </ul>
 
                 <div id="pullUp">
-                    <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+                    <span class="pullUpIcon" style="display: block"></span><span class="pullUpLabel">上拉加载更多...</span>
                 </div>
 
             </div>

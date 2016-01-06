@@ -29,7 +29,7 @@
 
 
 <!-- Top content -->
-<div class="top-content">
+<div class="top-content" style="margin-top: -160px;">
 
     <div class="inner-bg">
         <div class="container">

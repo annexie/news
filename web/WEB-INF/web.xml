@@ -13,6 +13,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.xieyan.news.servlet.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadMoreServlet</servlet-name>
+        <servlet-class>com.xieyan.news.servlet.LoadMoreServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -22,6 +26,10 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreServlet</servlet-name>
+        <url-pattern>/loadmore</url-pattern>
     </servlet-mapping>
 
     <!-- 过滤中文乱码的问题 -->
