@@ -26,6 +26,8 @@
 
 
 <body>
+
+
 <!-- Top content -->
 <div class="top-content">
 
@@ -39,6 +41,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">
@@ -70,6 +73,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
 </body>

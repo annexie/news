@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             // 将用户存放到session中去
             request.getSession().setAttribute("user", user);
 
-            response.sendRedirect("jsp/leavemessage.jsp");
+            response.sendRedirect("jsp/news-list.jsp");
 
         } else {
             JOptionPane.showMessageDialog(null, "请输入正确的用户名密码！");
