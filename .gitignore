@@ -1,8 +1,7 @@
 # kdiff3 ignore
 *.orig
 
-# maven ignore
-target/
+out/
 
 # eclipse ignore
 .settings/
