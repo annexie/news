@@ -16,14 +16,14 @@ public class MyFilter implements Filter {
 
     private String encoding = null;
 
-    public void doFilter(ServletRequest arg0, ServletResponse arg1,
+    public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain arg2) throws IOException, ServletException {
-        arg0.setCharacterEncoding(encoding);
-        arg2.doFilter(arg0, arg1);
+        request.setCharacterEncoding(encoding);
+        arg2.doFilter(request, response);
     }
 
-    public void init(FilterConfig arg0) throws ServletException {
-        encoding = arg0.getInitParameter("encoding"); //获得配置文件中的encoding
+    public void init(FilterConfig filterConfig) throws ServletException {
+        encoding = filterConfig.getInitParameter("encoding"); //获得配置文件中的encoding
     }
 
     public void destroy() {
