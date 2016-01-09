@@ -1,46 +1,20 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="zh">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
     <title>News</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
-
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="../assets/css/font-awesome-ie7.min.css"/>
-    <![endif]-->
-
-    <!-- page specific plugin styles -->
-
     <!-- fonts -->
-
     <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300"/>
-
     <!-- ace styles -->
-
     <link rel="stylesheet" href="../assets/css/ace.min.css"/>
     <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="../assets/css/ace-skins.min.css"/>
-
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
-    <![endif]-->
-
-    <!-- inline styles related to this page -->
-
     <!-- ace settings handler -->
-
     <script src="../assets/js/ace-extra.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-    <!--[if lt IE 9]>
-    <script src="../assets/js/html5shiv.js"></script>
-    <script src="../assets/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -330,52 +304,40 @@
             </div>
 
             <!-- 显示具体的界面信息 start-->
-            <div style="margin: auto;max-width: 600px; height: 400px;">
+            <div style="margin: auto;max-width: 600px; height: 400px;" id="userAddFormId">
                 <form class="form-horizontal"
                       style="margin: auto;width: auto;height: 500px;padding: 15px;">
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">合作伙伴类型:</label>
+                        <label class="col-lg-3 control-label">用户名:</label>
 
                         <div class="col-lg-9">
-                            <select name="partnerType" style="display:inline; width:94%;" class="form-control">
-                                <option value="1">采购商</option>
-                                <option value="2">供应商</option>
-                            </select>
+                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
+                                   id="usernameID"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">合作伙伴代码:</label>
+                        <label class="col-lg-3 control-label">密码:</label>
 
                         <div class="col-lg-9">
-                            <input name="code" style="display:inline; width:94%;" class="form-control" type="text"
-                                   id="codeID"/>
+                            <input name="password" style="display:inline; width:94%;" class="form-control"
+                                   type="password"
+                                   id="passwordID"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">查询量:</label>
+                        <label class="col-lg-3 control-label">再次输入密码:</label>
 
                         <div class="col-lg-9">
-                            <input name="searchCount" style="display:inline; width:94%;" class="form-control"
-                                   type="text"
-                                   id="searchCountID"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">类型:</label>
-
-                        <div class="col-lg-9">
-                            <select name="rateType" style="display:inline; width:94%;" class="form-control">
-                                <option value="1">查订比</option>
-                                <option value="2">查票比</option>
-                            </select>
+                            <input name="rePassword" style="display:inline; width:94%;" class="form-control"
+                                   type="password"
+                                   id="rePasswordID"/>
                         </div>
                     </div>
                     <div class="form-group" style="width:130px; margin:auto;">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-success" id="saveAdd">保存</button>
+                        <button type="button" class="btn btn-success" onclick="userAdd()">保存</button>
                     </div>
                 </form>
             </div>
@@ -445,18 +407,6 @@
 
 <!-- basic scripts -->
 
-<!--[if !IE]> -->
-
-<script src="../assets/js/jquery.min.js"></script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-<!--[if !IE]> -->
-
 <script type="text/javascript">
     window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
 </script>
@@ -477,19 +427,6 @@
 
 <!-- page specific plugin scripts -->
 
-<!--[if lte IE 8]>
-<script src="../assets/js/excanvas.min.js"></script>
-<![endif]-->
-
-<script src="../assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="../assets/js/jquery.slimscroll.min.js"></script>
-<script src="../assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="../assets/js/jquery.sparkline.min.js"></script>
-<script src="../assets/js/flot/jquery.flot.min.js"></script>
-<script src="../assets/js/flot/jquery.flot.pie.min.js"></script>
-<script src="../assets/js/flot/jquery.flot.resize.min.js"></script>
-
 <!-- ace scripts -->
 
 <script src="../assets/js/ace-elements.min.js"></script>
@@ -498,201 +435,53 @@
 <!-- inline scripts related to this page -->
 
 <script type="text/javascript">
-    jQuery(function ($) {
-        $('.easy-pie-chart.percentage').each(function () {
-            var $box = $(this).closest('.infobox');
-            var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
-            var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
-            var size = parseInt($(this).data('size')) || 50;
-            $(this).easyPieChart({
-                barColor: barColor,
-                trackColor: trackColor,
-                scaleColor: false,
-                lineCap: 'butt',
-                lineWidth: parseInt(size / 10),
-                animate: /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ? false : 1000,
-                size: size
-            });
-        })
 
-        $('.sparkline').each(function () {
-            var $box = $(this).closest('.infobox');
-            var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
-            $(this).sparkline('html', {
-                tagValuesAttribute: 'data-values',
-                type: 'bar',
-                barColor: barColor,
-                chartRangeMin: $(this).data('min') || 0
-            });
-        });
-
-
-        var placeholder = $('#piechart-placeholder').css({'width': '90%', 'min-height': '150px'});
-        var data = [
-            {label: "social networks", data: 38.7, color: "#68BC31"},
-            {label: "search engines", data: 24.5, color: "#2091CF"},
-            {label: "ad campaigns", data: 8.2, color: "#AF4E96"},
-            {label: "direct traffic", data: 18.6, color: "#DA5430"},
-            {label: "other", data: 10, color: "#FEE074"}
-        ]
-
-        function drawPieChart(placeholder, data, position) {
-            $.plot(placeholder, data, {
-                series: {
-                    pie: {
-                        show: true,
-                        tilt: 0.8,
-                        highlight: {
-                            opacity: 0.25
-                        },
-                        stroke: {
-                            color: '#fff',
-                            width: 2
-                        },
-                        startAngle: 2
-                    }
-                },
-                legend: {
-                    show: true,
-                    position: position || "ne",
-                    labelBoxBorderColor: null,
-                    margin: [-30, 15]
-                }
-                ,
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-            })
-        }
-
-        drawPieChart(placeholder, data);
-
-        /**
-         we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
-         so that's not needed actually.
-         */
-        placeholder.data('chart', data);
-        placeholder.data('draw', drawPieChart);
-
-
-        var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
-        var previousPoint = null;
-
-        placeholder.on('plothover', function (event, pos, item) {
-            if (item) {
-                if (previousPoint != item.seriesIndex) {
-                    previousPoint = item.seriesIndex;
-                    var tip = item.series['label'] + " : " + item.series['percent'] + '%';
-                    $tooltip.show().children(0).text(tip);
-                }
-                $tooltip.css({top: pos.pageY + 10, left: pos.pageX + 10});
+    function userAdd() {
+        var url = "/user?type=add&";
+        var param = $("#userAddFormId").find('form').serialize();
+        $.get(url + param, function (result) {
+            alert("success");
+            if (result == "success") {
+                alert("success");
+                $("#modal-result-text").addClass("alert alert-success");
+                $("#modal-result-text").text("保存成功！");
             } else {
-                $tooltip.hide();
-                previousPoint = null;
+                $("#modal-result-text").addClass("alert alert-warning");
+                $("#modal-result-text").text(result.msg);
             }
+            $("#modal-result").modal('show');
+        }, "json");
+    }
 
-        });
-
-
-        var d1 = [];
-        for (var i = 0; i < Math.PI * 2; i += 0.5) {
-            d1.push([i, Math.sin(i)]);
-        }
-
-        var d2 = [];
-        for (var i = 0; i < Math.PI * 2; i += 0.5) {
-            d2.push([i, Math.cos(i)]);
-        }
-
-        var d3 = [];
-        for (var i = 0; i < Math.PI * 2; i += 0.2) {
-            d3.push([i, Math.tan(i)]);
-        }
-
-
-        var sales_charts = $('#sales-charts').css({'width': '100%', 'height': '220px'});
-        $.plot("#sales-charts", [
-            {label: "Domains", data: d1},
-            {label: "Hosting", data: d2},
-            {label: "Services", data: d3}
-        ], {
-            hoverable: true,
-            shadowSize: 0,
-            series: {
-                lines: {show: true},
-                points: {show: true}
-            },
-            xaxis: {
-                tickLength: 0
-            },
-            yaxis: {
-                ticks: 10,
-                min: -2,
-                max: 2,
-                tickDecimals: 3
-            },
-            grid: {
-                backgroundColor: {colors: ["#fff", "#fff"]},
-                borderWidth: 1,
-                borderColor: '#555'
-            }
-        });
-
-
-        $('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-        function tooltip_placement(context, source) {
-            var $source = $(source);
-            var $parent = $source.closest('.tab-content')
-            var off1 = $parent.offset();
-            var w1 = $parent.width();
-
-            var off2 = $source.offset();
-            var w2 = $source.width();
-
-            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-            return 'left';
-        }
-
-
-        $('.dialogs,.comments').slimScroll({
-            height: '300px'
-        });
-
-
-        //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
-        //so disable dragging when clicking on label
-        var agent = navigator.userAgent.toLowerCase();
-        if ("ontouchstart" in document && /applewebkit/.test(agent) && /android/.test(agent))
-            $('#tasks').on('touchstart', function (e) {
-                var li = $(e.target).closest('#tasks li');
-                if (li.length == 0)return;
-                var label = li.find('label.inline').get(0);
-                if (label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation();
-            });
-
-        $('#tasks').sortable({
-                    opacity: 0.8,
-                    revert: true,
-                    forceHelperSize: true,
-                    placeholder: 'draggable-placeholder',
-                    forcePlaceholderSize: true,
-                    tolerance: 'pointer',
-                    stop: function (event, ui) {//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
-                        $(ui.item).css('z-index', 'auto');
-                    }
-                }
-        );
-        $('#tasks').disableSelection();
-        $('#tasks input:checkbox').removeAttr('checked').on('click', function () {
-            if (this.checked) $(this).closest('li').addClass('selected');
-            else $(this).closest('li').removeClass('selected');
-        });
-
-
-    })
 </script>
-
+<!--显示成功、失败的modal-->
+<div class="modal fade" id="modal-result" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    信息
+                </h4>
+            </div>
+            <div class="modal-body" id="modal-result-text">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" id="modalBtnCloseID">关闭
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

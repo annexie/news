@@ -544,7 +544,6 @@
 
         });
 
-
         var d1 = [];
         for (var i = 0; i < Math.PI * 2; i += 0.5) {
             d1.push([i, Math.sin(i)]);
@@ -638,8 +637,6 @@
             if (this.checked) $(this).closest('li').addClass('selected');
             else $(this).closest('li').removeClass('selected');
         });
-
-
     })
 </script>
 

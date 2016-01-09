@@ -5,10 +5,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * Created by xuliugen on 16/1/9.
+ * Created by xieyan on 16/1/9.
  */
 public class NewsEditServlet extends HttpServlet {
 
