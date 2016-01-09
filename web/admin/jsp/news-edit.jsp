@@ -21,6 +21,8 @@
             <li>Enable [TOCM], Search Replace, Code fold</li>
         </ul>
     </header>
+
+    <%--MarkDown上边编辑选项--%>
     <div class="btns">
         <button id="show-btn">Show editor</button>
         <button id="hide-btn">Hide editor</button>
