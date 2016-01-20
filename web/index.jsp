@@ -12,6 +12,6 @@
 </head>
 
 <body>
-<jsp:forward page="news/jsp/login.jsp"/>
+<jsp:forward page="news/jsp/news-list.jsp"/>
 </body>
 </html>

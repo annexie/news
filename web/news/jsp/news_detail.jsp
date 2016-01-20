@@ -81,8 +81,7 @@
         border-radius: 20px;
         background-color: #FFFFFF;
     }
-
-    .title {
+    .title{
         line-height: 44px;
         text-align: center;
         margin-left: 49px;
@@ -118,10 +117,10 @@
             showProgress: 'true'
         });
     }
-    function reply() {
+    function reply(){
         api.openWin({
-            name: 'win_reply',
-            url: 'win_reply.html'
+            name:'win_reply',
+            url:'win_reply.html'
         })
     }
 </script>

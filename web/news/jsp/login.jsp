@@ -154,9 +154,9 @@
 <body>
 <header>
     <div class="header detail-header">
-        <div class="back btn" tapmode="" onclick="closeWin()"></div>
+        <%--<div class="back btn" tapmode="" onclick="closeWin()"></div>--%>
         <div class="title" id="title">登录</div>
-        <div class="btn"></div>
+        <%--<div class="btn"></div>--%>
     </div>
 </header>
 
