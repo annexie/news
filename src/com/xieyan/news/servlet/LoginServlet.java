@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 
         } else {
             JOptionPane.showMessageDialog(null, "请输入正确的用户名密码！");
-            response.sendRedirect("jsp/login.jsp");
+            response.sendRedirect("news/jsp/login.jsp");
         }
     }
 }

@@ -41,14 +41,14 @@ public class RegisterServlet extends HttpServlet {
             UserControl userInter = new UserControlImpl();
             if (userInter.register(user)) {
                 JOptionPane.showMessageDialog(null, "注册成功！");
-                response.sendRedirect("jsp/login.jsp");
+                response.sendRedirect("news/jsp/login.jsp");
             } else {
                 JOptionPane.showMessageDialog(null, "注册失败！");
-                response.sendRedirect("jsp/register.jsp");
+                response.sendRedirect("news/jsp/register.jsp");
             }
         } else {
             JOptionPane.showMessageDialog(null, "密码不一致");
-            response.sendRedirect("jsp/register.jsp");
+            response.sendRedirect("news/jsp/register.jsp");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" pageEncoding="UTF-8" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     <meta charset="utf-8">
@@ -80,7 +81,8 @@
         border-radius: 20px;
         background-color: #FFFFFF;
     }
-    .title{
+
+    .title {
         line-height: 44px;
         text-align: center;
         margin-left: 49px;
@@ -116,10 +118,10 @@
             showProgress: 'true'
         });
     }
-    function reply(){
+    function reply() {
         api.openWin({
-            name:'win_reply',
-            url:'win_reply.html'
+            name: 'win_reply',
+            url: 'win_reply.html'
         })
     }
 </script>

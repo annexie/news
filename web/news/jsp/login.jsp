@@ -1,12 +1,15 @@
-<!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
           content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='../css/api.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='../css/common.css'/>"/>
     <style>
         body {
             display: -webkit-box;
@@ -24,7 +27,7 @@
 
         .back {
             background-size: 40px !important;
-            background-image: url("../image/weather_back@2x.png");
+            background-image: url("<c:url value='../image/weather_back@2x.png'/>");
             background-position: right !important;
         }
 
@@ -49,11 +52,11 @@
         }
 
         .user {
-            background-image: url("../image/login_username_icon@2x.png");
+            background-image: url("<c:url value='../image/login_username_icon@2x.png'/>");
         }
 
         .password {
-            background-image: url("../image/login_password_icon@2x.png");
+            background-image: url("<c:url value='../image/login_password_icon@2x.png'/>");
         }
 
         .input-wrap {
@@ -118,11 +121,11 @@
         }
 
         .sina {
-            background-image: url("../image/share_platform_sina@2x.png");
+            background-image: url("<c:url value='../image/share_platform_sina@2x.png'/>");
         }
 
         .qq {
-            background-image: url("../image/share_platform_qqfriends@2x.png");
+            background-image: url("<c:url value='../image/share_platform_qqfriends@2x.png'/>");
         }
 
         .other-login div span {
@@ -185,27 +188,8 @@
 </div>
 <footer>
     <div>没有账号？</div>
-    <div class="fast-reg" tapmode="" onclick="toRegister()">立即注册</div>
+    <div class="fast-reg" tapmode=""><a href="<c:url value='../jsp/register.jsp'/>">立即注册</a></div>
 </footer>
 
-<script src="../script/zepto.min.js"></script>
-<script>
-    apiready = function () {
-        fixIos7Bar($(".header"));
-        api.openFrame({
-            name: "frm_login",
-            url: 'frm_login.html',
-            rect: {
-                x: 0,
-                y: $(".header").height(),
-                w: "auto",
-                h: 'auto'
-            }
-        })
-    };
-    function closeWin() {
-        api.closeWin()
-    }
-</script>
 </body>
 </html>

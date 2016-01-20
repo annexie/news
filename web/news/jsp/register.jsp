@@ -1,21 +1,27 @@
-<!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='../css/api.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='../css/common.css'/>"/>
     <style>
         body {
             display: -webkit-box;
             -webkit-box-orient: vertical;
         }
-        .login-header-btn{
+
+        .login-header-btn {
             display: block;
             background-size: 30px;
             padding: 20px;
         }
+
         .content {
             -webkit-box-flex: 1;
         }
@@ -27,7 +33,7 @@
 
         .back {
             background-size: 40px !important;
-            background-image: url("../image/weather_back@2x.png");
+            background-image: url("<c:url value='../image/weather_back@2x.png'/>");
             background-position: right !important;
         }
 
@@ -52,11 +58,11 @@
         }
 
         .user {
-            background-image: url("../image/login_username_icon@2x.png");
+            background-image: url("<c:url value='../image/login_username_icon@2x.png'/>");
         }
 
         .password {
-            background-image: url("../image/login_password_icon@2x.png");
+            background-image: url("<c:url value='../image/login_password_icon@2x.png'/>");
         }
 
         .input-wrap {
@@ -106,7 +112,7 @@
 <body>
 <header>
     <div class="header detail-header">
-        <div class="back login-header-btn" tapmode="" onclick="closeWin()"></div>
+        <%--<div class="back login-header-btn" tapmode=""></div>--%>
 
         <div class="title" id="title">注册</div>
         <div class="login-header-btn"></div>
@@ -122,45 +128,12 @@
             <i class="password"></i>
             <input type="password" placeholder="密码" id="password" value="">
         </div>
+        <div class="input-wrap">
+            <i class="password"></i>
+            <input type="password" placeholder="再次密码" id="re_password" value="">
+        </div>
     </div>
     <div class="btn" id="login" tapmode="" onclick="register()">注册</div>
 </div>
-<script src="../script/zepto.min.js"></script>
-<script>
-    apiready = function () {
-        fixIos7Bar($(".header"));
-    };
-    function closeWin() {
-        api.closeWin({
-
-        })
-    }
-    function register() {
-        api.showProgress();
-        var model = api.require('model');
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var user = api.require('user');
-        user.register({
-            username: username,
-            password: password
-        }, function (ret, err) {
-            api.hideProgress();
-            if (ret) {
-                api.alert({
-                    title: '注册成功',
-                    buttons: ['确定']
-                }, function (ret, err) {
-                    if (ret.buttonIndex == 1) {
-                        api.closeWin();
-                    }
-                });
-            } else {
-                api.toast({msg: err.message, location: "middle"})
-            }
-        });
-
-    }
-</script>
 </body>
 </html>
