@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +14,10 @@
     <link rel="stylesheet" href="../css/theme/theme.min.css"/>
     <link rel="stylesheet" href="../css/styles.css"/>
     <!-- <link rel="stylesheet" href="css/styles-custom.css" /> -->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/mobileinit.js"></script>
-    <script src="../js/jquery.mobile.min.js"></script>
-    <script src="../js/fastclick.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/mobileinit.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile.min.js"></script>
+    <script type="text/javascript" src="../js/fastclick.js"></script>
 
     <style>
         .swipe {
@@ -305,9 +309,9 @@
                 <div id="pullDown">
                     <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
                 </div>
-                <header>
+                <header style="margin-top: 40px;">
                     <div class="header detail-header">
-                        <a class="user" tapmode="" href="user_center.jsp"></a>
+                        <a class="user" tapmode="" href="<c:url value='user_center.jsp'/>"></a>
                     </div>
                 </header>
                 <nav>
