@@ -1,13 +1,19 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
     <link rel="stylesheet" type="text/css" href="../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-
+    <link rel="stylesheet" href="../css/jquery.mobile.min.css"/>
+    <link rel="stylesheet" href="../css/theme/theme.min.css"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <!-- <link rel="stylesheet" href="css/styles-custom.css" /> -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/mobileinit.js"></script>
+    <script src="../js/jquery.mobile.min.js"></script>
+    <script src="../js/fastclick.js"></script>
     <style>
         .swipe {
             overflow: hidden;
@@ -274,225 +280,149 @@
         }
 
     </style>
-
 </head>
+<body>
+<!-- page -->
+<div data-role="page" id="fpmxListPage" data-iscroll="enable">
+    <link rel="stylesheet" href="../css/pull.css"/>
+    <script type="text/javascript" charset="utf-8" src="../js/iscroll.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/initScroll.js"></script>
+    <script type="text/javascript">
+        $(document).bind("pageinit", function () {
+            isInit = 0;
+            serverURL = "http://192.168.43.104:8080/loadmore"; //服务器地址
+            startNum = 1;//当前页
+            countNum = 1000; //总页数
+        });
 
-<header>
-    <div class="header detail-header">
-        <a class="user" tapmode="" href="user_center.jsp"></a>
-    </div>
-</header>
+    </script>
 
-<nav>
-    <div id="wrapper">
-        <div id="scroller">
-            <ul>
-                <li class="nav_active" tapmode="" onclick="">云api</li>
-                <li class="" tapmode="" onclick="">端api</li>
-                <li class="" tapmode="" onclick="">开发</li>
-                <li class="" tapmode="" onclick="">云服务</li>
-                <li class="" tapmode="" onclick="">培训</li>
-                <li class="" tapmode="" onclick="">视频</li>
-                <li class="" tapmode="" onclick=""><a class="user" tapmode="" href="user_center.jsp"></a></li>
-            </ul>
-        </div>
-    </div>
-    <a class="arrow_down" onclick="" tapmode=""></a>
-</nav>
+    <!-- content-->
+    <div data-role="content">
+        <div id="wrapperIndex" class="wrapper">
+            <div id="scrollerIndex" class="scroller">
+                <div id="pullDown">
+                    <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+                </div>
+                <header>
+                    <div class="header detail-header">
+                        <a class="user" tapmode="" href="user_center.jsp"></a>
+                    </div>
+                </header>
+                <nav>
+                    <div id="wrapper">
+                        <div id="scroller">
+                            <ul>
+                                <li class="nav_active" tapmode="" onclick="">云api</li>
+                                <li class="" tapmode="" onclick="">端api</li>
+                                <li class="" tapmode="" onclick="">开发</li>
+                                <li class="" tapmode="" onclick="">云服务</li>
+                                <li class="" tapmode="" onclick="">培训</li>
+                                <li class="" tapmode="" onclick="">视频</li>
+                                <li class="" tapmode="" onclick=""><a class="user" tapmode=""
+                                                                      href="user_center.jsp"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a class="arrow_down" onclick="" tapmode=""></a>
+                </nav>
+                <%--轮播图 开始--%>
+                <div id='slide' class='swipe'>
+                    <div class='swipe-wrap' id="banner-content">
+                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
+                            <img src="../image/83.png"/>
+                        </div>
+                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
+                            <img src="../image/84.png"/>
+                        </div>
+                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
+                            <img src="../image/85.png"/>
+                        </div>
+                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
+                            <img src="../image/86.png"/>
+                        </div>
+                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
+                            <img src="../image/87.png"/>
+                        </div>
+                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
+                            <img src="../image/88.png"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-lable">
+                    <span id="banner-title">apicloud重新定义移动应用开发</span>
 
+                    <div id="pointer">
+                        <a class="active"></a>
+                        <a class=""></a>
+                        <a class=""></a>
+                        <a class=""></a>
+                        <a class=""></a>
+                        <a class=""></a>
+                    </div>
+                </div>
+                <%--轮播图 结束--%>
+                <ul  data-theme="a" class="listView" id="fpmxList">
+                    <li>
+                        <a class="listView-item">
+                            <div class="listView-img"><img src="../image/91.png"></div>
+                            <div class="listView-text">
+                                <p class="listView-text-title">apicloud云端一体</p>
 
-<%--轮播图 开始--%>
-<div id='slide' class='swipe'>
-    <div class='swipe-wrap' id="banner-content">
-        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-            <img src="../image/83.png"/>
+                                <p class="listView-text-subtitle">
+                                    apicloud重新定义移动应用开发
+                                </p>
+                                <span class="listView-text-tips">098999</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="listView-item">
+                            <div class="listView-img"><img src="../image/93.png"></div>
+                            <div class="listView-text">
+                                <p class="listView-text-title">apicloud云端一体</p>
+
+                                <p class="listView-text-subtitle">
+                                    apicloud重新定义移动应用开发
+                                </p>
+                                <span class="listView-text-tips">098999</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="listView-item">
+                            <div class="listView-img"><img src="../image/91.png"></div>
+                            <div class="listView-text">
+                                <p class="listView-text-title">apicloud云端一体</p>
+
+                                <p class="listView-text-subtitle">
+                                    apicloud重新定义移动应用开发
+                                </p>
+                                <span class="listView-text-tips">098999</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="listView-item">
+                            <div class="listView-img"><img src="../image/94.png"></div>
+                            <div class="listView-text">
+                                <p class="listView-text-title">apicloud云端一体</p>
+
+                                <p class="listView-text-subtitle">
+                                    apicloud重新定义移动应用开发
+                                </p>
+                                <span class="listView-text-tips">098999</span></div>
+                        </a>
+                    </li>
+                </ul>
+
+                <div id="pullUp">
+                    <span class="pullUpIcon" style="display: block"></span><span class="pullUpLabel">上拉加载更多...</span>
+                </div>
+
+            </div>
         </div>
-        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-            <img src="../image/84.png"/>
-        </div>
-        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-            <img src="../image/85.png"/>
-        </div>
-        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-            <img src="../image/86.png"/>
-        </div>
-        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-            <img src="../image/87.png"/>
-        </div>
-        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-            <img src="../image/88.png"/>
-        </div>
+
     </div>
 </div>
-
-<div class="banner-lable">
-    <span id="banner-title">apicloud重新定义移动应用开发</span>
-
-    <div id="pointer">
-        <a class="active"></a>
-        <a class=""></a>
-        <a class=""></a>
-        <a class=""></a>
-        <a class=""></a>
-        <a class=""></a>
-    </div>
-</div>
-<%--轮播图 结束--%>
-
-<%--消息列表 开始--%>
-<ul class="listView">
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/90.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/91.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/92.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/91.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/93.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/91.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/94.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-    <li>
-        <a class="listView-item">
-            <div class="listView-img"><img src="../image/91.png"></div>
-            <div class="listView-text">
-                <p class="listView-text-title">apicloud云端一体</p>
-
-                <p class="listView-text-subtitle">
-                    apicloud重新定义移动应用开发
-                </p>
-                <span class="listView-text-tips">098999</span></div>
-        </a>
-    </li>
-</ul>
-<%--消息列表 结束--%>
-
-<script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/iscroll.js"></script>
-<script type="text/javascript" src="../script/swipe.js"></script>
-<script>
-
-    var myScroll;
-    function loaded() {
-        myScroll = new IScroll('#wrapper', {
-            eventPassthrough: true,
-            scrollX: true,
-            scrollY: false,
-            preventDefault: false
-        });
-    }
-    loaded();
-
-    apiready = function () {
-        var $header = $api.dom('.header');
-        $api.fixIos7Bar($header);
-        var $nav = $api.byId('wrapper');
-        var $header_h = $api.offset($header).h
-        var $nav_h = $api.offset($nav).h
-        api.openFrame({
-            name: 'demo_frame1',
-            url: 'demo_frame1.html',
-            rect: {
-                x: 0,
-                y: $header_h + $nav_h,
-                w: 'auto',
-                h: 'auto'
-            }
-        })
-    }
-
-    function initSlide() {
-        var $pointer = $api.byId('pointer');
-        window.mySlide = Swipe(slide, {
-            continuous: true,
-            disableScroll: true,
-            stopPropagation: true,
-            callback: function (index, element) {
-                console.log();
-                var $actA = $api.dom($pointer, 'a.active');
-                $api.removeCls($actA, 'active');
-                $api.addCls($api.eq($pointer, index + 1), 'active');
-                $api.html($api.byId('banner-title'), $api.attr(element, 'data-value'))
-            },
-            transitionEnd: function (index, element) {
-            }
-        });
-    }
-    initSlide();
-
-</script>
+<!-- /page -->
 </body>
 </html>

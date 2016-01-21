@@ -4,10 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <link rel="stylesheet" href="../css/jquery.mobile.min.css"/>
-    <link rel="stylesheet" href="../css/theme/theme.min.css"/>
-    <link rel="stylesheet" href="../css/styles.css"/>
-    <!-- <link rel="stylesheet" href="css/styles-custom.css" /> -->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/mobileinit.js"></script>
     <script src="../js/jquery.mobile.min.js"></script>
@@ -16,7 +12,6 @@
 <body>
 <!-- page -->
 <div data-role="page" id="fpmxListPage" data-iscroll="enable">
-    <link rel="stylesheet" href="../css/pull.css"/>
     <script type="text/javascript" charset="utf-8" src="../js/iscroll.js"></script>
     <script type="text/javascript" charset="utf-8" src="../js/initScroll.js"></script>
     <script type="text/javascript">
