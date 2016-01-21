@@ -14,6 +14,7 @@
     <script src="../js/mobileinit.js"></script>
     <script src="../js/jquery.mobile.min.js"></script>
     <script src="../js/fastclick.js"></script>
+
     <style>
         .swipe {
             overflow: hidden;
@@ -281,7 +282,7 @@
 
     </style>
 </head>
-<body>
+<body onload="initSlide()">
 <!-- page -->
 <div data-role="page" id="fpmxListPage" data-iscroll="enable">
     <link rel="stylesheet" href="../css/pull.css"/>
@@ -298,7 +299,7 @@
     </script>
 
     <!-- content-->
-    <div data-role="content">
+    <div data-role="content" style="padding: 0px;">
         <div id="wrapperIndex" class="wrapper">
             <div id="scrollerIndex" class="scroller">
                 <div id="pullDown">
@@ -363,7 +364,7 @@
                     </div>
                 </div>
                 <%--轮播图 结束--%>
-                <ul  data-theme="a" class="listView" id="fpmxList">
+                <ul data-theme="a" class="listView" id="fpmxList">
                     <li>
                         <a class="listView-item">
                             <div class="listView-img"><img src="../image/91.png"></div>
@@ -415,7 +416,7 @@
                 </ul>
 
                 <div id="pullUp">
-                    <span class="pullUpIcon" style="display: block"></span><span class="pullUpLabel">上拉加载更多...</span>
+                    <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
                 </div>
 
             </div>
@@ -424,5 +425,57 @@
     </div>
 </div>
 <!-- /page -->
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/iscroll.js"></script>
+<script type="text/javascript" src="../script/swipe.js"></script>
+<script>
+
+    var myScroll;
+    apiready = function () {
+        var $header = $api.dom('.header');
+        $api.fixIos7Bar($header);
+        var $nav = $api.byId('wrapper');
+        var $header_h = $api.offset($header).h
+        var $nav_h = $api.offset($nav).h
+        api.openFrame({
+            name: 'demo_frame1',
+            url: 'demo_frame1.html',
+            rect: {
+                x: 0,
+                y: $header_h + $nav_h,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    }
+
+    function initSlide() {
+        var $pointer = $api.byId('pointer');
+        window.mySlide = Swipe(slide, {
+            continuous: true,
+            disableScroll: true,
+            stopPropagation: true,
+            callback: function (index, element) {
+                console.log();
+                var $actA = $api.dom($pointer, 'a.active');
+                $api.removeCls($actA, 'active');
+                $api.addCls($api.eq($pointer, index + 1), 'active');
+                $api.html($api.byId('banner-title'), $api.attr(element, 'data-value'))
+            },
+            transitionEnd: function (index, element) {
+            }
+        });
+
+        myScroll = new IScroll('#wrapper', {
+            eventPassthrough: true,
+            scrollX: true,
+            scrollY: false,
+            preventDefault: false
+        });
+    }
+    //    initSlide();
+
+</script>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 /**
  * Created by xieyan on 16/1/6.
@@ -30,7 +31,7 @@ public class LoadMoreServlet extends HttpServlet {
                 "                                <p class=\"listView-text-subtitle\">\n" +
                 "                                    apicloud重新定义移动应用开发\n" +
                 "                                </p>\n" +
-                "                                <span class=\"listView-text-tips\">098999</span></div>\n" +
+                "                                <span class=\"listView-text-tips\">" + new Date() + "</span></div>\n" +
                 "                        </a>\n" +
                 "                    </li>";
         System.out.println(request.toString());
