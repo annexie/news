@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh">
 <head>
@@ -44,7 +44,7 @@
 </head>
 
 <body>
-<div class="navbar navbar-default" id="navbar">
+<div class="navbar navbar-default" style="height: 30px;" id="navbar">
     <script type="text/javascript">
         try {
             ace.settings.check('navbar', 'fixed')
@@ -170,7 +170,7 @@
                         </li>
 
                         <li>
-                            <a href="buttons.html">
+                            <a href="user-update.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 修改用户
                             </a>

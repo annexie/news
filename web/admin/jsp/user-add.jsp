@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<div class="navbar navbar-default" id="navbar">
+<div class="navbar navbar-default" style="height: 30px;" id="navbar">
     <script type="text/javascript">
         try {
             ace.settings.check('navbar', 'fixed')

@@ -295,7 +295,7 @@
     <script type="text/javascript">
         $(document).bind("pageinit", function () {
             isInit = 0;
-            serverURL = "http://192.168.43.104:8080/loadmore"; //服务器地址
+            serverURL = "http://192.168.31.203:8080/loadmore"; //服务器地址
             startNum = 1;//当前页
             countNum = 1000; //总页数
         });

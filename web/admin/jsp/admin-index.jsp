@@ -1,9 +1,7 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="zh">
+﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
-    <title>News</title>
+    <title>安居客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
@@ -44,7 +42,7 @@
 </head>
 
 <body>
-<div class="navbar navbar-default" id="navbar">
+<div class="navbar navbar-default" style="height: 30px;" id="navbar">
     <script type="text/javascript">
         try {
             ace.settings.check('navbar', 'fixed')
@@ -415,7 +413,7 @@
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
+    window.jQuery || document.write("<script src='../assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
 </script>
 <![endif]-->
 
