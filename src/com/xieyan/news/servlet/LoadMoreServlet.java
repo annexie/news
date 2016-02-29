@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 
 /**
+ * 加载更多的Servlet
  * Created by xieyan on 16/1/6.
  */
 public class LoadMoreServlet extends HttpServlet {

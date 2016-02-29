@@ -1,7 +1,5 @@
 package com.xieyan.news.servlet.admin;
 
-import com.alibaba.fastjson.JSONObject;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * 后台进行管理User的Servlet
  * Created by xieyan on 16/1/9.
  */
 public class UserServlet extends HttpServlet {

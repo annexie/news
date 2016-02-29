@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * 信息编辑的Servlet
  * Created by xieyan on 16/1/9.
  */
 public class NewsEditServlet extends HttpServlet {
