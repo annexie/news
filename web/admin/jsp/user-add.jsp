@@ -137,6 +137,12 @@
 
                     <ul class="submenu" style="display: block;">
                         <li>
+                            <a href="user-list.jsp">
+                                <i class="icon-double-angle-right"></i>
+                                用户列表
+                            </a>
+                        </li>
+                        <li>
                             <a href="user-add.jsp" style="color:#428bca">
                                 <i class="icon-double-angle-right"></i>
                                 新增用户

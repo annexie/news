@@ -162,6 +162,12 @@
 
                     <ul class="submenu">
                         <li>
+                            <a href="user-list.jsp">
+                                <i class="icon-double-angle-right"></i>
+                                用户列表
+                            </a>
+                        </li>
+                        <li>
                             <a href="user-add.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 新增用户
