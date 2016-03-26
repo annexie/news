@@ -278,64 +278,41 @@
             </div>
             <!-- /.page-header -->
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- PAGE CONTENT BEGINS -->
+            <div class="col-xs-12">
+                <div class="alert alert-block alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
 
-                    <div class="alert alert-block alert-success">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <i class="icon-remove"></i>
-                        </button>
+                    <i class="icon-ok green"></i>
 
-                        <i class="icon-ok green"></i>
-
-                        欢迎使用
-                        <strong class="green">
-                            系统
-                            <small>(v1.2)</small>
-                        </strong>
-                        ,这里为你提供更更全面的房源信息管理.
-                    </div>
-
-
-                    <!-- PAGE CONTENT ENDS -->
+                    欢迎使用
+                    <strong class="green">
+                        系统
+                        <small>(v1.2)</small>
+                    </strong>
+                    ,这里为你提供更更全面的房源信息管理.
                 </div>
-                <!-- /.col -->
             </div>
 
             <!-- 显示具体的界面信息 start-->
-            <div style="margin: auto;max-width: 600px; height: 400px;" id="userAddFormId">
-                <form class="form-horizontal"
-                      style="margin: auto;width: auto;height: 500px;padding: 15px;">
-
-                    <div class="form-group">
+            <div style="max-width: 600px; height: 400px;" id="userAddFormId">
+                <form class="form-horizontal">
+                    <div class="form-group" style="padding: 15px;">
                         <label class="col-lg-3 control-label">用户名:</label>
-
                         <div class="col-lg-9">
-                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
-                                   id="usernameID"/>
+                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text" id="usernameID"/>
                         </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="col-lg-3 control-label">密码:</label>
 
                         <div class="col-lg-9">
-                            <input name="password" style="display:inline; width:94%;" class="form-control"
-                                   type="password"
-                                   id="passwordID"/>
+                            <input name="password" style="display:inline; width:94%;" class="form-control" type="password" id="passwordID"/>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-lg-3 control-label">再次输入密码:</label>
 
                         <div class="col-lg-9">
-                            <input name="rePassword" style="display:inline; width:94%;" class="form-control"
-                                   type="password"
-                                   id="rePasswordID"/>
+                            <input name="rePassword" style="display:inline; width:94%;" class="form-control" type="password" id="rePasswordID"/>
                         </div>
-                    </div>
-                    <div class="form-group" style="width:130px; margin:auto;">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <button type="button" class="btn btn-success" onclick="userAdd()">保存</button>
                     </div>
@@ -343,65 +320,64 @@
             </div>
             <!-- 显示具体的界面信息 end-->
             <!-- /.row -->
+            <!-- /.page-content -->
         </div>
-        <!-- /.page-content -->
-    </div>
-    <!-- /.main-content -->
+        <!-- /.main-content -->
 
-    <div class="ace-settings-container" id="ace-settings-container">
-        <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-            <i class="icon-cog bigger-150"></i>
-        </div>
+        <div class="ace-settings-container" id="ace-settings-container">
+            <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                <i class="icon-cog bigger-150"></i>
+            </div>
 
-        <div class="ace-settings-box" id="ace-settings-box">
-            <div>
-                <div class="pull-left">
-                    <select id="skin-colorpicker" class="hide">
-                        <option data-skin="default" value="#438EB9">#438EB9</option>
-                        <option data-skin="skin-1" value="#222A2D">#222A2D</option>
-                        <option data-skin="skin-2" value="#C6487E">#C6487E</option>
-                        <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-                    </select>
+            <div class="ace-settings-box" id="ace-settings-box">
+                <div>
+                    <div class="pull-left">
+                        <select id="skin-colorpicker" class="hide">
+                            <option data-skin="default" value="#438EB9">#438EB9</option>
+                            <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                            <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                            <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                        </select>
+                    </div>
+                    <span>&nbsp; 选择皮肤</span>
                 </div>
-                <span>&nbsp; 选择皮肤</span>
-            </div>
 
-            <div>
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar"/>
-                <label class="lbl" for="ace-settings-navbar"> 固定导航条</label>
-            </div>
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar"/>
+                    <label class="lbl" for="ace-settings-navbar"> 固定导航条</label>
+                </div>
 
-            <div>
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar"/>
-                <label class="lbl" for="ace-settings-sidebar"> 固定滑动条</label>
-            </div>
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar"/>
+                    <label class="lbl" for="ace-settings-sidebar"> 固定滑动条</label>
+                </div>
 
-            <div>
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs"/>
-                <label class="lbl" for="ace-settings-breadcrumbs">固定面包屑</label>
-            </div>
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs"/>
+                    <label class="lbl" for="ace-settings-breadcrumbs">固定面包屑</label>
+                </div>
 
-            <div>
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"/>
-                <label class="lbl" for="ace-settings-rtl">切换到左边</label>
-            </div>
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"/>
+                    <label class="lbl" for="ace-settings-rtl">切换到左边</label>
+                </div>
 
-            <div>
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container"/>
-                <label class="lbl" for="ace-settings-add-container">
-                    切换窄屏
-                    <b></b>
-                </label>
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container"/>
+                    <label class="lbl" for="ace-settings-add-container">
+                        切换窄屏
+                        <b></b>
+                    </label>
+                </div>
             </div>
         </div>
+        <!-- /#ace-settings-container -->
     </div>
-    <!-- /#ace-settings-container -->
-</div>
-<!-- /.main-container-inner -->
+    <!-- /.main-container-inner -->
 
-<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-    <i class="icon-double-angle-up icon-only bigger-110"></i>
-</a>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
 </div>
 <!-- /.main-container -->
 
