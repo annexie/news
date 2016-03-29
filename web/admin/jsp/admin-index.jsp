@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
-    <title>安居客</title>
+    <title>News</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
@@ -215,23 +215,16 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="tables.html">
+                            <a href="news-edit.jsp">
                                 <i class="icon-double-angle-right"></i>
-                                余额充值
+                                新闻编辑
                             </a>
                         </li>
 
                         <li>
-                            <a href="jqgrid.html">
+                            <a href="news-list.jsp">
                                 <i class="icon-double-angle-right"></i>
-                                充值记录
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="jqgrid.html">
-                                <i class="icon-double-angle-right"></i>
-                                密码设定
+                                新闻列表
                             </a>
                         </li>
                     </ul>

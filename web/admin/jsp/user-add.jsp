@@ -190,27 +190,21 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="tables.html">
+                            <a href="news-edit.jsp">
                                 <i class="icon-double-angle-right"></i>
-                                余额充值
+                                新闻编辑
                             </a>
                         </li>
 
                         <li>
-                            <a href="jqgrid.html">
+                            <a href="news-list.jsp">
                                 <i class="icon-double-angle-right"></i>
-                                充值记录
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="jqgrid.html">
-                                <i class="icon-double-angle-right"></i>
-                                密码设定
+                                新闻列表
                             </a>
                         </li>
                     </ul>
                 </li>
+
 
                 <li>
                     <a href="#" class="dropdown-toggle">

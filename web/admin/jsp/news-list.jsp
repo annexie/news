@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
-    <title>News</title>
+    <title>News-新闻编辑</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
@@ -135,9 +135,9 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu" style="display: block;">
+                    <ul class="submenu">
                         <li>
-                            <a href="user-list.jsp" style="color:#428bca">
+                            <a href="user-list.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 用户列表
                             </a>
@@ -188,7 +188,7 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu">
+                    <ul class="submenu" style="display: block;">
                         <li>
                             <a href="news-edit.jsp">
                                 <i class="icon-double-angle-right"></i>
@@ -197,7 +197,7 @@
                         </li>
 
                         <li>
-                            <a href="news-list.jsp">
+                            <a href="news-list.jsp" style="color:#428bca">
                                 <i class="icon-double-angle-right"></i>
                                 新闻列表
                             </a>
@@ -272,7 +272,7 @@
                     News后台管理系统
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        添加新用户
+                        新闻编辑
                     </small>
                 </h1>
             </div>
@@ -291,34 +291,62 @@
                         系统
                         <small>(v1.2)</small>
                     </strong>
-                    ,这里为你提供更更全面的房源信息管理.
+                    ,
                 </div>
             </div>
 
             <!-- 显示具体的界面信息 start-->
-            <div style="max-width: 600px; height: 400px;" id="userAddFormId">
-                <form class="form-horizontal">
-                    <div class="form-group" style="padding: 15px;">
-                        <label class="col-lg-3 control-label">用户名:</label>
-                        <div class="col-lg-9">
-                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
-                                   id="usernameID"/>
-                        </div>
-                        <label class="col-lg-3 control-label">密码:</label>
-
-                        <div class="col-lg-9">
-                            <input name="password" style="display:inline; width:94%;" class="form-control"
-                                   type="password" id="passwordID"/>
-                        </div>
-                        <label class="col-lg-3 control-label">再次输入密码:</label>
-
-                        <div class="col-lg-9">
-                            <input name="rePassword" style="display:inline; width:94%;" class="form-control"
-                                   type="password" id="rePasswordID"/>
-                        </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-success" onclick="userAdd()">保存</button>
-                    </div>
+            <div class="container">
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>新闻名称：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="title">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻类型：</label>
+                            </td>
+                            <td>
+                                <select class="form-control">
+                                    <option name="">科技</option>
+                                    <option name="">计算机</option>
+                                    <option name="">人文</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻编辑：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="author">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻内容：</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="20" cols="80" name="news_text"
+                                              id="formInput42"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-default">提交</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default">取消</button>
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
             <!-- 显示具体的界面信息 end-->
