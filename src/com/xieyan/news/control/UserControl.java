@@ -2,6 +2,8 @@ package com.xieyan.news.control;
 
 import com.xieyan.news.bean.User;
 
+import java.util.List;
+
 /**
  * 用户Controler接口
  * Created by xieyan on 16/1/6.
@@ -29,4 +31,12 @@ public interface UserControl {
      * @return
      */
     public boolean logout(String username);
+
+    /**
+     * 根据调价查找用户
+     * @param username
+     * @param valid
+     * @return
+     */
+    List<User> queryByCondition(String username, String valid);
 }

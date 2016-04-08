@@ -307,14 +307,14 @@
                                         <label class="control-label" style="width:50px;float:left;">用户名:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
-                                            <input name="dep" class="form-control" type="text" style="width:120px;"
-                                                   id="depID"/>
+                                            <input name="username" class="form-control" type="text" style="width:120px;"
+                                                   id="usernameID"/>
                                         </div>
 
-                                        <label class="control-label" style="width:50px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;状态:&nbsp;</label>
+                                        <label class="control-label" style="width:50px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;是否有效:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
-                                            <select name="state" style="width:100px;" class="form-control">
+                                            <select name="valid" style="width:100px;" class="form-control">
                                                 <option value="0">有效</option>
                                                 <option value="1">无效</option>
                                                 <option value="" selected="selected">全部状态</option>

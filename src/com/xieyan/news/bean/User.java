@@ -12,6 +12,8 @@ public class User {
 
     private String userPassword;
 
+    private String valid;
+
     public int getId() {
         return id;
     }
@@ -34,5 +36,13 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String getValid() {
+        return valid;
+    }
+
+    public void setValid(String valid) {
+        this.valid = valid;
     }
 }

@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xieyan on 16/1/6.
@@ -55,7 +57,7 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 User user = new User();
-                user.setUserName(rs.getString("username"));
+                user.setUserName(rs.getString("user_name"));
                 user.setId(rs.getInt("id"));
                 return user;
             } else {
@@ -66,5 +68,32 @@ public class UserDaoImpl implements UserDao {
         }
         DBUtil.close(connection, preparedStatement, preparedStatement, null);
         return null;
+    }
+
+    @Override
+    public List<User> query(String username, String valid) {
+        Connection connection = DBUtil.getConn();
+        String sql = "select * from user where user_name = ? and valid = ? ";
+        PreparedStatement preparedStatement = null;
+        List<User> users = new ArrayList<User>();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username + "");
+            preparedStatement.setString(2, valid + "");
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setUserName(rs.getString("user_name"));
+                user.setId(rs.getInt("id"));
+                user.setValid(rs.getString("valid"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return new ArrayList<User>();
     }
 }
