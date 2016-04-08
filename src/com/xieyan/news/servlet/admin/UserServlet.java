@@ -3,7 +3,6 @@ package com.xieyan.news.servlet.admin;
 import com.xieyan.news.bean.User;
 import com.xieyan.news.control.UserControl;
 import com.xieyan.news.control.impl.UserControlImpl;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

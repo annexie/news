@@ -36,8 +36,8 @@ public class RegisterServlet extends HttpServlet {
         if (password.equals(checkPassword)) {
 
             User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
+            user.setUserName(username);
+            user.setUserPassword(password);
             UserControl userInter = new UserControlImpl();
             if (userInter.register(user)) {
                 JOptionPane.showMessageDialog(null, "注册成功！");
