@@ -295,15 +295,90 @@
             </div>
 
             <!-- 显示具体的界面信息 start-->
-            <div style="max-width: 600px; height: 400px;" id="userAddFormId">
+            <div id="userAddFormId">
+                <%--搜索框 开始--%>
+                <div class="container" style="height: 140px;">
+                    <form name="form" id="airlineSearchFormID" target="_self" method="get">
+                        <input type="hidden" name="page.currentPage" value="1">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>
+                                    <div class="form-group" style="text-align: center; line-height: 32px">
+                                        <label class="control-label" style="width:50px;float:left;">用户名:&nbsp;</label>
 
+                                        <div style="margin-left:15px;float:left;">
+                                            <input name="dep" class="form-control" type="text" style="width:120px;"
+                                                   id="depID"/>
+                                        </div>
 
+                                        <label class="control-label" style="width:50px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;状态:&nbsp;</label>
+
+                                        <div style="margin-left:15px;float:left;">
+                                            <select name="state" style="width:100px;" class="form-control">
+                                                <option value="0">有效</option>
+                                                <option value="1">无效</option>
+                                                <option value="" selected="selected">全部状态</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="margin-left:15px;float:left;">
+                                        <button id="search" type="submit" class="btn btn-primary"
+                                                onclick="airlineSearch()">查询
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <%--搜索框 结束--%>
+                <%--白名单展示列表 开始--%>
+                <div class="container" style="text-align: center;">
+                    <table class="table">
+                        <tr class="table-hover form-horizontal">
+                            <td class="info">用户ID</td>
+                            <td class="info">用户名</td>
+                            <td class="info">是否可用</td>
+                            <td class="info">操作</td>
+                        </tr>
+                        <tr>
+                            <td>123123</td>
+                            <td>123123</td>
+                            <td>2354354</td>
+                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a onclick="airlineWhiteDelete(this)">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>123123</td>
+                            <td>123123</td>
+                            <td>2354354</td>
+                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a onclick="airlineWhiteDelete(this)">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>123123</td>
+                            <td>123123</td>
+                            <td>2354354</td>
+                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a onclick="airlineWhiteDelete(this)">删除</a></td>
+                        </tr>
+
+                        <%--测试使用的填充数据--%>
+                        <c:forEach items="${pb.data }" var="pa">
+                            <tr>
+                                <td>${pa.dep}</td>
+                                <td>${pa.arr}</td>
+                                <td>${pa.flightTypeInStr}</td>
+                                <td>${pa.supplierCode}</td>
+                                <td>${pa.stateInStr}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                    <!--分页效果的-->
+                    <%--<%@include file="/commons/page.jsp" %>--%>
+                </div>
             </div>
             <!-- 显示具体的界面信息 end-->
-            <!-- /.row -->
-            <!-- /.page-content -->
         </div>
-        <!-- /.main-content -->
 
         <div class="ace-settings-container" id="ace-settings-container">
             <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
