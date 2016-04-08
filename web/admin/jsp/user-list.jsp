@@ -272,7 +272,7 @@
                     News后台管理系统
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        添加新用户
+                        用户列表
                     </small>
                 </h1>
             </div>
@@ -288,38 +288,16 @@
 
                     欢迎使用
                     <strong class="green">
-                        系统
-                        <small>(v1.2)</small>
+                        News后台管理系统
                     </strong>
-                    ,这里为你提供更更全面的房源信息管理.
+                    用户列表
                 </div>
             </div>
 
             <!-- 显示具体的界面信息 start-->
             <div style="max-width: 600px; height: 400px;" id="userAddFormId">
-                <form class="form-horizontal">
-                    <div class="form-group" style="padding: 15px;">
-                        <label class="col-lg-3 control-label">用户名:</label>
-                        <div class="col-lg-9">
-                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
-                                   id="usernameID"/>
-                        </div>
-                        <label class="col-lg-3 control-label">密码:</label>
 
-                        <div class="col-lg-9">
-                            <input name="password" style="display:inline; width:94%;" class="form-control"
-                                   type="password" id="passwordID"/>
-                        </div>
-                        <label class="col-lg-3 control-label">再次输入密码:</label>
 
-                        <div class="col-lg-9">
-                            <input name="rePassword" style="display:inline; width:94%;" class="form-control"
-                                   type="password" id="rePasswordID"/>
-                        </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-success" onclick="userAdd()">保存</button>
-                    </div>
-                </form>
             </div>
             <!-- 显示具体的界面信息 end-->
             <!-- /.row -->
