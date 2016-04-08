@@ -22,8 +22,8 @@ public class UserDaoImpl implements UserDao {
         boolean flag = false;
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getUsername() + "");
-            preparedStatement.setString(2, user.getPassword() + "");
+            preparedStatement.setString(1, user.getUserName() + "");
+            preparedStatement.setString(2, user.getUserPassword() + "");
             int isOk = preparedStatement.executeUpdate(); //执行executeUpdate()方法:这里是update数据相当于更新、插入
             if (isOk > 0) {
                 return !flag;
@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User login(String username, String password) {
         Connection connection = DBUtil.getConn();
-        String sql = "select * from user where username = ? and password = ? ";// 编写sql语句，第一个字段不需要插入，是自动增加的
+        String sql = "select * from user where user_name = ? and user_password = ? ";// 编写sql语句，第一个字段不需要插入，是自动增加的
         PreparedStatement preparedStatement = null;
 
         try {
@@ -55,8 +55,8 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 User user = new User();
-                user.setUsername(rs.getString("username"));
-                user.setUserId(rs.getInt("id"));
+                user.setUserName(rs.getString("username"));
+                user.setId(rs.getInt("id"));
                 return user;
             } else {
                 return null;

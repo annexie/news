@@ -7,6 +7,7 @@ import com.xieyan.news.bean.User;
  * Created by xieyan on 16/1/6.
  */
 public interface UserControl {
+
     /**
      * 用户注册
      * @param user
