@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
+    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
+    <link rel="stylesheet" href="<c:url value='/admin/assets/css/font-awesome.min.css'/>"/>
     <!-- fonts -->
     <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300"/>
     <!-- ace styles -->
-    <link rel="stylesheet" href="../assets/css/ace.min.css"/>
-    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
-    <link rel="stylesheet" href="../assets/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="<c:url value='/admin/assets/css/ace.min.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/admin/assets/css/ace-rtl.min.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/admin/assets/css/ace-skins.min.css'/>"/>
     <!-- ace settings handler -->
-    <script src="../assets/js/ace-extra.min.js"></script>
+    <script src="<c:url value='/admin/assets/js/ace-extra.min.js'/>"></script>
 </head>
 
 <body>
@@ -415,29 +415,29 @@
 <!-- basic scripts -->
 
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
+    window.jQuery || document.write("<script src='/admin/assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
 </script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
+    window.jQuery || document.write("<script src='/admin/assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
 </script>
 <![endif]-->
 
 <script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
+    if ("ontouchend" in document) document.write("<script src='/admin/assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
 </script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/typeahead-bs2.min.js"></script>
+<script src="/admin/assets/js/bootstrap.min.js"></script>
+<script src="/admin/assets/js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
 <!-- ace scripts -->
 
-<script src="../assets/js/ace-elements.min.js"></script>
-<script src="../assets/js/ace.min.js"></script>
+<script src="/admin/assets/js/ace-elements.min.js"></script>
+<script src="/admin/assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 
@@ -487,8 +487,8 @@
     </div>
     <!-- /.modal -->
 </div>
-<script src="../js/jquery-1.8.3.min.js"></script>
-<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="<c:url value='/admin/js/jquery-1.8.3.min.js'/>"></script>
+<script src="<c:url value='/admin/lib/bootstrap/js/bootstrap.min.js'/>"></script>
 </body>
 </html>
 

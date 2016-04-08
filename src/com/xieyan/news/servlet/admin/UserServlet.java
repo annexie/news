@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
             UserControl userControl = new UserControlImpl();
             List<User> userList = userControl.queryByCondition(username, valid);
             request.setAttribute("userList", userList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/user-list.jsp");
             dispatcher.forward(request, response);
 
         } else if ("add".equals(type)) {  //添加用户

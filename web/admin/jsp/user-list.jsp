@@ -1,3 +1,5 @@
+<%@ page import="com.xieyan.news.bean.User" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
@@ -5,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
+    <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/admin/assets/css/font-awesome.min.css"/>
     <!-- fonts -->
     <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300"/>
     <!-- ace styles -->
-    <link rel="stylesheet" href="../assets/css/ace.min.css"/>
-    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
-    <link rel="stylesheet" href="../assets/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
     <!-- ace settings handler -->
     <script src="../assets/js/ace-extra.min.js"></script>
 </head>
@@ -298,8 +300,10 @@
             <div id="userAddFormId">
                 <%--搜索框 开始--%>
                 <div class="container" style="height: 140px;">
-                    <form name="form" id="airlineSearchFormID" target="_self" method="get">
+                    <form name="form" id="airlineSearchFormID" target="_self" method="get"
+                          action="${pageContext.request.contextPath}/user">
                         <input type="hidden" name="page.currentPage" value="1">
+                        <input type="hidden" name="type" value="list">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
@@ -315,8 +319,8 @@
 
                                         <div style="margin-left:15px;float:left;">
                                             <select name="valid" style="width:100px;" class="form-control">
-                                                <option value="0">有效</option>
-                                                <option value="1">无效</option>
+                                                <option value="1">有效</option>
+                                                <option value="0">无效</option>
                                                 <option value="" selected="selected">全部状态</option>
                                             </select>
                                         </div>
@@ -343,35 +347,23 @@
                             <td class="info">是否可用</td>
                             <td class="info">操作</td>
                         </tr>
+                        <%
+                            List<User> user = (List<User>) request.getAttribute("userList");
+                            for (User u : user) {
+                        %>
                         <tr>
-                            <td>123123</td>
-                            <td>123123</td>
-                            <td>2354354</td>
-                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a onclick="airlineWhiteDelete(this)">删除</a></td>
+                            <td><%=u.getId()%>
+                            </td>
+                            <td><%=u.getId()%>
+                            </td>
+                            <td><%=u.getId()%>
+                            </td>
+                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a
+                                    onclick="airlineWhiteDelete(this)">删除</a></td>
                         </tr>
-                        <tr>
-                            <td>123123</td>
-                            <td>123123</td>
-                            <td>2354354</td>
-                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a onclick="airlineWhiteDelete(this)">删除</a></td>
-                        </tr>
-                        <tr>
-                            <td>123123</td>
-                            <td>123123</td>
-                            <td>2354354</td>
-                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a onclick="airlineWhiteDelete(this)">删除</a></td>
-                        </tr>
-
-                        <%--测试使用的填充数据--%>
-                        <c:forEach items="${pb.data }" var="pa">
-                            <tr>
-                                <td>${pa.dep}</td>
-                                <td>${pa.arr}</td>
-                                <td>${pa.flightTypeInStr}</td>
-                                <td>${pa.supplierCode}</td>
-                                <td>${pa.stateInStr}</td>
-                            </tr>
-                        </c:forEach>
+                        <%
+                            }
+                        %>
                     </table>
                     <!--分页效果的-->
                     <%--<%@include file="/commons/page.jsp" %>--%>
@@ -512,8 +504,8 @@
     </div>
     <!-- /.modal -->
 </div>
-<script src="../js/jquery-1.8.3.min.js"></script>
-<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/admin/js/jquery-1.8.3.min.js"></script>
+<script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 
