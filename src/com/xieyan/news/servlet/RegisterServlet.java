@@ -3,6 +3,8 @@ package com.xieyan.news.servlet;
 import com.xieyan.news.bean.User;
 import com.xieyan.news.control.UserControl;
 import com.xieyan.news.control.impl.UserControlImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +14,14 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
 /**
  * 注册Servlet
  * Created by xieyan on 16/1/6.
  */
 public class RegisterServlet extends HttpServlet {
+
+    transient static final Logger logger = LoggerFactory.getLogger(RegisterServlet.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
