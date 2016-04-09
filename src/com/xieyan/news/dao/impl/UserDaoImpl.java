@@ -81,7 +81,84 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(1, username + "");
             preparedStatement.setString(2, valid + "");
             ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
+                User user = new User();
+                user.setUserName(rs.getString("user_name"));
+                user.setId(rs.getInt("id"));
+                user.setValid(rs.getString("valid"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return new ArrayList<User>();
+    }
+
+    @Override
+    public List<User> queryByName(String username) {
+        Connection connection = DBUtil.getConn();
+        String sql = "select * from user where user_name = ? ";
+        PreparedStatement preparedStatement = null;
+        List<User> users = new ArrayList<User>();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username + "");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setUserName(rs.getString("user_name"));
+                user.setId(rs.getInt("id"));
+                user.setValid(rs.getString("valid"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return new ArrayList<User>();
+    }
+
+    @Override
+    public List<User> queryByIsValid(String valid) {
+        Connection connection = DBUtil.getConn();
+        String sql = "select * from user where valid = ? ";
+        PreparedStatement preparedStatement = null;
+        List<User> users = new ArrayList<User>();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, valid + "");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setUserName(rs.getString("user_name"));
+                user.setId(rs.getInt("id"));
+                user.setValid(rs.getString("valid"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return new ArrayList<User>();
+    }
+
+    @Override
+    public List<User> listUser() {
+        Connection connection = DBUtil.getConn();
+        String sql = "select * from user";
+        PreparedStatement preparedStatement = null;
+        List<User> users = new ArrayList<User>();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
                 User user = new User();
                 user.setUserName(rs.getString("user_name"));
                 user.setId(rs.getInt("id"));

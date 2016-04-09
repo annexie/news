@@ -139,7 +139,7 @@
 
                     <ul class="submenu" style="display: block;">
                         <li>
-                            <a href="user-list.jsp" style="color:#428bca">
+                            <a href="${pageContext.request.contextPath}/user?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 用户列表
                             </a>
@@ -315,7 +315,7 @@
                                                    id="usernameID"/>
                                         </div>
 
-                                        <label class="control-label" style="width:50px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;是否有效:&nbsp;</label>
+                                        <label class="control-label" style="width:80px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;是否有效:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
                                             <select name="valid" style="width:100px;" class="form-control">
@@ -354,9 +354,9 @@
                         <tr>
                             <td><%=u.getId()%>
                             </td>
-                            <td><%=u.getId()%>
+                            <td><%=u.getUserName()%>
                             </td>
-                            <td><%=u.getId()%>
+                            <td><%=u.getValid()%>
                             </td>
                             <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a
                                     onclick="airlineWhiteDelete(this)">删除</a></td>

@@ -14,4 +14,10 @@ public interface UserDao {
     public User login(String username, String password);
 
     List<User> query(String username, String valid);
+
+    List<User> queryByName(String username);
+
+    List<User> queryByIsValid(String valid);
+
+    List<User> listUser();
 }

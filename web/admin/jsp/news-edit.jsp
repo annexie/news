@@ -137,7 +137,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="user-list.jsp">
+                            <a href="${pageContext.request.contextPath}/user?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 用户列表
                             </a>
