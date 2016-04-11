@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <head>
     <meta charset="utf-8"/>
     <title>News-新闻编辑</title>
@@ -270,14 +271,14 @@
 
             <!-- 显示具体的界面信息 start-->
             <div class="container">
-                <form>
+                <form id="addArticleForm" enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td>
                                 <label>新闻名称：</label>
                             </td>
                             <td>
-                                <input type="text" name="title">
+                                <input type="text" name="newsTitle">
                             </td>
                         </tr>
                         <tr>
@@ -285,10 +286,10 @@
                                 <label>新闻类型：</label>
                             </td>
                             <td>
-                                <select class="form-control">
-                                    <option name="">科技</option>
-                                    <option name="">计算机</option>
-                                    <option name="">人文</option>
+                                <select name="newsKind" class="form-control">
+                                    <option value="1" selected="selected">科技</option>
+                                    <option value="2">计算机</option>
+                                    <option value="3">人文</option>
                                 </select>
                             </td>
                         </tr>
@@ -297,7 +298,7 @@
                                 <label>新闻编辑：</label>
                             </td>
                             <td>
-                                <input type="text" name="author">
+                                <input type="text" name="newsAuthor">
                             </td>
                         </tr>
                         <tr>
@@ -305,14 +306,14 @@
                                 <label>新闻内容：</label>
                             </td>
                             <td>
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="20" cols="80" name="news_text" id="formInput42"></textarea>
+                                <div class="editer">
+                                    <script id="editor" name="newText" type="text/plain" style="width:766px;"></script>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button type="button" class="btn btn-default">提交</button>
+                                <button type="button" id="articleAddBtn" class="btn btn-default">提交</button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-default">取消</button>
@@ -322,11 +323,7 @@
                 </form>
             </div>
             <!-- 显示具体的界面信息 end-->
-            <!-- /.row -->
-            <!-- /.page-content -->
         </div>
-        <!-- /.main-content -->
-
         <div class="ace-settings-container" id="ace-settings-container">
             <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
                 <i class="icon-cog bigger-150"></i>
@@ -374,65 +371,20 @@
                 </div>
             </div>
         </div>
-        <!-- /#ace-settings-container -->
     </div>
-    <!-- /.main-container-inner -->
 
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="icon-double-angle-up icon-only bigger-110"></i>
     </a>
 </div>
-<!-- /.main-container -->
 
-<!-- basic scripts -->
-
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
-</script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
-</script>
 <script src="../assets/js/bootstrap.min.js"></script>
 <script src="../assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<!-- ace scripts -->
 
 <script src="../assets/js/ace-elements.min.js"></script>
 <script src="../assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
-
-<script type="text/javascript">
-
-    function userAdd() {
-        var url = "/user?type=add&";
-        var param = $("#userAddFormId").find('form').serialize();
-        $.get(url + param, function (result) {
-            alert("success");
-            if (result == "success") {
-                alert("success");
-                $("#modal-result-text").addClass("alert alert-success");
-                $("#modal-result-text").text("保存成功！");
-            } else {
-                $("#modal-result-text").addClass("alert alert-warning");
-                $("#modal-result-text").text(result.msg);
-            }
-            $("#modal-result").modal('show');
-        }, "json");
-    }
-
-</script>
 <!--显示成功、失败的modal-->
 <div class="modal fade" id="modal-result" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -461,6 +413,35 @@
 </div>
 <script src="../js/jquery-1.8.3.min.js"></script>
 <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/jquery-form.js"></script>
+<script src="../ueditor/ueditor.config.js"></script>
+<script src="../ueditor/ueditor.all.min.js"></script>
+<script src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function () {
+        UE.getEditor('editor');
+
+        //覆盖原有的请求地址
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        UE.Editor.prototype.getActionUrl = function (action) {
+            if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+                return 'http://127.0.0.1:8080/uploadimage';
+            } else {
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
+    });
+
+    $('#articleAddBtn').click(function () {
+        $("#addArticleForm").ajaxSubmit({
+            url: '${pageContext.request.contextPath}/newsedit',
+            success: function (data) {
+                alert("添加文章成功！");
+                <%--window.location.href = '${ctx}/back/ArticleDTO/manageArticle.do';--%>
+            }
+        })
+    });
+</script>
 </body>
 </html>
 
