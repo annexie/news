@@ -30,11 +30,11 @@ public class UserControlImpl implements UserControl {
     @Override
     public List<User> queryByCondition(String username, String valid) {
         UserDao userDao = new UserDaoImpl();
-        if ((!"".equals(username)) && (!"".equals(valid))) { //用户名和valid均不为空
+        if ((!"".equals(username)) && (!"".equals(valid)) && null != username && valid != null) { //用户名和valid均不为空
             return userDao.query(username, valid);
-        } else if ((!"".equals(username)) && ("".equals(valid))) {//用户名不为空valid为空
+        } else if (((!"".equals(username) && null != username)) && (("".equals(valid)) || null == valid)) {//用户名不为空valid为空
             return userDao.queryByName(username);
-        } else if (("".equals(username)) && (!"".equals(valid))) {//用户名为空valid不为空
+        } else if ((("".equals(username) || null == username)) && ((!"".equals(valid) && null != valid))) {//用户名为空valid不为空
             return userDao.queryByIsValid(valid);
         }
         return userDao.listUser(); //都为空的情况
