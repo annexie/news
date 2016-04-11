@@ -39,4 +39,10 @@ public class UserControlImpl implements UserControl {
         }
         return userDao.listUser(); //都为空的情况
     }
+
+    @Override
+    public boolean update(User user) {
+        UserDao userDao = new UserDaoImpl();
+        return userDao.update(user);
+    }
 }

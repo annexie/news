@@ -45,4 +45,13 @@ public class User {
     public void setValid(String valid) {
         this.valid = valid;
     }
+
+    public User(int id, String userName, String valid) {
+        this.id = id;
+        this.userName = userName;
+        this.valid = valid;
+    }
+
+    public User() {
+    }
 }

@@ -39,4 +39,11 @@ public interface UserControl {
      * @return
      */
     List<User> queryByCondition(String username, String valid);
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    boolean update(User user);
 }

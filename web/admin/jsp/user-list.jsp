@@ -15,8 +15,48 @@
     <link rel="stylesheet" href="/admin/assets/css/ace.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
-    <!-- ace settings handler -->
-    <script src="../assets/js/ace-extra.min.js"></script>
+
+    <script type="text/javascript">
+
+        function userUpdate(element) {
+
+            var parentTr = element.parentNode.parentNode;
+
+            //对白名单的封装
+            function UserInfo() {
+                this.id = parentTr.cells[0].innerHTML.trim(""); //出发
+                this.username = parentTr.cells[1].innerHTML.trim(""); //出发
+                this.valid = parentTr.cells[2].innerHTML.trim("");//到达
+            }
+
+            user = new UserInfo();
+            $('#updateUserModalID').modal({
+                keyboard: true
+            });
+
+            //为修改框modal中的设置默认的值
+            $('#updateIdID').attr('value', user.id);
+            $('#updateUsernameID').attr('value', user.username);
+            //设置flightType的select中的值
+            if (user.valid + '' == 1) {
+                $("#updateValidID").attr("value", 1);
+            } else {
+                $('#updateValidID').attr('value', 0);
+            }
+
+            var btnAdd = $('#saveAdd');
+            if (btnAdd == null) {
+                alert("not found");
+            } else {
+                btnAdd.on('click', function () {
+                    var form = $('#userUpdateFormID');
+                    modalUpdateRequest('${pageContext.request.contextPath}/user', form)
+                    $('#updateUserModalID').modal('hide');
+                });
+            }
+        }
+
+    </script>
 </head>
 
 <body>
@@ -35,17 +75,14 @@
                     <i class="icon-leaf"></i>
                     News后台管理系统
                 </small>
-            </a><!-- /.brand -->
+            </a>
         </div>
-        <!-- /.navbar-header -->
 
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-
-
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo"/>
+                        <img class="nav-user-photo" src="/admin/assets/avatars/user.jpg" alt="Jason's Photo"/>
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									ADMIN
@@ -55,36 +92,15 @@
                     </a>
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a href="#">
-                                <i class="icon-cog"></i>
-                                设置
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="icon-user"></i>
-                                个人资料
-                            </a>
-                        </li>
-
+                        <li><a href="#"><i class="icon-cog"></i>设置</a></li>
+                        <li><a href="#"><i class="icon-user"></i>个人资料</a></li>
                         <li class="divider"></li>
-
-                        <li>
-                            <a href="#">
-                                <i class="icon-off"></i>
-                                退出
-                            </a>
-                        </li>
+                        <li><a href="#"><i class="icon-off"></i>退出</a></li>
                     </ul>
                 </li>
             </ul>
-            <!-- /.ace-nav -->
         </div>
-        <!-- /.navbar-header -->
     </div>
-    <!-- /.container -->
 </div>
 
 <div class="main-container" id="main-container">
@@ -344,8 +360,10 @@
                             </td>
                             <td><%=u.getValid()%>
                             </td>
-                            <td><a onclick="airlineWhiteUpdate(this)">修改</a> <a
-                                    onclick="airlineWhiteDelete(this)">删除</a></td>
+                            <td>
+                                <a onclick="userUpdate(this)">修改</a>
+                                <a onclick="userDelete(this)">删除</a>
+                            </td>
                         </tr>
                         <%
                             }
@@ -407,91 +425,63 @@
         </div>
         <!-- /#ace-settings-container -->
     </div>
-    <!-- /.main-container-inner -->
 
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="icon-double-angle-up icon-only bigger-110"></i>
     </a>
 </div>
-<!-- /.main-container -->
 
-<!-- basic scripts -->
-
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
-</script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
-</script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<!-- ace scripts -->
-
-<script src="../assets/js/ace-elements.min.js"></script>
-<script src="../assets/js/ace.min.js"></script>
-
-<!-- inline scripts related to this page -->
-
-<script type="text/javascript">
-
-    function userAdd() {
-        var url = "/user?type=add&";
-        var param = $("#userAddFormId").find('form').serialize();
-        $.get(url + param, function (result) {
-            alert("success");
-            if (result == "success") {
-                alert("success");
-                $("#modal-result-text").addClass("alert alert-success");
-                $("#modal-result-text").text("保存成功！");
-            } else {
-                $("#modal-result-text").addClass("alert alert-warning");
-                $("#modal-result-text").text(result.msg);
-            }
-            $("#modal-result").modal('show');
-        }, "json");
-    }
-
-</script>
-<!--显示成功、失败的modal-->
-<div class="modal fade" id="modal-result" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+<%--修改的modal--%>
+<div class="modal fade" id="updateUserModalID">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    信息
-                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">修改</h4>
             </div>
-            <div class="modal-body" id="modal-result-text">
+            <div class="modal-body">
+                <%--表单的开始--%>
+                <form class="form-horizontal textFont" id="userUpdateFormID">
+                    <input name="type" type="hidden" value="update"/>
+                    <input name="id" type="hidden" id="updateIdID"/>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">到达:</label>
+
+                        <div class="col-lg-9">
+                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
+                                   id="updateUsernameID"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">是否有效:</label>
+
+                        <div class="col-lg-9">
+                            <select name="valid" id="updateValidID" style="display:inline; width:94%;"
+                                    class="form-control">
+                                <option value="1">有效</option>
+                                <option value="0">无效</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <%--表单的结束--%>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal" id="modalBtnCloseID">关闭
-                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" id="saveAdd">保存</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
 </div>
+<%--modal结束--%>
+
+<!--显示成功、失败的modal-->
+<%@include file="/admin/commons/modal-custom.jsp" %>
 <script src="/admin/js/jquery-1.8.3.min.js"></script>
-<script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/admin/js/modal-operate.js"></script>
+<script src="/admin/assets/js/bootstrap.min.js"></script>
 </body>
 </html>
 

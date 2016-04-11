@@ -20,4 +20,6 @@ public interface UserDao {
     List<User> queryByIsValid(String valid);
 
     List<User> listUser();
+
+    boolean update(User user);
 }

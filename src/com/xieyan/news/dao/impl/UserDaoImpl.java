@@ -173,4 +173,26 @@ public class UserDaoImpl implements UserDao {
         }
         return new ArrayList<User>();
     }
+
+    @Override
+    public boolean update(User user) {
+        Connection connection = DBUtil.getConn();
+        String sql = "update user set user_name = ? and valid =? where id =?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUserName() + "");
+            preparedStatement.setString(2, user.getValid() + "");
+            preparedStatement.setInt(3, user.getId());
+            boolean flag = preparedStatement.execute();
+            if (flag) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return false;
+    }
 }
