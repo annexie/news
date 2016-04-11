@@ -150,20 +150,6 @@
                         </li>
 
                         <li>
-                            <a href="buttons.html">
-                                <i class="icon-double-angle-right"></i>
-                                修改用户
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="treeview.html">
-                                <i class="icon-double-angle-right"></i>
-                                删除用户
-                            </a>
-                        </li>
-
-                        <li>
                             <a href="jquery-ui.html">
                                 <i class="icon-double-angle-right"></i>
                                 冻结用户
