@@ -1,5 +1,6 @@
 <%@ page import="com.xieyan.news.bean.User" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
@@ -208,7 +209,7 @@
 
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="admin-index.jsp">
+                    <a href="<c:url value='/admin/jsp/admin-index.jsp'/>">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> News后台管理系统 </span>
                     </a>
@@ -234,21 +235,6 @@
                                 新增用户
                             </a>
                         </li>
-
-                        <li>
-                            <a href="jquery-ui.html">
-                                <i class="icon-double-angle-right"></i>
-                                冻结用户
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="nestable-list.html">
-                                <i class="icon-double-angle-right"></i>
-                                激活用户
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
 

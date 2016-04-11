@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh">
 <head>
@@ -148,7 +149,7 @@
 
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="admin-index.jsp">
+                    <a href="<c:url value='/admin/jsp/admin-index.jsp'/>">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> News后台管理系统 </span>
                     </a>
@@ -172,20 +173,6 @@
                             <a href="user-add.jsp" style="color:#428bca">
                                 <i class="icon-double-angle-right"></i>
                                 新增用户
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="jquery-ui.html">
-                                <i class="icon-double-angle-right"></i>
-                                冻结用户
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="nestable-list.html">
-                                <i class="icon-double-angle-right"></i>
-                                激活用户
                             </a>
                         </li>
 

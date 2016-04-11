@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="modal-result" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">

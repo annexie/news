@@ -1,6 +1,6 @@
 /**
  * 添加、修改的时候弹出的modal对话框
- * Created by xuliugen on 15/10/8.
+ * Created by xieyan on 15/10/8.
  */
 
 /**

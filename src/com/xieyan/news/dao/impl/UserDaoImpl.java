@@ -177,15 +177,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean update(User user) {
         Connection connection = DBUtil.getConn();
-        String sql = "update user set user_name = ? and valid =? where id =?";
+        String sql = "update user set user_name = ? , valid =? where id =?";
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getUserName() + "");
             preparedStatement.setString(2, user.getValid() + "");
             preparedStatement.setLong(3, user.getId());
-            boolean flag = preparedStatement.execute();
-            if (flag) {
+            int flag = preparedStatement.executeUpdate();
+            if (flag == 1) {
                 return true;
             }
         } catch (SQLException e) {
