@@ -50,6 +50,14 @@
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/user</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UploadImageServlet</servlet-name>
+        <servlet-class>com.xieyan.news.servlet.admin.UploadImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadImageServlet</servlet-name>
+        <url-pattern>/uploadimage</url-pattern>
+    </servlet-mapping>
     <!-- 后台管理servlet end-->
 
     <!-- 过滤中文乱码的问题 -->

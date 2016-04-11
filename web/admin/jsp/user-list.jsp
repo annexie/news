@@ -102,6 +102,7 @@
 
             });
 //            window.location.reload();
+            <%--window.location.href = '${ctx}/back/ArticleDTO/manageArticle.do';--%>
         }
 
     </script>

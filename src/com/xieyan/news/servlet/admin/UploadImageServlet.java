@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 信息编辑的Servlet
  * Created by xieyan on 16/1/9.
  */
 public class UploadImageServlet extends HttpServlet {
@@ -19,7 +18,5 @@ public class UploadImageServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getParameter("html"));
-//        response.sendRedirect("admin/lib/editor.md/examples/use-requirejs.html");
     }
 }
