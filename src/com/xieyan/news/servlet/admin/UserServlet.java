@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet {
             String valid = request.getParameter("valid").trim();
 
             //封装成User对象
-            User user = new User(Integer.parseInt(id), username, valid);
+            User user = new User(Long.parseLong(id), username, valid);
             //进行更新操作
             UserControl userControl = new UserControlImpl();
             userControl.update(user);
@@ -66,7 +66,19 @@ public class UserServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/user-list.jsp");
             dispatcher.forward(request, response);
         } else if ("delete".equals(type)) {//删除用户
+            //获取前台传入的参数
+            String id = request.getParameter("id").trim();
 
+            UserControl userControl = new UserControlImpl();
+            if (userControl.delete(id)) {
+                PrintWriter out = response.getWriter();
+                out.print("success");
+
+                List<User> userList = userControl.queryByCondition("", "");
+                request.setAttribute("userList", userList);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/user-list.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 }

@@ -46,4 +46,6 @@ public interface UserControl {
      * @return
      */
     boolean update(User user);
+
+    boolean delete(String id);
 }

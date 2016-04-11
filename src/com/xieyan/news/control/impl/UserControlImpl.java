@@ -45,4 +45,10 @@ public class UserControlImpl implements UserControl {
         UserDao userDao = new UserDaoImpl();
         return userDao.update(user);
     }
+
+    @Override
+    public boolean delete(String id) {
+        UserDao userDao = new UserDaoImpl();
+        return userDao.delete(id);
+    }
 }

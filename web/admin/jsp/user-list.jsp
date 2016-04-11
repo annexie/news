@@ -56,10 +56,79 @@
             }
         }
 
+        function userDelete(element) {
+
+            var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
+                    + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
+                    + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
+                    + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
+                    + '<div class="alert alert-warning">确认要删除吗？删除之后无法恢复哦！</div></div><div class="modal-footer">'
+                    + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
+                    + '<button type="button" class="btn btn-success" id="deleteOK">删除</button></div></div>'
+                    + '</div></div>');
+
+            confirmDeleteDialog.modal({
+                keyboard: false
+            }).on({
+                'hidden.bs.modal': function () {
+                    $(this).remove();
+                }
+            });
+
+            var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
+            deleteConfirm.on('click', function () {
+                confirmDeleteDialog.modal('hide'); //隐藏dialog
+                //需要回调的函数
+                var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
+                var url = '${pageContext.request.contextPath}/user?type=delete&id=' + idToDel;
+
+//                $.ajax({
+//                    url: url,
+//                    dataType: "json",
+//                    type: "POST",
+//                    success: function (result) {
+//                        $("#modal-add-result-text").text(result);
+//                        $("#modal-result").modal('show');
+//
+//                    }
+//                });
+
+                $.get(url, function (result) {
+                    $("#modal-add-result-text").text(result);
+                    $("#modal-result").modal('show');
+                    return null;
+                }, "json");
+
+            });
+//            window.location.reload();
+        }
+
     </script>
+
 </head>
 
 <body>
+
+<div class="modal" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">模态弹出窗标题</h4>
+            </div>
+            <div class="modal-body">
+                <p>模态弹出窗主体内容</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div class="navbar navbar-default" style="height: 30px;" id="navbar">
     <script type="text/javascript">
         try {
@@ -136,7 +205,6 @@
                     <span class="btn btn-danger"></span>
                 </div>
             </div>
-            <!-- #sidebar-shortcuts -->
 
             <ul class="nav nav-list">
                 <li class="active">
@@ -237,7 +305,6 @@
                 </li>
 
             </ul>
-            <!-- /.nav-list -->
 
             <div class="sidebar-collapse" id="sidebar-collapse">
                 <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
@@ -268,7 +335,6 @@
                     </li>
                     <li class="active">News后台管理系统</li>
                 </ul>
-                <!-- .breadcrumb -->
             </div>
 
             <div class="page-header">
@@ -280,16 +346,13 @@
                     </small>
                 </h1>
             </div>
-            <!-- /.page-header -->
 
             <div class="col-xs-12">
                 <div class="alert alert-block alert-success">
                     <button type="button" class="close" data-dismiss="alert">
                         <i class="icon-remove"></i>
                     </button>
-
                     <i class="icon-ok green"></i>
-
                     欢迎使用
                     <strong class="green">
                         News后台管理系统
@@ -330,9 +393,7 @@
                                 </td>
                                 <td>
                                     <div style="margin-left:15px;float:left;">
-                                        <button id="search" type="submit" class="btn btn-primary"
-                                                onclick="airlineSearch()">查询
-                                        </button>
+                                        <button id="search" type="submit" class="btn btn-primary">查询</button>
                                     </div>
                                 </td>
                             </tr>
@@ -423,7 +484,6 @@
                 </div>
             </div>
         </div>
-        <!-- /#ace-settings-container -->
     </div>
 
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">

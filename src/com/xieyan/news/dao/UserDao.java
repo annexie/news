@@ -22,4 +22,6 @@ public interface UserDao {
     List<User> listUser();
 
     boolean update(User user);
+
+    boolean delete(String id);
 }

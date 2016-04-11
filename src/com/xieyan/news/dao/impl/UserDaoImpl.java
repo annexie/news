@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
             if (rs.next()) {
                 User user = new User();
                 user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getLong("id"));
                 return user;
             } else {
                 return null;
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
             while (rs.next()) {
                 User user = new User();
                 user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getLong("id"));
                 user.setValid(rs.getString("valid"));
                 users.add(user);
             }
@@ -110,7 +110,7 @@ public class UserDaoImpl implements UserDao {
             while (rs.next()) {
                 User user = new User();
                 user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getLong("id"));
                 user.setValid(rs.getString("valid"));
                 users.add(user);
             }
@@ -136,7 +136,7 @@ public class UserDaoImpl implements UserDao {
             while (rs.next()) {
                 User user = new User();
                 user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getLong("id"));
                 user.setValid(rs.getString("valid"));
                 users.add(user);
             }
@@ -161,7 +161,7 @@ public class UserDaoImpl implements UserDao {
             while (rs.next()) {
                 User user = new User();
                 user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getLong("id"));
                 user.setValid(rs.getString("valid"));
                 users.add(user);
             }
@@ -183,11 +183,29 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getUserName() + "");
             preparedStatement.setString(2, user.getValid() + "");
-            preparedStatement.setInt(3, user.getId());
+            preparedStatement.setLong(3, user.getId());
             boolean flag = preparedStatement.execute();
             if (flag) {
                 return true;
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        Connection connection = DBUtil.getConn();
+        String sql = "delete from user where id = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, Long.parseLong(id.trim()));
+            boolean flag = preparedStatement.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

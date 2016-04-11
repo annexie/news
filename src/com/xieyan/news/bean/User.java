@@ -6,7 +6,7 @@ package com.xieyan.news.bean;
  */
 public class User {
 
-    private int id;
+    private Long id;
 
     private String userName;
 
@@ -14,11 +14,11 @@ public class User {
 
     private String valid;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,7 +46,7 @@ public class User {
         this.valid = valid;
     }
 
-    public User(int id, String userName, String valid) {
+    public User(Long id, String userName, String valid) {
         this.id = id;
         this.userName = userName;
         this.valid = valid;
