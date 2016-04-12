@@ -8,7 +8,7 @@ import java.util.List;
  * 用户Controler接口
  * Created by xieyan on 16/1/6.
  */
-public interface UserControl {
+public interface UserController {
 
     /**
      * 用户注册

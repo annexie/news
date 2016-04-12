@@ -1,8 +1,8 @@
 package com.xieyan.news.servlet.admin;
 
 import com.xieyan.news.bean.User;
-import com.xieyan.news.control.UserControl;
-import com.xieyan.news.control.impl.UserControlImpl;
+import com.xieyan.news.control.UserController;
+import com.xieyan.news.control.impl.UserControllerImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,7 +32,7 @@ public class UserServlet extends HttpServlet {
             String username = request.getParameter("username");
             String valid = request.getParameter("valid");
 
-            UserControl userControl = new UserControlImpl();
+            UserController userControl = new UserControllerImpl();
             List<User> userList = userControl.queryByCondition(username, valid);
             request.setAttribute("userList", userList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/user-list.jsp");
@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
             //封装成User对象
             User user = new User(Long.parseLong(id), username, valid);
             //进行更新操作
-            UserControl userControl = new UserControlImpl();
+            UserController userControl = new UserControllerImpl();
             userControl.update(user);
 
             //返回前端新的用户列表信息
@@ -69,7 +69,7 @@ public class UserServlet extends HttpServlet {
             //获取前台传入的参数
             String id = request.getParameter("id").trim();
 
-            UserControl userControl = new UserControlImpl();
+            UserController userControl = new UserControllerImpl();
             if (userControl.delete(id)) {
                 PrintWriter out = response.getWriter();
                 out.print("success");

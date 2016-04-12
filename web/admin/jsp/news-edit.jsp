@@ -171,7 +171,7 @@
                         </li>
 
                         <li>
-                            <a href="news-list.jsp">
+                            <a href="${pageContext.request.contextPath}/newsedit?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 新闻列表
                             </a>
@@ -272,6 +272,7 @@
             <!-- 显示具体的界面信息 start-->
             <div class="container">
                 <form id="addArticleForm" enctype="multipart/form-data">
+                    <input type="hidden" name="type" value="add">
                     <table>
                         <tr>
                             <td>

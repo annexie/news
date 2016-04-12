@@ -194,7 +194,7 @@
                         </li>
 
                         <li>
-                            <a href="news-list.jsp">
+                            <a href="${pageContext.request.contextPath}/newsedit?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 新闻列表
                             </a>

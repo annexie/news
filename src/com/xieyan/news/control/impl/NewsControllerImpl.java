@@ -5,6 +5,8 @@ import com.xieyan.news.control.NewsController;
 import com.xieyan.news.dao.NewsDao;
 import com.xieyan.news.dao.impl.NewsDaoImpl;
 
+import java.util.List;
+
 /**
  * Created by xieyan on 16/4/11.
  */
@@ -14,5 +16,11 @@ public class NewsControllerImpl implements NewsController {
     public boolean addNews(News news) {
         NewsDao newsDao = new NewsDaoImpl();
         return newsDao.addNews(news);
+    }
+
+    @Override
+    public List<News> queryByCondition(String newsTitle, String newsAuthor, String newsKind) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.listByCondition(newsTitle, newsAuthor, newsKind);
     }
 }

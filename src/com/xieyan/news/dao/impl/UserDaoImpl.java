@@ -47,9 +47,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User login(String username, String password) {
         Connection connection = DBUtil.getConn();
-        String sql = "select * from user where user_name = ? and user_password = ? ";// 编写sql语句，第一个字段不需要插入，是自动增加的
+        String sql = "select * from user where user_name = ? and user_password = ?";// 编写sql语句，第一个字段不需要插入，是自动增加的
         PreparedStatement preparedStatement = null;
-
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username + "");

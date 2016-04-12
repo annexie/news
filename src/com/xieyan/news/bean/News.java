@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class News {
 
+    private Long id;
     private String newsTitle;
     private String newsAuthor;
     private String newsText;
@@ -14,6 +15,8 @@ public class News {
     private Date date;
     private Date updateDate;
     private String newsUrl;
+    private String newImageUrl;
+    private String newsOriginType;
     private int valid;
 
     public String getNewsTitle() {
@@ -86,5 +89,29 @@ public class News {
 
     public void setValid(int valid) {
         this.valid = valid;
+    }
+
+    public String getNewsOriginType() {
+        return newsOriginType;
+    }
+
+    public void setNewsOriginType(String newsOriginType) {
+        this.newsOriginType = newsOriginType;
+    }
+
+    public String getNewImageUrl() {
+        return newImageUrl;
+    }
+
+    public void setNewImageUrl(String newImageUrl) {
+        this.newImageUrl = newImageUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -1,8 +1,8 @@
 package com.xieyan.news.servlet;
 
 import com.xieyan.news.bean.User;
-import com.xieyan.news.control.UserControl;
-import com.xieyan.news.control.impl.UserControlImpl;
+import com.xieyan.news.control.UserController;
+import com.xieyan.news.control.impl.UserControllerImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         //根据用户信息查找用户
-        UserControl userInter = new UserControlImpl();
+        UserController userInter = new UserControllerImpl();
         User user = userInter.login(username, password);
 
         if (user != null) {

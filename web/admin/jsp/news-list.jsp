@@ -1,24 +1,135 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.xieyan.news.bean.News" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
-    <title>News-新闻编辑</title>
+    <title>News</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
-    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
-    <link rel="stylesheet" href="<c:url value='/admin/assets/css/font-awesome.min.css'/>"/>
+    <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/admin/assets/css/font-awesome.min.css"/>
     <!-- fonts -->
     <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300"/>
     <!-- ace styles -->
-    <link rel="stylesheet" href="<c:url value='/admin/assets/css/ace.min.css'/>"/>
-    <link rel="stylesheet" href="<c:url value='/admin/assets/css/ace-rtl.min.css'/>"/>
-    <link rel="stylesheet" href="<c:url value='/admin/assets/css/ace-skins.min.css'/>"/>
-    <!-- ace settings handler -->
-    <script src="<c:url value='/admin/assets/js/ace-extra.min.js'/>"></script>
+    <link rel="stylesheet" href="/admin/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
+
+    <script type="text/javascript">
+
+        function newsUpdate(element) {
+
+            var parentTr = element.parentNode.parentNode;
+
+            function UserInfo() {
+                this.id = parentTr.cells[0].innerHTML.trim(""); //出发
+                this.username = parentTr.cells[1].innerHTML.trim(""); //出发
+                this.valid = parentTr.cells[2].innerHTML.trim("");//到达
+            }
+
+            user = new UserInfo();
+            $('#updateUserModalID').modal({
+                keyboard: true
+            });
+
+            //为修改框modal中的设置默认的值
+            $('#updateIdID').attr('value', user.id);
+            $('#updateUsernameID').attr('value', user.username);
+            //设置flightType的select中的值
+            if (user.valid + '' == 1) {
+                $("#updateValidID").attr("value", 1);
+            } else {
+                $('#updateValidID').attr('value', 0);
+            }
+
+            var btnAdd = $('#saveAdd');
+            if (btnAdd == null) {
+                alert("not found");
+            } else {
+                btnAdd.on('click', function () {
+                    var form = $('#userUpdateFormID');
+                    modalUpdateRequest('${pageContext.request.contextPath}/user', form)
+                    $('#updateUserModalID').modal('hide');
+                });
+            }
+        }
+
+        function newsDelete(element) {
+
+            var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
+                    + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
+                    + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
+                    + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
+                    + '<div class="alert alert-warning">确认要删除吗？删除之后无法恢复哦！</div></div><div class="modal-footer">'
+                    + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
+                    + '<button type="button" class="btn btn-success" id="deleteOK">删除</button></div></div>'
+                    + '</div></div>');
+
+            confirmDeleteDialog.modal({
+                keyboard: false
+            }).on({
+                'hidden.bs.modal': function () {
+                    $(this).remove();
+                }
+            });
+
+            var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
+            deleteConfirm.on('click', function () {
+                confirmDeleteDialog.modal('hide'); //隐藏dialog
+                //需要回调的函数
+                var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
+                var url = '${pageContext.request.contextPath}/user?type=delete&id=' + idToDel;
+
+//                $.ajax({
+//                    url: url,
+//                    dataType: "json",
+//                    type: "POST",
+//                    success: function (result) {
+//                        $("#modal-add-result-text").text(result);
+//                        $("#modal-result").modal('show');
+//
+//                    }
+//                });
+
+                $.get(url, function (result) {
+                    $("#modal-add-result-text").text(result);
+                    $("#modal-result").modal('show');
+                    return null;
+                }, "json");
+
+            });
+//            window.location.reload();
+            <%--window.location.href = '${ctx}/back/ArticleDTO/manageArticle.do';--%>
+        }
+
+    </script>
+
 </head>
 
 <body>
+
+<div class="modal" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">模态弹出窗标题</h4>
+            </div>
+            <div class="modal-body">
+                <p>模态弹出窗主体内容</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div class="navbar navbar-default" style="height: 30px;" id="navbar">
     <script type="text/javascript">
         try {
@@ -34,17 +145,14 @@
                     <i class="icon-leaf"></i>
                     News后台管理系统
                 </small>
-            </a><!-- /.brand -->
+            </a>
         </div>
-        <!-- /.navbar-header -->
 
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-
-
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo"/>
+                        <img class="nav-user-photo" src="/admin/assets/avatars/user.jpg" alt="Jason's Photo"/>
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									ADMIN
@@ -54,36 +162,15 @@
                     </a>
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a href="#">
-                                <i class="icon-cog"></i>
-                                设置
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="icon-user"></i>
-                                个人资料
-                            </a>
-                        </li>
-
+                        <li><a href="#"><i class="icon-cog"></i>设置</a></li>
+                        <li><a href="#"><i class="icon-user"></i>个人资料</a></li>
                         <li class="divider"></li>
-
-                        <li>
-                            <a href="#">
-                                <i class="icon-off"></i>
-                                退出
-                            </a>
-                        </li>
+                        <li><a href="#"><i class="icon-off"></i>退出</a></li>
                     </ul>
                 </li>
             </ul>
-            <!-- /.ace-nav -->
         </div>
-        <!-- /.navbar-header -->
     </div>
-    <!-- /.container -->
 </div>
 
 <div class="main-container" id="main-container">
@@ -119,7 +206,6 @@
                     <span class="btn btn-danger"></span>
                 </div>
             </div>
-            <!-- #sidebar-shortcuts -->
 
             <ul class="nav nav-list">
                 <li class="active">
@@ -136,7 +222,7 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu">
+                    <ul class="submenu" style="display: block;">
                         <li>
                             <a href="${pageContext.request.contextPath}/user?type=list">
                                 <i class="icon-double-angle-right"></i>
@@ -160,7 +246,7 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu" style="display: block;">
+                    <ul class="submenu">
                         <li>
                             <a href="news-edit.jsp">
                                 <i class="icon-double-angle-right"></i>
@@ -169,7 +255,7 @@
                         </li>
 
                         <li>
-                            <a href="news-list.jsp" style="color:#428bca">
+                            <a href="${pageContext.request.contextPath}/newsedit?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 新闻列表
                             </a>
@@ -205,30 +291,15 @@
                 </li>
 
             </ul>
-            <!-- /.nav-list -->
 
             <div class="sidebar-collapse" id="sidebar-collapse">
                 <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
                    data-icon2="icon-double-angle-right"></i>
             </div>
-
-            <script type="text/javascript">
-                try {
-                    ace.settings.check('sidebar', 'collapsed')
-                } catch (e) {
-                }
-            </script>
         </div>
 
         <div class="main-content">
             <div class="breadcrumbs" id="breadcrumbs">
-                <script type="text/javascript">
-                    try {
-                        ace.settings.check('breadcrumbs', 'fixed')
-                    } catch (e) {
-                    }
-                </script>
-
                 <ul class="breadcrumb">
                     <li>
                         <i class="icon-home home-icon"></i>
@@ -236,7 +307,6 @@
                     </li>
                     <li class="active">News后台管理系统</li>
                 </ul>
-                <!-- .breadcrumb -->
             </div>
 
             <div class="page-header">
@@ -244,88 +314,115 @@
                     News后台管理系统
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        新闻编辑
+                        用户列表
                     </small>
                 </h1>
             </div>
-            <!-- /.page-header -->
 
             <div class="col-xs-12">
                 <div class="alert alert-block alert-success">
                     <button type="button" class="close" data-dismiss="alert">
                         <i class="icon-remove"></i>
                     </button>
-
                     <i class="icon-ok green"></i>
-
                     欢迎使用
                     <strong class="green">
-                        系统
-                        <small>(v1.2)</small>
+                        News后台管理系统
                     </strong>
-                    ,
+                    用户列表
                 </div>
             </div>
 
             <!-- 显示具体的界面信息 start-->
-            <div class="container">
-                <form>
-                    <table>
+            <div id="userAddFormId">
+                <%--搜索框 开始--%>
+                <div class="container" style="height: 140px;">
+                    <form name="form" target="_self" method="get" action="${pageContext.request.contextPath}/newsedit">
+                        <input type="hidden" name="page.currentPage" value="1">
+                        <input type="hidden" name="type" value="list">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>
+                                    <div class="form-group" style="text-align: center; line-height: 32px">
+                                        <label class="control-label" style="width:50px;float:left;">标题:&nbsp;</label>
+
+                                        <div style="margin-left:15px;float:left;">
+                                            <input name="newsTitle" class="form-control" type="text"
+                                                   style="width:120px;"
+                                                   id="newsTitleID"/>
+                                        </div>
+
+                                        <label class="control-label" style="width:50px;float:left;">作者:&nbsp;</label>
+
+                                        <div style="margin-left:15px;float:left;">
+                                            <input name="newsAuthor" class="form-control" type="text"
+                                                   style="width:120px;"
+                                                   id="newsAuthorID"/>
+                                        </div>
+
+                                        <label class="control-label" style="width:80px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;新闻类别:&nbsp;</label>
+
+                                        <div style="margin-left:15px;float:left;">
+                                            <select name="newsKind" class="form-control">
+                                                <option value="1">科技</option>
+                                                <option value="2">计算机</option>
+                                                <option value="3">人文</option>
+                                                <option value="" selected="selected">全部</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="margin-left:15px;float:left;">
+                                        <button id="search" type="submit" class="btn btn-primary">查询</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <%--搜索框 结束--%>
+                <%--白名单展示列表 开始--%>
+                <div class="container" style="text-align: center;">
+                    <table class="table">
+                        <tr class="table-hover form-horizontal">
+                            <td class="info">新闻ID</td>
+                            <td class="info">新闻标题</td>
+                            <td class="info">新闻作者</td>
+                            <td class="info">新闻类别</td>
+                            <td class="info">创建时间</td>
+                            <td class="info">操作</td>
+                        </tr>
+                        <%
+                            List<News> news = (List<News>) request.getAttribute("newsList");
+                            for (News n : news) {
+                        %>
                         <tr>
-                            <td>
-                                <label>新闻名称：</label>
+                            <td><%=n.getId()%>
+                            </td>
+                            <td><%=n.getNewsTitle()%>
+                            </td>
+                            <td><%=n.getNewsAuthor()%>
+                            </td>
+                            <td><%=n.getNewsKind()%>
+                            </td>
+                            <td><%=n.getDate()%>
                             </td>
                             <td>
-                                <input type="text" name="title">
+                                <a onclick="newsUpdate(this)">修改</a>
+                                <a onclick="newsDelete(this)">删除</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>新闻类型：</label>
-                            </td>
-                            <td>
-                                <select class="form-control">
-                                    <option name="">科技</option>
-                                    <option name="">计算机</option>
-                                    <option name="">人文</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>新闻编辑：</label>
-                            </td>
-                            <td>
-                                <input type="text" name="author">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>新闻内容：</label>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="20" cols="80" name="news_text"
-                                              id="formInput42"></textarea>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-default">提交</button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-default">取消</button>
-                            </td>
-                        </tr>
+                        <%
+                            }
+                        %>
                     </table>
-                </form>
+                    <!--分页效果的-->
+                    <%--<%@include file="/commons/page.jsp" %>--%>
+                </div>
             </div>
             <!-- 显示具体的界面信息 end-->
-            <!-- /.row -->
-            <!-- /.page-content -->
         </div>
-        <!-- /.main-content -->
 
         <div class="ace-settings-container" id="ace-settings-container">
             <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
@@ -374,93 +471,64 @@
                 </div>
             </div>
         </div>
-        <!-- /#ace-settings-container -->
     </div>
-    <!-- /.main-container-inner -->
 
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="icon-double-angle-up icon-only bigger-110"></i>
     </a>
 </div>
-<!-- /.main-container -->
 
-<!-- basic scripts -->
-
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='/admin/assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
-</script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='/admin/assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='/admin/assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
-</script>
-<script src="/admin/assets/js/bootstrap.min.js"></script>
-<script src="/admin/assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<!-- ace scripts -->
-
-<script src="/admin/assets/js/ace-elements.min.js"></script>
-<script src="/admin/assets/js/ace.min.js"></script>
-
-<!-- inline scripts related to this page -->
-
-<script type="text/javascript">
-
-    function userAdd() {
-        var url = "/user?type=add&";
-        var param = $("#userAddFormId").find('form').serialize();
-        $.get(url + param, function (result) {
-            alert("success");
-            if (result == "success") {
-                alert("success");
-                $("#modal-result-text").addClass("alert alert-success");
-                $("#modal-result-text").text("保存成功！");
-            } else {
-                $("#modal-result-text").addClass("alert alert-warning");
-                $("#modal-result-text").text(result.msg);
-            }
-            $("#modal-result").modal('show');
-        }, "json");
-    }
-
-</script>
-<!--显示成功、失败的modal-->
-<div class="modal fade" id="modal-result" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+<%--修改的modal--%>
+<div class="modal fade" id="updateUserModalID">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    信息
-                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">修改</h4>
             </div>
-            <div class="modal-body" id="modal-result-text">
+            <div class="modal-body">
+                <%--表单的开始--%>
+                <form class="form-horizontal textFont" id="userUpdateFormID">
+                    <input name="type" type="hidden" value="update"/>
+                    <input name="id" type="hidden" id="updateIdID"/>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">到达:</label>
+
+                        <div class="col-lg-9">
+                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
+                                   id="updateUsernameID"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">是否有效:</label>
+
+                        <div class="col-lg-9">
+                            <select name="valid" id="updateValidID" style="display:inline; width:94%;"
+                                    class="form-control">
+                                <option value="1">有效</option>
+                                <option value="0">无效</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <%--表单的结束--%>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal" id="modalBtnCloseID">关闭
-                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" id="saveAdd">保存</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
 </div>
-<script src="<c:url value='/admin/js/jquery-1.8.3.min.js'/>"></script>
-<script src="<c:url value='/admin/lib/bootstrap/js/bootstrap.min.js'/>"></script>
+<%--modal结束--%>
+
+<!--显示成功、失败的modal-->
+<%@include file="/admin/commons/modal-custom.jsp" %>
+<script src="/admin/js/jquery-1.8.3.min.js"></script>
+<script src="/admin/js/modal-operate.js"></script>
+<script src="/admin/assets/js/bootstrap.min.js"></script>
 </body>
 </html>
 

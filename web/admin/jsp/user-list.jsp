@@ -23,7 +23,6 @@
 
             var parentTr = element.parentNode.parentNode;
 
-            //对白名单的封装
             function UserInfo() {
                 this.id = parentTr.cells[0].innerHTML.trim(""); //出发
                 this.username = parentTr.cells[1].innerHTML.trim(""); //出发
@@ -256,7 +255,7 @@
                         </li>
 
                         <li>
-                            <a href="news-list.jsp">
+                            <a href="${pageContext.request.contextPath}/newsedit?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 新闻列表
                             </a>

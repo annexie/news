@@ -1,8 +1,8 @@
 package com.xieyan.news.servlet;
 
 import com.xieyan.news.bean.User;
-import com.xieyan.news.control.UserControl;
-import com.xieyan.news.control.impl.UserControlImpl;
+import com.xieyan.news.control.UserController;
+import com.xieyan.news.control.impl.UserControllerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
             User user = new User();
             user.setUserName(username);
             user.setUserPassword(password);
-            UserControl userInter = new UserControlImpl();
+            UserController userInter = new UserControllerImpl();
             if (userInter.register(user)) {
                 JOptionPane.showMessageDialog(null, "注册成功！");
                 response.sendRedirect("news/jsp/login.jsp");
