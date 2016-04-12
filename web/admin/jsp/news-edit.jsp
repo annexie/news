@@ -437,11 +437,22 @@
         $("#addArticleForm").ajaxSubmit({
             url: '${pageContext.request.contextPath}/newsedit',
             success: function (data) {
-                alert("添加文章成功！");
-                <%--window.location.href = '${ctx}/back/ArticleDTO/manageArticle.do';--%>
+                alert("添加文章成功！3秒后自动跳转到列表界面!");
+                sleep(3000);
+                window.location.href = '${pageContext.request.contextPath}/newsedit?type=list';
             }
         })
     });
+
+    function sleep(numberMillis) {
+        var now = new Date();
+        var exitTime = now.getTime() + numberMillis;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime)
+                return;
+        }
+    }
 </script>
 </body>
 </html>

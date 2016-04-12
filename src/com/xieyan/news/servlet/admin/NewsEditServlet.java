@@ -28,26 +28,22 @@ public class NewsEditServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String type = request.getParameter("type");
+        NewsController newsController = new NewsControllerImpl();
         if ("list".equals(type)) { //列举用户信息,包含用户的搜索
             String newsTitle = request.getParameter("newsTitle");
             String newsAuthor = request.getParameter("newsAuthor");
             String newsKind = request.getParameter("newsKind");
 
-            NewsController newsController = new NewsControllerImpl();
             List<News> userList = newsController.queryByCondition(newsTitle, newsAuthor, newsKind);
             request.setAttribute("newsList", userList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/news-list.jsp");
             dispatcher.forward(request, response);
         } else if ("add".equals(type)) {  //添加用户
             News news = assemberNews(request);
-            NewsController newsController = new NewsControllerImpl();
             boolean flag = newsController.addNews(news);
-            if (flag) {
-                //重新读取新闻列表然后跳转到新闻列表界面进行展示
-                request.setAttribute("newsList", null);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/user-list.jsp");
-                dispatcher.forward(request, response);
-            }
+//            if (flag) {
+//
+//            }
         } else if ("update".equals(type)) { //修改用户
 
         } else if ("delete".equals(type)) {//删除用户
