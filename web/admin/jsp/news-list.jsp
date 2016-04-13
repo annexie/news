@@ -82,17 +82,6 @@
                 var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
                 var url = '${pageContext.request.contextPath}/user?type=delete&id=' + idToDel;
 
-//                $.ajax({
-//                    url: url,
-//                    dataType: "json",
-//                    type: "POST",
-//                    success: function (result) {
-//                        $("#modal-add-result-text").text(result);
-//                        $("#modal-result").modal('show');
-//
-//                    }
-//                });
-
                 $.get(url, function (result) {
                     $("#modal-add-result-text").text(result);
                     $("#modal-result").modal('show');
@@ -100,8 +89,6 @@
                 }, "json");
 
             });
-//            window.location.reload();
-            <%--window.location.href = '${ctx}/back/ArticleDTO/manageArticle.do';--%>
         }
 
     </script>

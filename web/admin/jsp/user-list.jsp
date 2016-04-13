@@ -52,6 +52,9 @@
                     var form = $('#userUpdateFormID');
                     modalUpdateRequest('${pageContext.request.contextPath}/user', form)
                     $('#updateUserModalID').modal('hide');
+                    alert("更新用户成功！3秒后自动跳转到列表界面!");
+                    sleep(2000);
+                    window.location.href = '${pageContext.request.contextPath}/user?type=list';
                 });
             }
         }
@@ -82,28 +85,25 @@
                 var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
                 var url = '${pageContext.request.contextPath}/user?type=delete&id=' + idToDel;
 
-//                $.ajax({
-//                    url: url,
-//                    dataType: "json",
-//                    type: "POST",
-//                    success: function (result) {
-//                        $("#modal-add-result-text").text(result);
-//                        $("#modal-result").modal('show');
-//
-//                    }
-//                });
-
                 $.get(url, function (result) {
-                    $("#modal-add-result-text").text(result);
-                    $("#modal-result").modal('show');
-                    return null;
                 }, "json");
 
+                alert("删除用户成功！3秒后自动跳转到列表界面!");
+                sleep(2000);
+                window.location.href = '${pageContext.request.contextPath}/user?type=list';
+
             });
-//            window.location.reload();
-            <%--window.location.href = '${ctx}/back/ArticleDTO/manageArticle.do';--%>
         }
 
+        function sleep(numberMillis) {
+            var now = new Date();
+            var exitTime = now.getTime() + numberMillis;
+            while (true) {
+                now = new Date();
+                if (now.getTime() > exitTime)
+                    return;
+            }
+        }
     </script>
 
 </head>

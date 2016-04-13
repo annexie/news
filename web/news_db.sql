@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : XuliugenDB
+Source Server         : XieyanDB
 Source Server Version : 50627
 Source Host           : 119.29.17.244:3306
 Source Database       : news
