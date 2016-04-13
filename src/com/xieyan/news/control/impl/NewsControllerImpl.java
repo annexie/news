@@ -23,4 +23,16 @@ public class NewsControllerImpl implements NewsController {
         NewsDao newsDao = new NewsDaoImpl();
         return newsDao.listByCondition(newsTitle, newsAuthor, newsKind);
     }
+
+    @Override
+    public boolean update(News news) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.update(news);
+    }
+
+    @Override
+    public boolean deleteById(long id) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.deleteById(id);
+    }
 }

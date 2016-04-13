@@ -82,6 +82,50 @@ public class NewsDaoImpl implements NewsDao {
         return newsList;
     }
 
+    @Override
+    public boolean update(News news) {
+        Connection connection = DBUtil.getConn();
+        String sql = "update news_list set news_title = ? , news_author =? , news_kind =? where id =?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, news.getNewsTitle() + "");
+            preparedStatement.setString(2, news.getNewsAuthor() + "");
+            preparedStatement.setString(3, news.getNewsKind());
+            preparedStatement.setLong(4, news.getId());
+            int flag = preparedStatement.executeUpdate();
+            if (flag == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(long id) {
+        Connection connection = DBUtil.getConn();
+        String sql = "delete from news_list where id = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+            boolean flag = preparedStatement.execute();
+            if (flag) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return false;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      * @param newsTitle

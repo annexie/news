@@ -114,4 +114,14 @@ public class News {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public News() {
+    }
+
+    public News(Long id, String newsTitle, String newsAuthor, String newsKind) {
+        this.id = id;
+        this.newsTitle = newsTitle;
+        this.newsAuthor = newsAuthor;
+        this.newsKind = newsKind;
+    }
 }

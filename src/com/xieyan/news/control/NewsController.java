@@ -12,4 +12,8 @@ public interface NewsController {
     boolean addNews(News news);
 
     List<News> queryByCondition(String newsTitle, String newsAuthor, String newsKind);
+
+    boolean update(News news);
+
+    boolean deleteById(long id);
 }

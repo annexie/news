@@ -29,7 +29,7 @@ public class NewsEditServlet extends HttpServlet {
 
         String type = request.getParameter("type");
         NewsController newsController = new NewsControllerImpl();
-        if ("list".equals(type)) { //列举用户信息,包含用户的搜索
+        if ("list".equals(type)) { //列举新闻信息,包含新闻的搜索
             String newsTitle = request.getParameter("newsTitle");
             String newsAuthor = request.getParameter("newsAuthor");
             String newsKind = request.getParameter("newsKind");
@@ -38,16 +38,25 @@ public class NewsEditServlet extends HttpServlet {
             request.setAttribute("newsList", userList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/news-list.jsp");
             dispatcher.forward(request, response);
-        } else if ("add".equals(type)) {  //添加用户
+        } else if ("add".equals(type)) {  //添加新闻
             News news = assemberNews(request);
             boolean flag = newsController.addNews(news);
-//            if (flag) {
-//
-//            }
-        } else if ("update".equals(type)) { //修改用户
+        } else if ("update".equals(type)) { //修改新闻
+            //获取前台传入的参数
+            String id = request.getParameter("id");
+            String newsTitle = request.getParameter("newsTitle");
+            String newsAuthor = request.getParameter("newsAuthor");
+            String newsKind = request.getParameter("newsKind");
 
-        } else if ("delete".equals(type)) {//删除用户
+            //封装成News对象
+            News news = new News(Long.parseLong(id), newsTitle, newsAuthor, newsKind);
+            //进行更新操作
+            newsController.update(news);
 
+
+        } else if ("delete".equals(type)) {//删除新闻
+            String id = request.getParameter("id").trim();
+            boolean flag = newsController.deleteById(Long.parseLong(id));
         }
 
     }
@@ -59,6 +68,7 @@ public class NewsEditServlet extends HttpServlet {
      */
     private News assemberNews(HttpServletRequest request) {
         String newsTitle = request.getParameter("newsTitle");
+        String id = request.getParameter("id");
         String newsKind = request.getParameter("newsKind");
         String newsAuthor = request.getParameter("newsAuthor");
         String newText = request.getParameter("newText");

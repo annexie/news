@@ -12,4 +12,8 @@ public interface NewsDao {
     boolean addNews(News news);
 
     List<News> listByCondition(String newsTitle, String newsAuthor, String newsKind);
+
+    boolean update(News news);
+
+    boolean deleteById(long id);
 }

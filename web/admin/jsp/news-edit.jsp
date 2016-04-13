@@ -437,7 +437,7 @@
         $("#addArticleForm").ajaxSubmit({
             url: '${pageContext.request.contextPath}/newsedit',
             success: function (data) {
-                alert("添加文章成功！3秒后自动跳转到列表界面!");
+                alert("添加文章成功！2秒后自动跳转到列表界面!");
                 sleep(2000);
                 window.location.href = '${pageContext.request.contextPath}/newsedit?type=list';
             }
