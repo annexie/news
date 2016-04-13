@@ -136,13 +136,13 @@ public class NewsDaoImpl implements NewsDao {
     private String getSqlUrl(String newsTitle, String newsAuthor, String newsKind) {
         String sql = new String("select * from news_list where 1=1 ");
         if (null != newsTitle && (!"".equals(newsTitle))) {
-            sql += "and news_title = " + newsTitle;
+            sql += "and news_title = '" + newsTitle + "'";
         }
         if (null != newsAuthor && (!"".equals(newsAuthor))) {
-            sql += "and news_author = " + newsAuthor;
+            sql += "and news_author = '" + newsAuthor + "'";
         }
         if (null != newsKind && (!"".equals(newsKind))) {
-            sql += "and news_kind = " + newsKind;
+            sql += "and news_kind = '" + newsKind + "'";
         }
         return sql;
     }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class NewsEditServlet extends HttpServlet {
      * @return News对象
      */
     private News assemberNews(HttpServletRequest request) {
+
         String newsTitle = request.getParameter("newsTitle");
         String id = request.getParameter("id");
         String newsKind = request.getParameter("newsKind");

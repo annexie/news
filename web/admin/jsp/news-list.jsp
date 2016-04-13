@@ -343,8 +343,8 @@
                 <%--搜索框 开始--%>
                 <div class="container" style="height: 140px;">
                     <form name="form" target="_self" method="get" action="${pageContext.request.contextPath}/newsedit">
-                        <input type="hidden" name="page.currentPage" value="1">
                         <input type="hidden" name="type" value="list">
+                        <input type="hidden" name="page.currentPage" value="1">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
