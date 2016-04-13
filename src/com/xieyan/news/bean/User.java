@@ -1,10 +1,12 @@
 package com.xieyan.news.bean;
 
+import java.io.Serializable;
+
 /**
  * 用户Bean
  * Created by xieyan on 16/1/6.
  */
-public class User {
+public class User implements Serializable {
 
     private Long id;
 

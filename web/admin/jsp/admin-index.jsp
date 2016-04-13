@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/admin/commons/taglibs.jsp" %>
+
 <head>
     <meta charset="utf-8"/>
     <title>News</title>
@@ -7,26 +8,22 @@
     <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <link rel="stylesheet" href="<c:url value='/admin/assets/css/font-awesome.min.css'/>"/>
 
-
     <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300"/>
-
 
     <link rel="stylesheet" href="/admin/assets/css/ace.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
 
-    <!-- inline styles related to this page -->
-
-    <!-- ace settings handler -->
-
     <script src="/admin/assets/js/ace-extra.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-    <!--[if lt IE 9]>
-    <script src="/admin/assets/js/html5shiv.js"></script>
-    <script src="/admin/assets/js/respond.min.js"></script>
-    <![endif]-->
+    <%--<script>--%>
+    <%--function checkLogin() {--%>
+    <%--if (('<%=request.getSession().getAttribute("ADMIN_LOGIN")%>') == null) { //Admin没有登录，跳转到登录界面--%>
+    <%--alert("对不起，您还未登录，请进行请登录！")--%>
+    <%--window.location.href = '${pageContext.request.contextPath}/admin/jsp/admin-login.jsp';--%>
+    <%--}--%>
+    <%--}--%>
+    <%--</script>--%>
 </head>
 
 <body>

@@ -1,11 +1,12 @@
 package com.xieyan.news.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by xieyan on 16/4/11.
  */
-public class News {
+public class News implements Serializable {
 
     private Long id;
     private String newsTitle;
