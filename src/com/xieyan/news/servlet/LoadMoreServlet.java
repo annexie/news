@@ -1,5 +1,8 @@
 package com.xieyan.news.servlet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,8 @@ import java.util.Date;
  * Created by xieyan on 16/1/6.
  */
 public class LoadMoreServlet extends HttpServlet {
+
+    transient static final Logger logger = LoggerFactory.getLogger(LoadMoreServlet.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

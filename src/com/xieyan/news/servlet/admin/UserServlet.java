@@ -3,6 +3,8 @@ package com.xieyan.news.servlet.admin;
 import com.xieyan.news.bean.User;
 import com.xieyan.news.control.UserController;
 import com.xieyan.news.control.impl.UserControllerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +20,8 @@ import java.util.List;
  * Created by xieyan on 16/1/9.
  */
 public class UserServlet extends HttpServlet {
+
+    transient static final Logger logger = LoggerFactory.getLogger(UserServlet.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
