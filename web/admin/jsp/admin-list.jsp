@@ -1,4 +1,3 @@
-<%@ page import="com.xieyan.news.bean.User" %>
 <%@ page import="java.util.List" %>
 <%@ include file="/admin/commons/taglibs.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -351,26 +350,28 @@
                 <%--搜索框 开始--%>
                 <div class="container" style="height: 140px;">
                     <form name="form" id="airlineSearchFormID" target="_self" method="get"
-                          action="${pageContext.request.contextPath}/user">
+                          action="${pageContext.request.contextPath}/admin">
                         <input type="hidden" name="page.currentPage" value="1">
                         <input type="hidden" name="type" value="list">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
                                     <div class="form-group" style="text-align: center; line-height: 32px">
-                                        <label class="control-label" style="width:50px;float:left;">用户名:&nbsp;</label>
+                                        <label class="control-label" style="width:80px;float:left;">管理员账户:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
-                                            <input name="username" class="form-control" type="text" style="width:120px;"
-                                                   id="usernameID"/>
+                                            <input name="adminName" class="form-control" type="text"
+                                                   style="width:120px;"
+                                                   id="adminNameID"/>
                                         </div>
 
-                                        <label class="control-label" style="width:80px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;是否有效:&nbsp;</label>
+                                        <label class="control-label" style="width:80px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;角色类别:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
-                                            <select name="valid" style="width:100px;" class="form-control">
-                                                <option value="1">有效</option>
-                                                <option value="0">无效</option>
+                                            <select name="adminRole" style="width:100px;" class="form-control">
+                                                <option value="1">超级管理员</option>
+                                                <option value="2">高级管理员</option>
+                                                <option value="3">普通管理员</option>
                                                 <option value="" selected="selected">全部状态</option>
                                             </select>
                                         </div>
@@ -390,22 +391,36 @@
                 <div class="container" style="text-align: center;">
                     <table class="table">
                         <tr class="table-hover form-horizontal">
-                            <td class="info">用户ID</td>
-                            <td class="info">用户名</td>
-                            <td class="info">是否可用</td>
+                            <td class="info">管理员ID</td>
+                            <td class="info">管理员账户</td>
+                            <td class="info">管理员角色</td>
                             <td class="info">操作</td>
                         </tr>
                         <%
-                            List<User> user = (List<User>) request.getAttribute("userList");
-                            for (User u : user) {
+                            List<Admin> admins = (List<Admin>) request.getAttribute("adminList");
+                            for (Admin a : admins) {
                         %>
                         <tr>
-                            <td><%=u.getId()%>
+                            <td><%=a.getId()%>
                             </td>
-                            <td><%=u.getUserName()%>
+                            <td><%=a.getAdminName()%>
                             </td>
-                            <td><%=u.getValid()%>
-                            </td>
+
+                            <%
+                                if (a.getAdminRole() == 1) {
+                            %>
+                            <td>（1）超级管理员</td>
+                            <%
+                            } else if (a.getAdminRole() == 2) {
+                            %>
+                            <td>（2）高级管理员</td>
+                            <%
+                            } else if (a.getAdminRole() == 3) {
+                            %>
+                            <td>（3）普通管理员</td>
+                            <%
+                                }
+                            %>
                             <td>
                                 <a onclick="userUpdate(this)">修改</a>
                                 <a onclick="userDelete(this)">删除</a>

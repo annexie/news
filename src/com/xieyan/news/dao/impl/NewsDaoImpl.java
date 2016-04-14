@@ -49,8 +49,9 @@ public class NewsDaoImpl implements NewsDao {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBUtil.close(connection, null, ps, null);
         }
-        DBUtil.close(connection, null, ps, null);
         return flag;
     }
 
@@ -77,8 +78,9 @@ public class NewsDaoImpl implements NewsDao {
             ps2.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBUtil.close(connection, null, ps2, null);
         }
-        DBUtil.close(connection, null, ps2, null);
         return false;
     }
 
@@ -110,8 +112,9 @@ public class NewsDaoImpl implements NewsDao {
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBUtil.close(connection, null, preparedStatement, null);
         }
-        DBUtil.close(connection, null, preparedStatement, null);
         return newsList;
     }
 

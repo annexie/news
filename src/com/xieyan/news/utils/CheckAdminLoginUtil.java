@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by xuliugen on 2016/4/14.
+ * Created by xieyan on 2016/4/14.
  */
 public class CheckAdminLoginUtil {
 
@@ -20,6 +20,7 @@ public class CheckAdminLoginUtil {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/admin-login.jsp");
             try {
                 dispatcher.forward(request, response);
+                return;
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {

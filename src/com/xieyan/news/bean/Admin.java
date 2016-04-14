@@ -7,11 +7,13 @@ import java.io.Serializable;
  */
 public class Admin implements Serializable {
 
+    private int id;
+
     private String adminName;
 
     private String adminPassword;
 
-    private String adminRole;
+    private int adminRole;
 
     public String getAdminName() {
         return adminName;
@@ -29,15 +31,23 @@ public class Admin implements Serializable {
         this.adminPassword = adminPassword;
     }
 
-    public String getAdminRole() {
+    public int getAdminRole() {
         return adminRole;
     }
 
-    public void setAdminRole(String adminRole) {
+    public void setAdminRole(int adminRole) {
         this.adminRole = adminRole;
     }
 
-    public Admin(String adminName, String adminPassword, String adminRole) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Admin(String adminName, String adminPassword, int adminRole) {
         this.adminName = adminName;
         this.adminPassword = adminPassword;
         this.adminRole = adminRole;
