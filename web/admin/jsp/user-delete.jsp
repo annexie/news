@@ -208,26 +208,25 @@
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
-                        <span class="menu-text"> 论坛管理 </span>
+                        <span class="menu-text"> 管理员设置 </span>
 
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
                     <ul class="submenu">
                         <li>
-                            <a href="form-elements.html">
+                            <a href="${pageContext.request.contextPath}/admin?type=list">
                                 <i class="icon-double-angle-right"></i>
-                                发布公告
+                                管理员列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-wizard.html">
+                            <a href="${pageContext.request.contextPath}/admin?type=add">
                                 <i class="icon-double-angle-right"></i>
-                                进入论坛
+                                添加管理员
                             </a>
                         </li>
-
                     </ul>
                 </li>
 

@@ -35,12 +35,12 @@
 
     <!-- 后台管理servlet start-->
     <servlet>
-        <servlet-name>AdminLoginServlet</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.admin.AdminLoginServlet</servlet-class>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.xieyan.news.servlet.admin.AdminServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AdminLoginServlet</servlet-name>
-        <url-pattern>/adminLogin</url-pattern>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>NewsEditServlet</servlet-name>

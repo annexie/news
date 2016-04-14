@@ -18,9 +18,9 @@ import java.io.IOException;
  * 管理员登录的Servlet
  * Created by xieyan on 16/1/9.
  */
-public class AdminLoginServlet extends HttpServlet {
+public class AdminServlet extends HttpServlet {
 
-    transient static final Logger logger = LoggerFactory.getLogger(AdminLoginServlet.class);
+    transient static final Logger logger = LoggerFactory.getLogger(AdminServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
