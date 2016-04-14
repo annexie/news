@@ -11,7 +11,7 @@ import com.xieyan.news.dao.impl.AdminDaoImpl;
 public class AdminControllerImpl implements AdminController {
 
     @Override
-    public boolean login(Admin admin) {
+    public Admin login(Admin admin) {
         AdminDao adminDao = new AdminDaoImpl();
         return adminDao.select(admin);
     }

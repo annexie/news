@@ -7,5 +7,5 @@ import com.xieyan.news.bean.Admin;
  */
 public interface AdminDao {
 
-    boolean select(Admin admin);
+    Admin select(Admin admin);
 }

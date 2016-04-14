@@ -7,5 +7,5 @@ import com.xieyan.news.bean.Admin;
  */
 public interface AdminController {
 
-    boolean login(Admin admin);
+    Admin login(Admin admin);
 }

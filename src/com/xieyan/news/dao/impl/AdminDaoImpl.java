@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class AdminDaoImpl implements AdminDao {
 
     @Override
-    public boolean select(Admin admin) {
+    public Admin select(Admin admin) {
         Connection connection = DBUtil.getConn();
         String sql = "select * from admin where admin_name = ? and admin_password = ?";
         PreparedStatement preparedStatement = null;
@@ -25,14 +25,14 @@ public class AdminDaoImpl implements AdminDao {
             preparedStatement.setString(2, admin.getAdminPassword() + "");
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                return true;
+                return new Admin(rs.getString("admin_name"), null, rs.getString("admin_role"));
             } else {
-                return false;
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         DBUtil.close(connection, preparedStatement, preparedStatement, null);
-        return false;
+        return null;
     }
 }

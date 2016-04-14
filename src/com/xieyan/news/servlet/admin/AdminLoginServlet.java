@@ -38,8 +38,8 @@ public class AdminLoginServlet extends HttpServlet {
             String adminPassword = req.getParameter("adminPassword");
 
             Admin admin = new Admin(adminName, adminPassword);
-            boolean falg = adminController.login(admin);
-            if (falg) { //Admin登陆成功
+            Admin result = adminController.login(admin);
+            if (null != result) { //Admin登陆成功
                 HttpSession session = req.getSession();//返回与当前request相关联的session，如果没有则在服务器端创建一个;
                 session.setAttribute("ADMIN_LOGIN", admin);
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/jsp/admin-index.jsp");
