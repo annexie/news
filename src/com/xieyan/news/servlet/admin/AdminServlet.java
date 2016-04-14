@@ -73,6 +73,28 @@ public class AdminServlet extends HttpServlet {
             Admin admin = new Admin(adminName, adminPassword, Integer.parseInt(adminRole));
             int flag = adminController.addAdmin(admin);
 
+        } else if ("delete".equals(type)) {
+
+            //判断管理员是否登录，如果未登录进入登录界面
+            CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
+
+            String id = req.getParameter("id");
+
+            boolean flag = adminController.delete(Long.parseLong(id));
+
+        } else if ("update".equals(type)) {
+
+            //判断管理员是否登录，如果未登录进入登录界面
+            CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
+
+            String adminName = req.getParameter("adminName");
+            String adminRole = req.getParameter("adminRole");
+            String id = req.getParameter("id");
+
+            Admin admin = new Admin(adminName, Integer.parseInt(adminRole), Long.parseLong(id));
+            boolean flag = adminController.updateAdmin(admin);
+            //TODO 判断修改的用户是否是自己，如果是自己的话 还需要在session中重新加入
+
         }
     }
 }

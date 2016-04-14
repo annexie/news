@@ -29,4 +29,16 @@ public class AdminControllerImpl implements AdminController {
         AdminDao adminDao = new AdminDaoImpl();
         return adminDao.add(admin);
     }
+
+    @Override
+    public boolean delete(Long id) {
+        AdminDao adminDao = new AdminDaoImpl();
+        return adminDao.delete(id);
+    }
+
+    @Override
+    public boolean updateAdmin(Admin admin) {
+        AdminDao adminDao = new AdminDaoImpl();
+        return adminDao.udpateDao(admin);
+    }
 }

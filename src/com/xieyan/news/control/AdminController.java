@@ -14,4 +14,8 @@ public interface AdminController {
     List<Admin> listAdmin(String adminName, String adminRole);
 
     int addAdmin(Admin admin);
+
+    boolean delete(Long id);
+
+    boolean updateAdmin(Admin admin);
 }

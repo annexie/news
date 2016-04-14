@@ -52,7 +52,7 @@ public class AdminDaoImpl implements AdminDao {
                 Admin admin = new Admin();
                 admin.setAdminName(rs.getString("admin_name"));
                 admin.setAdminRole(rs.getInt("admin_role"));
-                admin.setId(rs.getInt("id"));
+                admin.setId(rs.getLong("id"));
                 admins.add(admin);
             }
             return admins;
@@ -83,6 +83,49 @@ public class AdminDaoImpl implements AdminDao {
             DBUtil.close(connection, null, ps, null);
         }
         return 0;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        Connection connection = DBUtil.getConn();
+        String sql = "delete from admin where id = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+            boolean flag = preparedStatement.execute();
+            if (flag) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean udpateDao(Admin admin) {
+        Connection connection = DBUtil.getConn();
+        String sql = "update admin set admin_name = ? , admin_role =? where id =?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, admin.getAdminName() + "");
+            preparedStatement.setString(2, admin.getAdminRole() + "");
+            preparedStatement.setLong(3, admin.getId());
+            int flag = preparedStatement.executeUpdate();
+            if (flag == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+        }
+        return false;
     }
 
     /**

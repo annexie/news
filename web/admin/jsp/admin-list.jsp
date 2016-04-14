@@ -37,9 +37,9 @@
             $('#updateIdID').attr('value', adminInfo.id);
             $('#updateAdminNameID').attr('value', adminInfo.adminName);
             //设置flightType的select中的值
-            if (adminInfo.adminRole + '' == 2) {
+            if (adminInfo.adminRole == '（2）高级管理员') {
                 $('#updateAdminRoleID').attr('value', 2);
-            } else if (adminInfo.adminRole + '' == 3) {
+            } else if (adminInfo.adminRole) {
                 $('#updateAdminRoleID').attr('value', 3);
             }
 
@@ -58,7 +58,7 @@
             }
         }
 
-        function userDelete(element) {
+        function adminDelete(element) {
 
             var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
                     + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
@@ -89,7 +89,7 @@
 
                 alert("删除用户成功！3秒后自动跳转到列表界面!");
                 sleep(2000);
-                window.location.href = '${pageContext.request.contextPath}/user?type=list';
+                window.location.href = '${pageContext.request.contextPath}/admin?type=list';
 
             });
         }
@@ -410,7 +410,7 @@
                             <td>无权限进行修改</td>
                         </tr>
                         <%
-                                } else {
+                        } else {
                         %>
                         <tr>
                             <td><%=a.getId()%>
@@ -418,7 +418,7 @@
                             <td><%=a.getAdminName()%>
                             </td>
                             <%
-                               if (a.getAdminRole() == 2) {
+                                if (a.getAdminRole() == 2) {
                             %>
                             <td>（2）高级管理员</td>
                             <%
@@ -426,15 +426,15 @@
                             %>
                             <td>（3）普通管理员</td>
                             <%
-                             }
+                                }
                             %>
                             <td>
                                 <a onclick="adminUpdate(this)">修改</a>
-                                <a onclick="userDelete(this)">删除</a>
+                                <a onclick="adminDelete(this)">删除</a>
                             </td>
                         </tr>
                         <%
-                             }
+                                }
                             }
                         %>
                     </table>
@@ -518,7 +518,7 @@
 
                         <div class="col-lg-9">
                             <input name="adminName" style="display:inline; width:94%;" class="form-control" type="text"
-                                   id="updateadminNameID"/>
+                                   id="updateAdminNameID"/>
                         </div>
                     </div>
 

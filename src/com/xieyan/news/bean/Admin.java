@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Admin implements Serializable {
 
-    private int id;
+    private Long id;
 
     private String adminName;
 
@@ -39,11 +39,11 @@ public class Admin implements Serializable {
         this.adminRole = adminRole;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,6 +51,12 @@ public class Admin implements Serializable {
         this.adminName = adminName;
         this.adminPassword = adminPassword;
         this.adminRole = adminRole;
+    }
+
+    public Admin(String adminName, int adminRole, Long id) {
+        this.adminName = adminName;
+        this.adminRole = adminRole;
+        this.id = id;
     }
 
     public Admin(String adminName, String adminPassword) {

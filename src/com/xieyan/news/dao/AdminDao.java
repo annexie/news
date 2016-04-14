@@ -14,4 +14,8 @@ public interface AdminDao {
     List<Admin> listAdmin(String adminName, String adminRole);
 
     int add(Admin admin);
+
+    boolean delete(Long id);
+
+    boolean udpateDao(Admin admin);
 }
