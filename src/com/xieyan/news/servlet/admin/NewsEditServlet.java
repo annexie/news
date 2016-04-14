@@ -3,6 +3,7 @@ package com.xieyan.news.servlet.admin;
 import com.xieyan.news.bean.News;
 import com.xieyan.news.control.NewsController;
 import com.xieyan.news.control.impl.NewsControllerImpl;
+import com.xieyan.news.utils.CheckAdminLoginUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +31,9 @@ public class NewsEditServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
+        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         String type = request.getParameter("type");
         NewsController newsController = new NewsControllerImpl();

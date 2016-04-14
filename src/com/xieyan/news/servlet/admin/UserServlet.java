@@ -3,6 +3,7 @@ package com.xieyan.news.servlet.admin;
 import com.xieyan.news.bean.User;
 import com.xieyan.news.control.UserController;
 import com.xieyan.news.control.impl.UserControllerImpl;
+import com.xieyan.news.utils.CheckAdminLoginUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +31,10 @@ public class UserServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
+        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
+
         String type = request.getParameter("type");
 
         if ("list".equals(type)) { //列举用户信息,包含用户的搜索
