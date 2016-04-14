@@ -222,7 +222,7 @@
                         </li>
 
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin?type=add">
+                            <a href="${pageContext.request.contextPath}/admin/jsp/admin-add.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 添加管理员
                             </a>
