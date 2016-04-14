@@ -18,29 +18,29 @@
 
     <script type="text/javascript">
 
-        function userUpdate(element) {
+        function adminUpdate(element) {
 
             var parentTr = element.parentNode.parentNode;
 
-            function UserInfo() {
-                this.id = parentTr.cells[0].innerHTML.trim(""); //出发
-                this.username = parentTr.cells[1].innerHTML.trim(""); //出发
-                this.valid = parentTr.cells[2].innerHTML.trim("");//到达
+            function AdminInfo() {
+                this.id = parentTr.cells[0].innerHTML.trim("");
+                this.adminName = parentTr.cells[1].innerHTML.trim("");
+                this.adminRole = parentTr.cells[2].innerHTML.trim("");
             }
 
-            user = new UserInfo();
-            $('#updateUserModalID').modal({
+            adminInfo = new AdminInfo();
+            $('#updateAdminModalID').modal({
                 keyboard: true
             });
 
             //为修改框modal中的设置默认的值
-            $('#updateIdID').attr('value', user.id);
-            $('#updateUsernameID').attr('value', user.username);
+            $('#updateIdID').attr('value', adminInfo.id);
+            $('#updateAdminNameID').attr('value', adminInfo.adminName);
             //设置flightType的select中的值
-            if (user.valid + '' == 1) {
-                $("#updateValidID").attr("value", 1);
-            } else {
-                $('#updateValidID').attr('value', 0);
+            if (adminInfo.adminRole + '' == 2) {
+                $('#updateAdminRoleID').attr('value', 2);
+            } else if (adminInfo.adminRole + '' == 3) {
+                $('#updateAdminRoleID').attr('value', 3);
             }
 
             var btnAdd = $('#saveAdd');
@@ -48,12 +48,12 @@
                 alert("not found");
             } else {
                 btnAdd.on('click', function () {
-                    var form = $('#userUpdateFormID');
-                    modalUpdateRequest('${pageContext.request.contextPath}/user', form)
-                    $('#updateUserModalID').modal('hide');
-                    alert("更新用户成功！3秒后自动跳转到列表界面!");
+                    var form = $('#adminUpdateFormID');
+                    modalUpdateRequest('${pageContext.request.contextPath}/admin', form)
+                    $('#updateAdminModalID').modal('hide');
+                    alert("更新管理员成功！3秒后自动跳转到列表界面!");
                     sleep(2000);
-                    window.location.href = '${pageContext.request.contextPath}/user?type=list';
+                    window.location.href = '${pageContext.request.contextPath}/admin?type=list';
                 });
             }
         }
@@ -398,20 +398,27 @@
                         </tr>
                         <%
                             List<Admin> admins = (List<Admin>) request.getAttribute("adminList");
-                            for (Admin a : admins) {
+                            for (Admin a : admins) { //对管理员进行遍历
+                                if (a.getAdminRole() == 1) { //如果是超级管理 就不显示 删除、修改按钮
                         %>
                         <tr>
                             <td><%=a.getId()%>
                             </td>
                             <td><%=a.getAdminName()%>
                             </td>
-
-                            <%
-                                if (a.getAdminRole() == 1) {
-                            %>
                             <td>（1）超级管理员</td>
+                            <td>无权限进行修改</td>
+                        </tr>
+                        <%
+                                } else {
+                        %>
+                        <tr>
+                            <td><%=a.getId()%>
+                            </td>
+                            <td><%=a.getAdminName()%>
+                            </td>
                             <%
-                            } else if (a.getAdminRole() == 2) {
+                               if (a.getAdminRole() == 2) {
                             %>
                             <td>（2）高级管理员</td>
                             <%
@@ -419,14 +426,15 @@
                             %>
                             <td>（3）普通管理员</td>
                             <%
-                                }
+                             }
                             %>
                             <td>
-                                <a onclick="userUpdate(this)">修改</a>
+                                <a onclick="adminUpdate(this)">修改</a>
                                 <a onclick="userDelete(this)">删除</a>
                             </td>
                         </tr>
                         <%
+                             }
                             }
                         %>
                     </table>
@@ -492,7 +500,7 @@
 </div>
 
 <%--修改的modal--%>
-<div class="modal fade" id="updateUserModalID">
+<div class="modal fade" id="updateAdminModalID">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -501,27 +509,27 @@
             </div>
             <div class="modal-body">
                 <%--表单的开始--%>
-                <form class="form-horizontal textFont" id="userUpdateFormID">
+                <form class="form-horizontal textFont" id="adminUpdateFormID">
                     <input name="type" type="hidden" value="update"/>
                     <input name="id" type="hidden" id="updateIdID"/>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">到达:</label>
+                        <label class="col-lg-3 control-label">管理员账户:</label>
 
                         <div class="col-lg-9">
-                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text"
-                                   id="updateUsernameID"/>
+                            <input name="adminName" style="display:inline; width:94%;" class="form-control" type="text"
+                                   id="updateadminNameID"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">是否有效:</label>
+                        <label class="col-lg-3 control-label">管理员身份:</label>
 
                         <div class="col-lg-9">
-                            <select name="valid" id="updateValidID" style="display:inline; width:94%;"
+                            <select name="adminRole" id="updateAdminRoleID" style="display:inline; width:94%;"
                                     class="form-control">
-                                <option value="1">有效</option>
-                                <option value="0">无效</option>
+                                <option value="2">高级管理员</option>
+                                <option value="3">普通管理员</option>
                             </select>
                         </div>
                     </div>
