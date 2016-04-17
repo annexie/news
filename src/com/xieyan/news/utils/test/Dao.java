@@ -1,5 +1,6 @@
-package com.xieyan.news.utils;
+package com.xieyan.news.utils.test;
 
+import com.xieyan.news.utils.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
 
 import java.sql.SQLException;
