@@ -1,6 +1,5 @@
 package com.xieyan.news.utils.vcode.servlet;
 
-
 import com.xieyan.news.utils.vcode.utils.VerifyCode;
 
 import javax.servlet.ServletException;
