@@ -31,7 +31,7 @@ public class TxQueryRunnerTest {
      */
     @Test
     public void testUpdate() throws SQLException {
-        String sql = "insert into admin(admin_name,admin_password,admin_role) values(?,?,?)";
+        String sql = "insert into admin(adminName,adminPassword,adminRole) values(?,?,?)";
         Object[] params = {"1234", "1234", 1};//给sql中对应的参数
 
         QueryRunner qr = new TxQueryRunner();//我们没有给对象提供连接池
