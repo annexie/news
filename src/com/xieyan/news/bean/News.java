@@ -125,4 +125,21 @@ public class News implements Serializable {
         this.newsAuthor = newsAuthor;
         this.newsKind = newsKind;
     }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", newsTitle='" + newsTitle + '\'' +
+                ", newsAuthor='" + newsAuthor + '\'' +
+                ", newsText='" + newsText + '\'' +
+                ", newsKind='" + newsKind + '\'' +
+                ", date=" + date +
+                ", updateDate=" + updateDate +
+                ", newsUrl='" + newsUrl + '\'' +
+                ", newImageUrl='" + newImageUrl + '\'' +
+                ", newsOriginType='" + newsOriginType + '\'' +
+                ", valid=" + valid +
+                '}';
+    }
 }
