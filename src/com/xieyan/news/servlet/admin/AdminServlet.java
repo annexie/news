@@ -8,7 +8,6 @@ import com.xieyan.news.utils.CheckAdminLoginUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +26,11 @@ public class AdminServlet extends BaseServlet {
 
     public String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String verifyCode = req.getParameter("verifyCode");
+        logger.info("request verifyCode", verifyCode);
+        if (!verifyCode.equalsIgnoreCase(req.getSession().getAttribute("vCode") + "")) {
+            return "/admin/jsp/admin-login.jsp";
+        }
         AdminController adminController = new AdminControllerImpl();
 
         String adminName = req.getParameter("adminName");

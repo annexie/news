@@ -68,6 +68,17 @@
     </servlet-mapping>
     <!-- 后台管理servlet end-->
 
+    <!--验证码servlet 开始-->
+    <servlet>
+        <servlet-name>VerifyCodeServlet</servlet-name>
+        <servlet-class>com.xieyan.news.utils.vcode.servlet.VerifyCodeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerifyCodeServlet</servlet-name>
+        <url-pattern>/verifycode</url-pattern>
+    </servlet-mapping>
+    <!--验证码servlet 结束-->
+
     <!-- 过滤中文乱码的问题 -->
     <filter>
         <filter-name>MyFilter</filter-name>
