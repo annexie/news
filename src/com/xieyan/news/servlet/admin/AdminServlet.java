@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -40,7 +41,12 @@ public class AdminServlet extends HttpServlet {
             String adminPassword = req.getParameter("adminPassword");
 
             Admin admin = new Admin(adminName, adminPassword);
-            Admin result = adminController.login(admin);
+            Admin result = null;
+            try {
+                result = adminController.login(admin);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             if (null != result) { //Admin登陆成功
                 HttpSession session = req.getSession();//返回与当前request相关联的session，如果没有则在服务器端创建一个;
                 session.setAttribute("ADMIN_LOGIN", admin);
@@ -56,7 +62,12 @@ public class AdminServlet extends HttpServlet {
             String adminName = req.getParameter("adminName");
             String adminRole = req.getParameter("adminRole");
 
-            List<Admin> list = adminController.listAdmin(adminName, adminRole);
+            List<Admin> list = null;
+            try {
+                list = adminController.listAdmin(adminName, adminRole);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             req.setAttribute("adminList", list);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/jsp/admin-list.jsp");
             dispatcher.forward(req, resp);
@@ -71,7 +82,11 @@ public class AdminServlet extends HttpServlet {
             String adminRole = req.getParameter("adminRole");
 
             Admin admin = new Admin(adminName, adminPassword, Integer.parseInt(adminRole));
-            int flag = adminController.addAdmin(admin);
+            try {
+                int flag = adminController.addAdmin(admin);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         } else if ("delete".equals(type)) {
 
@@ -80,7 +95,11 @@ public class AdminServlet extends HttpServlet {
 
             String id = req.getParameter("id");
 
-            boolean flag = adminController.delete(Long.parseLong(id));
+            try {
+                boolean flag = adminController.delete(Long.parseLong(id));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         } else if ("update".equals(type)) {
 
@@ -92,9 +111,12 @@ public class AdminServlet extends HttpServlet {
             String id = req.getParameter("id");
 
             Admin admin = new Admin(adminName, Integer.parseInt(adminRole), Long.parseLong(id));
-            boolean flag = adminController.updateAdmin(admin);
+            try {
+                boolean flag = adminController.updateAdmin(admin);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             //TODO 判断修改的用户是否是自己，如果是自己的话 还需要在session中重新加入
-
         }
     }
 }

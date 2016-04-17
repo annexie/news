@@ -21,9 +21,9 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `admin_name` varchar(50) COLLATE utf8_bin NOT NULL,
-  `admin_password` varchar(255) COLLATE utf8_bin NOT NULL,
-  `admin_role` int(3) NOT NULL DEFAULT '2',
+  `adminName` varchar(50) COLLATE utf8_bin NOT NULL,
+  `adminPassword` varchar(255) COLLATE utf8_bin NOT NULL,
+  `adminRole` int(3) NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

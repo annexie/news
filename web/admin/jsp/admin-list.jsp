@@ -82,7 +82,7 @@
                 confirmDeleteDialog.modal('hide'); //隐藏dialog
                 //需要回调的函数
                 var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
-                var url = '${pageContext.request.contextPath}/user?type=delete&id=' + idToDel;
+                var url = '${pageContext.request.contextPath}/admin?type=delete&id=' + idToDel;
 
                 $.get(url, function (result) {
                 }, "json");

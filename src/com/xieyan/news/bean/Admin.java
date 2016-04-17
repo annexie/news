@@ -66,4 +66,14 @@ public class Admin implements Serializable {
 
     public Admin() {
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", adminName='" + adminName + '\'' +
+                ", adminPassword='" + adminPassword + '\'' +
+                ", adminRole=" + adminRole +
+                '}';
+    }
 }
