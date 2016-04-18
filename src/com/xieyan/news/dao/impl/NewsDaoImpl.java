@@ -2,10 +2,12 @@ package com.xieyan.news.dao.impl;
 
 import com.xieyan.news.bean.News;
 import com.xieyan.news.dao.NewsDao;
-import com.xieyan.news.utils.DBUtil;
+import com.xieyan.news.utils.JdbcUtils;
+import com.xieyan.news.utils.TxQueryRunner;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +17,38 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public boolean addNews(News news) {
-        Connection connection = DBUtil.getConn();
+//        String sql = "insert into news_list(`newsTitle`, `newsAuthor`, `newsText`, `newsUrl`, `originType`,`date`,`updateDate`, `valid`, `imageUrl`, `newsKind`) values (?,?,?,?,?,?,?,?,?,?)";
+//        QueryRunner qr = new TxQueryRunner();
+//        int isOk = 0;
+//        try {
+//            //开启事务
+//            JdbcUtils.beginTransaction();
+//
+//            //执行的参数
+//            Object[] params = {new BeanHandler<News>(News.class), news.getNewsTitle(), news.getNewsAuthor(), news.getNewsText(),
+//                    news.getNewsUrl(), news.getNewsOriginType(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()),
+//                    news.getValid(), news.getNewImageUrl(), new Date(System.currentTimeMillis()), news.getNewsKind()};
+//
+//            isOk = qr.update(sql, params);
+//            if (isOk > 0) {
+//
+//            }
+//
+//            JdbcUtils.commitTransaction();//提交事务
+//        } catch (SQLException e) {
+//            try {
+//                JdbcUtils.rollbackTransaction();//回滚事务
+//            } catch (SQLException e1) {
+//            }
+//            e.printStackTrace();
+//        }
+
+        Connection connection = null;
+        try {
+            connection = JdbcUtils.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         String sql = "insert into news_list(`news_title`, `news_author`, `news_text`, `news_url`, `origin_type`,`date`,`update_date`, `valid`, `image_url`, `news_kind`) values (?,?,?,?,?,?,?,?,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
         PreparedStatement ps = null;
         boolean flag = false;
@@ -49,8 +82,12 @@ public class NewsDaoImpl implements NewsDao {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            DBUtil.close(connection, null, ps, null);
+        } finally {
+            try {
+                JdbcUtils.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return flag;
     }
@@ -62,104 +99,171 @@ public class NewsDaoImpl implements NewsDao {
      * @return 是否成功
      */
     private boolean insertNewsKind(Long geneNewsId, String newsKind, Connection connection) {
-        String sql2 = "insert into news_kinds_list(`news_kinds`,`news_id`) values (?,?)";
-        PreparedStatement ps2 = null;
-        try {
-            ps2 = connection.prepareStatement(sql2);
-            ps2.setString(1, newsKind);
-            ps2.setLong(2, geneNewsId);
-            int isOk = ps2.executeUpdate();
-            return isOk > 0 ? true : false;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String sql = "insert into news_kinds_list(`newsKinds`,`newId`) values (?,?)";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            ps2.close();
+
+            //执行的参数
+            Object[] params = {newsKind, geneNewsId};
+
+            int isOk = qr.update(sql, params);
+
+            return isOk > 0 ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            DBUtil.close(connection, null, ps2, null);
+        } finally {
+            try {
+                JdbcUtils.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
+
+//        String sql2 = "insert into news_kinds_list(`news_kinds`,`news_id`) values (?,?)";
+//        PreparedStatement ps2 = null;
+//        try {
+//            ps2 = connection.prepareStatement(sql2);
+//            ps2.setString(1, newsKind);
+//            ps2.setLong(2, geneNewsId);
+//            int isOk = ps2.executeUpdate();
+//            return isOk > 0 ? true : false;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            ps2.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, null, ps2, null);
+//        }
+//        return false;
     }
 
     @Override
     public List<News> listByCondition(String newsTitle, String newsAuthor, String newsKind) {
-        Connection connection = DBUtil.getConn();
+
         String sql = getSqlUrl(newsTitle, newsAuthor, newsKind);
-        PreparedStatement preparedStatement = null;
-        List<News> newsList = new ArrayList<News>();
+        QueryRunner qr = new TxQueryRunner();
+        List<News> result = null;
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                News news = new News();
-                news.setId(rs.getLong("id"));
-                news.setNewsTitle(rs.getString("news_title"));
-                news.setNewsAuthor(rs.getString("news_author"));
-                news.setNewsKind(rs.getString("news_kind"));
-                news.setNewsText(rs.getString("news_text"));
-                news.setDate(rs.getDate("date"));
-                news.setValid(rs.getInt("valid"));
-                news.setNewsUrl(rs.getString("image_url"));
-                newsList.add(news);
-            }
+            result = qr.query(sql, new BeanListHandler<News>(News.class));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
-            preparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DBUtil.close(connection, null, preparedStatement, null);
+        System.out.println(result.toString());
+        if (null != result) {
+            return result;
+        } else {
+            return null;
         }
-        return newsList;
+
+//        Connection connection = DBUtil.getConn();
+//        String sql = getSqlUrl(newsTitle, newsAuthor, newsKind);
+//        PreparedStatement preparedStatement = null;
+//        List<News> newsList = new ArrayList<News>();
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                News news = new News();
+//                news.setId(rs.getLong("id"));
+//                news.setNewsTitle(rs.getString("news_title"));
+//                news.setNewsAuthor(rs.getString("news_author"));
+//                news.setNewsKind(rs.getString("news_kind"));
+//                news.setNewsText(rs.getString("news_text"));
+//                news.setDate(rs.getDate("date"));
+//                news.setValid(rs.getInt("valid"));
+//                news.setNewsUrl(rs.getString("image_url"));
+//                newsList.add(news);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            preparedStatement.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, null, preparedStatement, null);
+//        }
+//        return newsList;
     }
 
     @Override
     public boolean update(News news) {
-        Connection connection = DBUtil.getConn();
-        String sql = "update news_list set news_title = ? , news_author =? , news_kind =? where id =?";
-        PreparedStatement preparedStatement = null;
+        String sql = "update news_list set newsTitle = ? , newsAuthor =? , newsKind =? where id =?";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, news.getNewsTitle() + "");
-            preparedStatement.setString(2, news.getNewsAuthor() + "");
-            preparedStatement.setString(3, news.getNewsKind());
-            preparedStatement.setLong(4, news.getId());
-            int flag = preparedStatement.executeUpdate();
-            if (flag == 1) {
-                return true;
-            }
+
+            //执行的参数
+            Object[] params = {news.getNewsTitle(), news.getNewsAuthor(), news.getNewsKind(), news.getId()};
+
+            int isOk = qr.update(sql, params);
+
+            return isOk > 0 ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
         return false;
+//
+//        Connection connection = DBUtil.getConn();
+//        String sql = "update news_list set news_title = ? , news_author =? , news_kind =? where id =?";
+//        PreparedStatement preparedStatement = null;
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, news.getNewsTitle() + "");
+//            preparedStatement.setString(2, news.getNewsAuthor() + "");
+//            preparedStatement.setString(3, news.getNewsKind());
+//            preparedStatement.setLong(4, news.getId());
+//            int flag = preparedStatement.executeUpdate();
+//            if (flag == 1) {
+//                return true;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return false;
     }
 
     @Override
     public boolean deleteById(long id) {
-        Connection connection = DBUtil.getConn();
+
         String sql = "delete from news_list where id = ?";
-        PreparedStatement preparedStatement = null;
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1, id);
-            boolean flag = preparedStatement.execute();
-            if (flag) {
-                return true;
-            }
-            return false;
+            //执行的参数
+            Object[] params = {id};
+
+            int isOk = qr.update(sql, params);
+
+            return isOk > 0 ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
         return false;
+//        Connection connection = DBUtil.getConn();
+//        String sql = "delete from news_list where id = ?";
+//        PreparedStatement preparedStatement = null;
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setLong(1, id);
+//            boolean flag = preparedStatement.execute();
+//            if (flag) {
+//                return true;
+//            }
+//            return false;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return false;
     }
 
     /**
@@ -168,13 +272,13 @@ public class NewsDaoImpl implements NewsDao {
     private String getSqlUrl(String newsTitle, String newsAuthor, String newsKind) {
         String sql = new String("select * from news_list where 1=1 ");
         if (null != newsTitle && (!"".equals(newsTitle))) {
-            sql += "and news_title = '" + newsTitle + "'";
+            sql += "and newsTitle = '" + newsTitle + "'";
         }
         if (null != newsAuthor && (!"".equals(newsAuthor))) {
-            sql += "and news_author = '" + newsAuthor + "'";
+            sql += "and newsAuthor = '" + newsAuthor + "'";
         }
         if (null != newsKind && (!"".equals(newsKind))) {
-            sql += "and news_kind = '" + newsKind + "'";
+            sql += "and newsKind = '" + newsKind + "'";
         }
         return sql;
     }

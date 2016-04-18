@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <c3p0-config>
     <default-config>
-        <property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/news</property>
+        <property name="jdbcUrl">jdbc:mysql://119.29.17.244:3306/news</property>
         <property name="driverClass">com.mysql.jdbc.Driver</property>
         <property name="user">root</property>
         <property name="password">xu827928</property>
