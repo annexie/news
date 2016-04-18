@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
 
+    <script src="/admin/assets/js/ace-extra.min.js"></script>
+
     <script type="text/javascript">
 
         function userUpdate(element) {
@@ -262,7 +264,6 @@
                         </li>
                     </ul>
                 </li>
-
 
                 <li>
                     <a href="#" class="dropdown-toggle">

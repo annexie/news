@@ -128,6 +128,7 @@
                         <span class="menu-text"> News后台管理系统 </span>
                     </a>
                 </li>
+
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-desktop"></i>
@@ -136,7 +137,7 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu" style="display: block;">
+                    <ul class="submenu">
                         <li>
                             <a href="${pageContext.request.contextPath}/user?type=list">
                                 <i class="icon-double-angle-right"></i>
@@ -144,12 +145,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="user-add.jsp" style="color:#428bca">
+                            <a href="user-add.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 新增用户
                             </a>
                         </li>
-
                     </ul>
                 </li>
 
@@ -178,7 +178,6 @@
                     </ul>
                 </li>
 
-
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
@@ -189,14 +188,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="form-elements.html">
+                            <a href="${pageContext.request.contextPath}/admin?type=list">
                                 <i class="icon-double-angle-right"></i>
                                 管理员列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="form-wizard.html">
+                            <a href="${pageContext.request.contextPath}/admin/jsp/admin-add.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 添加管理员
                             </a>

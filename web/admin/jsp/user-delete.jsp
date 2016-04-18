@@ -154,6 +154,7 @@
                         <span class="menu-text"> News后台管理系统 </span>
                     </a>
                 </li>
+
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-desktop"></i>
@@ -162,7 +163,7 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu" style="display: block;">
+                    <ul class="submenu">
                         <li>
                             <a href="${pageContext.request.contextPath}/user?type=list">
                                 <i class="icon-double-angle-right"></i>
@@ -170,12 +171,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="user-add.jsp" style="color:#428bca">
+                            <a href="user-add.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 新增用户
                             </a>
                         </li>
-
                     </ul>
                 </li>
 
@@ -203,7 +203,6 @@
                         </li>
                     </ul>
                 </li>
-
 
                 <li>
                     <a href="#" class="dropdown-toggle">

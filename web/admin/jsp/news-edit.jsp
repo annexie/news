@@ -129,6 +129,7 @@
                         <span class="menu-text"> News后台管理系统 </span>
                     </a>
                 </li>
+
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-desktop"></i>
@@ -150,7 +151,6 @@
                                 新增用户
                             </a>
                         </li>
-
                     </ul>
                 </li>
 
@@ -162,9 +162,9 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu" style="display: block;">
+                    <ul class="submenu">
                         <li>
-                            <a href="news-edit.jsp" style="color:#428bca">
+                            <a href="news-edit.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 新闻编辑
                             </a>
@@ -178,7 +178,6 @@
                         </li>
                     </ul>
                 </li>
-
 
                 <li>
                     <a href="#" class="dropdown-toggle">

@@ -16,14 +16,6 @@
 
     <script src="/admin/assets/js/ace-extra.min.js"></script>
 
-    <%--<script>--%>
-    <%--function checkLogin() {--%>
-    <%--if (('<%=request.getSession().getAttribute("ADMIN_LOGIN")%>') == null) { //Admin没有登录，跳转到登录界面--%>
-    <%--alert("对不起，您还未登录，请进行请登录！")--%>
-    <%--window.location.href = '${pageContext.request.contextPath}/admin/jsp/admin-login.jsp';--%>
-    <%--}--%>
-    <%--}--%>
-    <%--</script>--%>
 </head>
 
 <body>
