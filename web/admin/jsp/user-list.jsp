@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8"/>
-    <title>News</title>
+    <title>News-管理员添加</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/admin/assets/css/ace.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
     <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
-
+    <!-- ace settings handler -->
     <script src="/admin/assets/js/ace-extra.min.js"></script>
 
     <script type="text/javascript">
@@ -216,6 +216,7 @@
                         <span class="menu-text"> News后台管理系统 </span>
                     </a>
                 </li>
+
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-desktop"></i>
@@ -224,7 +225,7 @@
                         <b class="arrow icon-angle-down"></b>
                     </a>
 
-                    <ul class="submenu" style="display: block;">
+                    <ul class="submenu">
                         <li>
                             <a href="${pageContext.request.contextPath}/user?type=list">
                                 <i class="icon-double-angle-right"></i>

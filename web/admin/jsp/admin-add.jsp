@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
+    <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/admin/assets/css/font-awesome.min.css"/>
     <!-- fonts -->
     <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300"/>
     <!-- ace styles -->
-    <link rel="stylesheet" href="../assets/css/ace.min.css"/>
-    <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
-    <link rel="stylesheet" href="../assets/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="/admin/assets/css/ace-skins.min.css"/>
     <!-- ace settings handler -->
     <script src="../assets/js/ace-extra.min.js"></script>
 </head>
@@ -120,7 +120,6 @@
                 </div>
             </div>
             <!-- #sidebar-shortcuts -->
-
             <ul class="nav nav-list">
                 <li class="active">
                     <a href="<c:url value='/admin/jsp/admin-index.jsp'/>">

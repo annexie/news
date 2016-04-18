@@ -204,6 +204,7 @@
                 </li>
 
             </ul>
+            
             <!-- /.nav-list -->
 
             <div class="sidebar-collapse" id="sidebar-collapse">
