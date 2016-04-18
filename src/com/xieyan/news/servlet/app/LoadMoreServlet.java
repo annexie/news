@@ -27,6 +27,7 @@ public class LoadMoreServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        response.setCharacterEncoding("utf-8");
         System.out.println(request.getParameter("startNum"));
         String data = "<li>\n" +
                 "                        <a class=\"listView-item\">\n" +
