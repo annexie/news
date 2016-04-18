@@ -7,16 +7,17 @@
 
     <servlet>
         <servlet-name>register</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.RegisterServlet</servlet-class>
+        <servlet-class>com.xieyan.news.servlet.app.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
+    <!-- App使用的Servlet 开始 -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.LoginServlet</servlet-class>
+        <servlet-class>com.xieyan.news.servlet.app.UserClientServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -25,13 +26,13 @@
 
     <servlet>
         <servlet-name>LoadMoreServlet</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.LoadMoreServlet</servlet-class>
+        <servlet-class>com.xieyan.news.servlet.app.LoadMoreServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadMoreServlet</servlet-name>
         <url-pattern>/loadmore</url-pattern>
     </servlet-mapping>
-
+    <!-- App使用的Servlet 结束 -->
 
     <!-- 后台管理servlet start-->
     <servlet>

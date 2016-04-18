@@ -1,4 +1,4 @@
-package com.xieyan.news.servlet;
+package com.xieyan.news.servlet.app;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

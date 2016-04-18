@@ -3,7 +3,7 @@ package com.xieyan.news.servlet.admin;
 import com.xieyan.news.bean.News;
 import com.xieyan.news.control.NewsController;
 import com.xieyan.news.control.impl.NewsControllerImpl;
-import com.xieyan.news.servlet.base.BaseServlet;
+import com.xieyan.news.servlet.BaseServlet;
 import com.xieyan.news.utils.CheckAdminLoginUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

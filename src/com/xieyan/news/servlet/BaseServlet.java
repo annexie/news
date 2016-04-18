@@ -1,4 +1,4 @@
-package com.xieyan.news.servlet.base;
+package com.xieyan.news.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
