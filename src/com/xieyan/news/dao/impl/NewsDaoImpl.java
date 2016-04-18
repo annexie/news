@@ -49,7 +49,7 @@ public class NewsDaoImpl implements NewsDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String sql = "insert into news_list(`news_title`, `news_author`, `news_text`, `news_url`, `origin_type`,`date`,`update_date`, `valid`, `image_url`, `news_kind`) values (?,?,?,?,?,?,?,?,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
+        String sql = "insert into news_list(`newsTitle`, `newsAuthor`, `newsText`, `newsUrl`, `originType`,`date`,`updateDate`, `valid`, `imageUrl`, `newsKind`) values (?,?,?,?,?,?,?,?,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
         PreparedStatement ps = null;
         boolean flag = false;
         try {
