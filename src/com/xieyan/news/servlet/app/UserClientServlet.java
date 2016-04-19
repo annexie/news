@@ -31,6 +31,11 @@ public class UserClientServlet extends BaseServlet {
         //获取前台输出对象
         PrintWriter out = response.getWriter();
 
+        if (username.equals("") || password.equals("") || checkPassword.equals("")) { //用户名密码为空
+            out.write("failed");
+            return;
+        }
+
         //判断两次输入的密码是否相同
         if (password.equals(checkPassword)) {
 
@@ -49,26 +54,30 @@ public class UserClientServlet extends BaseServlet {
         }
     }
 
-    public String login(HttpServletRequest request, HttpServletResponse response)
+    public void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        //获取前台输出对象
+        PrintWriter out = response.getWriter();
+
+        if (username.equals("") || password.equals("")) { //用户名密码为空
+            out.write("failed");
+            return;
+        }
+
         //根据用户信息查找用户
-        UserController userInter = new UserControllerImpl();
-        User user = userInter.login(username, password);
+        UserController userController = new UserControllerImpl();
+        User user = userController.login(username, password);
 
-        if (user != null) {
-
+        if (null != user) {
             // 将用户存放到session中去
             request.getSession().setAttribute("CLIENT_USER", user);
-
-            return "news/jsp/user-list.jsp";
-
+            out.write("success");
         } else {
-
-            return "news/jsp/login.jsp";
+            out.write("failed");
         }
     }
 }

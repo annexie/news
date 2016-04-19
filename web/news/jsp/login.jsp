@@ -10,6 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
+    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <style>
         body {
             display: -webkit-box;
@@ -82,14 +83,20 @@
         }
 
         .btn {
+            background: #00b7ee;
             display: block;
-            color: #000000;
-            margin: 0 40px;
+            color: #ffffff;
+            margin: auto;
             text-align: center;
             border-radius: 8px;
+            width: 80%;
             height: 40px;
             line-height: 40px;
             border: 1px solid #CECECE;
+        }
+
+        .btn:hover {
+            background: #00a0e9;
         }
 
         input {
@@ -154,9 +161,7 @@
 <body>
 <header>
     <div class="header detail-header">
-        <%--<div class="back btn" tapmode="" onclick="closeWin()"></div>--%>
         <div class="title" id="title">登录</div>
-        <%--<div class="btn"></div>--%>
     </div>
 </header>
 
@@ -171,25 +176,65 @@
             <input type="password" placeholder="密码" id="password" value="">
         </div>
     </div>
-    <div class="btn" id="login" tapmode="" onclick="login()">登录</div>
-    <%--<div class="other-login-wrap">--%>
-        <%--<div class="other-login-lable">--%>
-            <%--还可选择以下方式登陆--%>
-        <%--</div>--%>
-        <%--<div class="other-login">--%>
-            <%--<div class="sina">--%>
-                <%--<span class="sina-label">新浪微博登陆</span>--%>
-            <%--</div>--%>
-            <%--<div class="qq">--%>
-                <%--<span class="qq-label">QQ登陆</span>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+    <button type="button" onclick="login()" class="btn btn-primary"><p
+            style="line-height: 24px; color: #ffffff">登录</p>
+    </button>
 </div>
 <footer>
     <div>没有账号？</div>
     <div class="fast-reg" tapmode=""><a href="<c:url value='/news/jsp/register.jsp'/>">立即注册</a></div>
 </footer>
 
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="userLoginModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    登录提示
+                </h4>
+            </div>
+            <div class="modal-body" id="modalResultTextID">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
+<script src="/admin/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8080/userclient",
+            data: {
+                type: "login",
+                username: $("#username").val(),
+                password: $("#password").val(),
+            },
+            dataType: "html",
+            success: function (data) {
+                $('#modalResultTextID').empty(); //清空上一次追加的内容
+                if (data == "success") {
+                    //向提示框中插入数据
+                    $('#modalResultTextID').append("登录成功！正在为你跳转");
+                    $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                    window.location.href = '<c:url value='/news/jsp/news-list.jsp'/>';
+                } else {
+                    $('#modalResultTextID').append("对不起！登录失败！");
+                    $('#modalFooterId').css({display: 'none'});
+                }
+                $('#userLoginModalID').modal({
+                    keyboard: true
+                });
+            }
+        });
+    }
+</script>
 </body>
 </html>

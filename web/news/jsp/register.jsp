@@ -145,7 +145,6 @@
     </button>
 </div>
 
-
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="userRegisterModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
      aria-labelledby="myModalLabel" aria-hidden="true">
