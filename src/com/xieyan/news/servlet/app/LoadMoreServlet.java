@@ -27,82 +27,38 @@ public class LoadMoreServlet extends HttpServlet {
         doPost(request, response);
     }
 
-//    public void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        PrintWriter out = response.getWriter();
-//        response.setCharacterEncoding("utf-8");
-//        System.out.println(request.getParameter("startNum"));
-//        request.getParameter("startNum");
-//
-//        NewsController newsController = new NewsControllerImpl();
-//        List<News> list = newsController.loadNews(Integer.parseInt(request.getSession().getAttribute("START_NUM") + ""));
-//        if (null == list) { //没有数据可以加载
-//            out.write("");
-//            return;
-//        } else {
-//            request.getSession().setAttribute("START_NUM", Integer.parseInt(request.getSession().getAttribute("START_NUM") + "") + 5); //重新设置起始记录
-//
-//            //将news转化为html文件返回
-//            String data = new String("");
-//            for (News news : list) {
-//                data += "<li>\n" +
-//                        "    <a class=\"listView-item\">" +
-//                        "      <div class=\"listView-img\">" +
-//                        "        <img src=\"../image/91.png\">" +
-//                        "      </div>" +
-//                        "      <div class=\"listView-text\">" +
-//                        "         <p class=\"listView-text-title\">" + news.getNewsTitle() + "</p>" +
-//                        "         <p class=\"listView-text-subtitle\">" + news.getNewsText().substring(0, 10) + "</p>" +
-//                        "         <span class=\"listView-text-tips\">" + news.getDate() + "</span></div>" +
-//                        "      </a>\n" +
-//                        "</li>";
-//            }
-//
-//            System.out.println(request.toString());
-//            out.write(data);
-//        }
-//    }
-
-
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setCharacterEncoding("utf-8");这一行代码要设置在response前边，这样的话还能保证编码正确
+
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
-        System.out.println(request.getParameter("startNum"));
-
+        String type = request.getParameter("type");
 
         if (null == request.getSession().getAttribute("START_NUM")) { //当没有在session中设置起始记录的时候，进行设置
             request.getSession().setAttribute("START_NUM", 0);
         }
 
         NewsController newsController = new NewsControllerImpl();
-        List<News> list = newsController.loadNews(Integer.parseInt(request.getSession().getAttribute("START_NUM") + ""));
+        int start = Integer.parseInt(request.getSession().getAttribute("START_NUM") + "");
+        if (start < 0) {
+            out.write("");
+            return;
+        }
+        List<News> list = newsController.loadNews(start);
         if (null == list) { //没有数据可以加载
             out.write("");
             return;
         } else {
-            request.getSession().setAttribute("START_NUM", Integer.parseInt(request.getSession().getAttribute("START_NUM") + "") + 5); //重新设置起始记录
-
-            //将news转化为html文件返回
-            String data = new String("");
-            for (News news : list) {
-                data += "<li>\n" +
-                        "    <a class=\"listView-item\">" +
-                        "      <div class=\"listView-img\">" +
-                        "        <img src=\"http://192.168.1.208:8080/news/image/91.png'\">" +
-                        "      </div>" +
-                        "      <div class=\"listView-text\">" +
-                        "         <p class=\"listView-text-title\">" + news.getNewsTitle() + "</p>" +
-                        "         <p class=\"listView-text-subtitle\">" + news.getNewsText().substring(0, 10) + "</p>" +
-                        "         <span class=\"listView-text-tips\">" + news.getDate() + "</span></div>" +
-                        "      </a>\n" +
-                        "</li>";
+            if ("nextPage".equals(type)) { //下一页
+                request.getSession().setAttribute("START_NUM", Integer.parseInt(request.getSession().getAttribute("START_NUM") + "") + 5); //重新设置起始记录
+            } else { //上一页
+                request.getSession().setAttribute("START_NUM", Integer.parseInt(request.getSession().getAttribute("START_NUM") + "") - 5); //重新设置起始记录
             }
 
-            System.out.println(request.toString());
-            out.write(data);
+            request.setAttribute("newsList", list);
+            request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("START_NUM") + ""));
+            out.write("success");
+            request.getRequestDispatcher("/news/jsp/news-list.jsp").forward(request, response);
         }
     }
 }

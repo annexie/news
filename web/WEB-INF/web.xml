@@ -5,14 +5,6 @@
          version="3.1">
     <display-name>News</display-name>
 
-    <servlet>
-        <servlet-name>register</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.app.RegisterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>register</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
 
     <!-- App使用的Servlet 开始 -->
     <servlet>

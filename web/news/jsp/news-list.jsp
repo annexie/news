@@ -1,3 +1,5 @@
+<%@ page import="com.xieyan.news.bean.News" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -309,23 +311,24 @@
         }
 
         function loadMore() {
-            $.ajax({
-                type: "POST",
-                url: "http://192.168.1.208:8080/loadmore",
-                data: {
-                    pageStart: $("#pageStartID").val(),
-                },
-                contentType: "text/html; charset=utf-8",
-                dataType: "html",
-                success: function (data) {
-                    if ("" == data) {
-                        alert("没有数据了哦！亲！");
-                    } else {
-                        $('#fpmxList').append(data);
-                    }
-                }
-            });
+//            $.post("http://192.168.1.208:8080/loadmore?type=nextPage", null, function (result) {
+//                if (result == "") {
+//                    alert("没有数据了哦！亲！");
+//                    return;
+//                }
+//            }, "json");
+            window.location.href = "http://192.168.1.208:8080/loadmore?type=nextPage"
         }
+        function loadProPage() {
+//            $.post("http://192.168.1.208:8080/loadmore?type=proPage", null, function (result) {
+//                if (result == "") {
+//                    alert("没有数据了哦！亲！");
+//                    return;
+//                }
+//            }, "json");
+            window.location.href = "http://192.168.1.208:8080/loadmore?type=proPage"
+        }
+
     </script>
 
     <!-- content-->
@@ -343,12 +346,10 @@
                     <div id="wrapper">
                         <div id="scroller">
                             <ul>
-                                <li class="nav_active" tapmode="" onclick="">云api</li>
-                                <li class="" tapmode="" onclick="">端api</li>
-                                <li class="" tapmode="" onclick="">开发</li>
-                                <li class="" tapmode="" onclick="">云服务</li>
-                                <li class="" tapmode="" onclick="">培训</li>
-                                <li class="" tapmode="" onclick="">视频</li>
+                                <li class="nav_active" tapmode="" onclick="">计算机</li>
+                                <li class="" tapmode="" onclick="">文学</li>
+                                <li class="" tapmode="" onclick="">Java</li>
+                                <li class="" tapmode="" onclick="">Android</li>
                                 <li class="" tapmode="" onclick="">
                                     <a class="user" tapmode="" href="user_center.jsp"></a>
                                 </li>
@@ -396,62 +397,66 @@
 
                 <%--具体的新闻展示界面 开始--%>
                 <ul data-theme="a" class="listView" id="fpmxList">
+                    <%
+                        List<News> newsList = (List<News>) request.getAttribute("newsList");
+                        if (null == newsList) {
+                    %>
                     <li>
-                        <a class="listView-item">
+                        <a class="listView-item newsLi">
                             <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
-                                <p class="listView-text-title">apicloud云端一体</p>
+                                <p class="listView-text-title">
+                                </p>
 
                                 <p class="listView-text-subtitle">
-                                    apicloud重新定义移动应用开发
+
                                 </p>
-                                <span class="listView-text-tips">098999</span></div>
+                                <span class="listView-text-tips"></span></div>
                         </a>
                     </li>
-                    <%--<li>--%>
-                    <%--<a class="listView-item">--%>
-                    <%--<div class="listView-img"><img src="<c:url value='/news/image/93.png'/>"></div>--%>
-                    <%--<div class="listView-text">--%>
-                    <%--<p class="listView-text-title">apicloud云端一体</p>--%>
+                    <%
+                    } else {
+                        for (News news : newsList) {
+                    %>
+                    <li>
+                        <a class="listView-item newsLi">
+                            <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
+                            <div class="listView-text">
+                                <p class="listView-text-title"><%=news.getNewsTitle()%>
+                                </p>
 
-                    <%--<p class="listView-text-subtitle">--%>
-                    <%--apicloud重新定义移动应用开发--%>
-                    <%--</p>--%>
-                    <%--<span class="listView-text-tips">098999</span></div>--%>
-                    <%--</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                    <%--<a class="listView-item">--%>
-                    <%--<div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>--%>
-                    <%--<div class="listView-text">--%>
-                    <%--<p class="listView-text-title">apicloud云端一体</p>--%>
+                                <p class="listView-text-subtitle">
+                                    <%=news.getNewsText().substring(0, 10)%>
+                                </p>
+                                <span class="listView-text-tips"><%=news.getDate()%></span></div>
+                        </a>
+                    </li>
 
-                    <%--<p class="listView-text-subtitle">--%>
-                    <%--apicloud重新定义移动应用开发--%>
-                    <%--</p>--%>
-                    <%--<span class="listView-text-tips">098999</span></div>--%>
-                    <%--</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                    <%--<a class="listView-item">--%>
-                    <%--<div class="listView-img"><img src="<c:url value='/news/image/94.png'/>"></div>--%>
-                    <%--<div class="listView-text">--%>
-                    <%--<p class="listView-text-title">apicloud云端一体</p>--%>
-
-                    <%--<p class="listView-text-subtitle">--%>
-                    <%--apicloud重新定义移动应用开发--%>
-                    <%--</p>--%>
-                    <%--<span class="listView-text-tips">098999</span></div>--%>
-                    <%--</a>--%>
-                    <%--</li>--%>
+                    <%
+                            }
+                        }
+                    %>
                 </ul>
                 <%--具体的新闻展示界面 结束--%>
-                <div id="pullUp">
-                </div>
+                <div id="pullUp"></div>
 
                 <div>
                     <input type="hidden" name="pageStart" id="pageStartID" value="1"/>
+                    <%
+                        Integer pageStrart = (Integer) request.getAttribute("pageStart");
+                        if (null == newsList || pageStrart == 0) {
+                    %>
                     <button type="button" onclick="loadMore()">下一页</button>
+                    <%
+                    } else {
+
+                    %>
+                    <button type="button" onclick="loadProPage()">上一页</button>
+                    <button type="button" onclick="loadMore()">下一页</button>
+                    <%
+                        }
+                    %>
+
                 </div>
 
             </div>
