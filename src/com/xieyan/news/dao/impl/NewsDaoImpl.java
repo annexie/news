@@ -266,6 +266,22 @@ public class NewsDaoImpl implements NewsDao {
 //        return false;
     }
 
+    @Override
+    public List<News> loadNews(int startNum) {
+        String sql = "select * from news_list order by date limit ?,5 ";
+        QueryRunner qr = new TxQueryRunner();
+        try {
+            //执行的参数
+            Object[] params = {startNum};
+
+            List<News> newsList = qr.query(sql, new BeanListHandler<News>(News.class), params);
+            return null == newsList ? null : newsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      */

@@ -35,4 +35,10 @@ public class NewsControllerImpl implements NewsController {
         NewsDao newsDao = new NewsDaoImpl();
         return newsDao.deleteById(id);
     }
+
+    @Override
+    public List<News> loadNews(int startNum) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.loadNews(startNum);
+    }
 }

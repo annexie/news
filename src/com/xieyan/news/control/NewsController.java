@@ -16,4 +16,6 @@ public interface NewsController {
     boolean update(News news);
 
     boolean deleteById(long id);
+
+    List<News> loadNews(int startNum);
 }

@@ -307,6 +307,25 @@
         function onClickUserCenter() {
             window.location.href = '<c:url value='/news/jsp/user_center.jsp'/>'
         }
+
+        function loadMore() {
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.1.208:8080/loadmore",
+                data: {
+                    pageStart: $("#pageStartID").val(),
+                },
+                contentType: "text/html; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    if ("" == data) {
+                        alert("没有数据了哦！亲！");
+                    } else {
+                        $('#fpmxList').append(data);
+                    }
+                }
+            });
+        }
     </script>
 
     <!-- content-->
@@ -314,7 +333,6 @@
         <div id="wrapperIndex" class="wrapper">
             <div id="scrollerIndex" class="scroller">
                 <div id="pullDown">
-                    <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
                 </div>
                 <header style="margin-top: 40px;">
                     <div class="header detail-header">
@@ -331,8 +349,8 @@
                                 <li class="" tapmode="" onclick="">云服务</li>
                                 <li class="" tapmode="" onclick="">培训</li>
                                 <li class="" tapmode="" onclick="">视频</li>
-                                <li class="" tapmode="" onclick=""><a class="user" tapmode=""
-                                                                      href="user_center.jsp"></a>
+                                <li class="" tapmode="" onclick="">
+                                    <a class="user" tapmode="" href="user_center.jsp"></a>
                                 </li>
                             </ul>
                         </div>
@@ -390,47 +408,50 @@
                                 <span class="listView-text-tips">098999</span></div>
                         </a>
                     </li>
-                    <li>
-                        <a class="listView-item">
-                            <div class="listView-img"><img src="<c:url value='/news/image/93.png'/>"></div>
-                            <div class="listView-text">
-                                <p class="listView-text-title">apicloud云端一体</p>
+                    <%--<li>--%>
+                    <%--<a class="listView-item">--%>
+                    <%--<div class="listView-img"><img src="<c:url value='/news/image/93.png'/>"></div>--%>
+                    <%--<div class="listView-text">--%>
+                    <%--<p class="listView-text-title">apicloud云端一体</p>--%>
 
-                                <p class="listView-text-subtitle">
-                                    apicloud重新定义移动应用开发
-                                </p>
-                                <span class="listView-text-tips">098999</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="listView-item">
-                            <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
-                            <div class="listView-text">
-                                <p class="listView-text-title">apicloud云端一体</p>
+                    <%--<p class="listView-text-subtitle">--%>
+                    <%--apicloud重新定义移动应用开发--%>
+                    <%--</p>--%>
+                    <%--<span class="listView-text-tips">098999</span></div>--%>
+                    <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                    <%--<a class="listView-item">--%>
+                    <%--<div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>--%>
+                    <%--<div class="listView-text">--%>
+                    <%--<p class="listView-text-title">apicloud云端一体</p>--%>
 
-                                <p class="listView-text-subtitle">
-                                    apicloud重新定义移动应用开发
-                                </p>
-                                <span class="listView-text-tips">098999</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="listView-item">
-                            <div class="listView-img"><img src="<c:url value='/news/image/94.png'/>"></div>
-                            <div class="listView-text">
-                                <p class="listView-text-title">apicloud云端一体</p>
+                    <%--<p class="listView-text-subtitle">--%>
+                    <%--apicloud重新定义移动应用开发--%>
+                    <%--</p>--%>
+                    <%--<span class="listView-text-tips">098999</span></div>--%>
+                    <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                    <%--<a class="listView-item">--%>
+                    <%--<div class="listView-img"><img src="<c:url value='/news/image/94.png'/>"></div>--%>
+                    <%--<div class="listView-text">--%>
+                    <%--<p class="listView-text-title">apicloud云端一体</p>--%>
 
-                                <p class="listView-text-subtitle">
-                                    apicloud重新定义移动应用开发
-                                </p>
-                                <span class="listView-text-tips">098999</span></div>
-                        </a>
-                    </li>
+                    <%--<p class="listView-text-subtitle">--%>
+                    <%--apicloud重新定义移动应用开发--%>
+                    <%--</p>--%>
+                    <%--<span class="listView-text-tips">098999</span></div>--%>
+                    <%--</a>--%>
+                    <%--</li>--%>
                 </ul>
                 <%--具体的新闻展示界面 结束--%>
-
                 <div id="pullUp">
-                    <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+                </div>
+
+                <div>
+                    <input type="hidden" name="pageStart" id="pageStartID" value="1"/>
+                    <button type="button" onclick="loadMore()">下一页</button>
                 </div>
 
             </div>

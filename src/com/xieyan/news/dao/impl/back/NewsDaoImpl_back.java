@@ -162,6 +162,11 @@ public class NewsDaoImpl_back implements NewsDao {
         return false;
     }
 
+    @Override
+    public List<News> loadNews(int startNum) {
+        return null;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      */
