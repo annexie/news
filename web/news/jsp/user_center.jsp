@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -7,8 +7,8 @@
 <meta name="viewport"
       content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
 <title></title>
-<link rel="stylesheet" type="text/css" href="../css/api.css"/>
-<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/news/css/api.css"/>
+<link rel="stylesheet" type="text/css" href="/news/css/common.css"/>
 <style>
     body, html {
     }
@@ -22,21 +22,21 @@
     }
 
     .close {
-        background-image: url("../image/close_icon_normal@2x.png");
+        background-image: url("/news/image/close_icon_normal@2x.png");
     }
 
     .setting {
-        background-image: url("../image/setting_icon_normal@2x.png");
+        background-image: url("/news/image/setting_icon_normal@2x.png");
     }
 
     .login-header .nologin-user {
         -webkit-transform: rotateY(0deg);
-        background-image: url("../image/user_defaulthead@2x.png");
+        background-image: url("/news/image/user_defaulthead@2x.png");
     }
 
     .login-header .prize {
         -webkit-transform: rotateY(180deg);
-        background-image: url("../image/user_defaultgift@2x.png");
+        background-image: url("/news/image/user_defaultgift@2x.png");
     }
 
     .flip {
@@ -99,15 +99,15 @@
     }
 
     .read {
-        background-image: url("../image/user_reading_circle@2x.png");
+        background-image: url("/news/image/user_reading_circle@2x.png");
     }
 
     .star {
-        background-image: url("../image/user_favor_circle@2x.png");
+        background-image: url("/news/image/user_favor_circle@2x.png");
     }
 
     .comment {
-        background-image: url("../image/user_comment_circle@2x.png");
+        background-image: url("/news/image/user_comment_circle@2x.png");
     }
 
     .activity {
@@ -119,7 +119,7 @@
         background-size: 8px;
         background-repeat: no-repeat;
         background-position: right;
-        background-image: url("../image/setting_cell_arrow@2x.png");
+        background-image: url("/news/image/setting_cell_arrow@2x.png");
         border-bottom: 1px solid #F6F6F6;
     }
 
@@ -156,27 +156,27 @@
     }
 
     .plugin {
-        background-image: url("../image/plugin_icon_setting@2x.png");
+        background-image: url("/news/image/plugin_icon_setting@2x.png");
     }
 
     .offline {
-        background-image: url("../image/pluginboard_icon_offline@2x.png");
+        background-image: url("/news/image/pluginboard_icon_offline@2x.png");
     }
 
     .night {
-        background-image: url("../image/pluginboard_icon_night@2x.png");
+        background-image: url("/news/image/pluginboard_icon_night@2x.png");
     }
 
     .search {
-        background-image: url("../image/pluginboard_icon_search@2x.png");
+        background-image: url("/news/image/pluginboard_icon_search@2x.png");
     }
 
     .more {
-        background-image: url("../image/pluginboard_icon_more@2x.png");
+        background-image: url("/news/image/pluginboard_icon_more@2x.png");
     }
 
     .login-user {
-        background-image: url("../image/user_weiboimage_netease@2x.png");
+        background-image: url("/news/image/user_weiboimage_netease@2x.png");
     }
 </style>
 </head>
@@ -259,7 +259,7 @@
         </span>
     </li>
 </ul>
-<script src="../script/zepto.min.js"></script>
+<script src="/news/script/zepto.min.js"></script>
 <script>
     /*setTimeout(function () {
      $("#user").addClass('prize flip');

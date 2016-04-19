@@ -311,7 +311,7 @@
                 </div>
                 <header style="margin-top: 40px;">
                     <div class="header detail-header">
-                        <a class="user" tapmode="" href="<c:url value='user_center.jsp'/>"></a>
+                        <a class="user" tapmode="" href="<c:url value='http://127.0.0.1:8080/news/jsp/user_center.jsp'/>"></a>
                     </div>
                 </header>
                 <nav>
