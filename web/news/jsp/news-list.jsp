@@ -8,16 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-    <link rel="stylesheet" href="../css/jquery.mobile.min.css"/>
-    <link rel="stylesheet" href="../css/theme/theme.min.css"/>
-    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/news/css/jquery.mobile.min.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/news/css/theme/theme.min.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/news/css/styles.css'/>"/>
     <!-- <link rel="stylesheet" href="css/styles-custom.css" /> -->
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/mobileinit.js"></script>
-    <script type="text/javascript" src="../js/jquery.mobile.min.js"></script>
-    <script type="text/javascript" src="../js/fastclick.js"></script>
+    <script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/news/js/mobileinit.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/news/js/fastclick.js'/>"></script>
 
     <style>
         .swipe {
@@ -189,12 +189,12 @@
         }
 
         .header .user {
-            background-image: url("../image/user.png");
+            background-image: url("<c:url value='/news/image/user.png'/>");
         }
 
         .header .logo {
             background-size: 50px;
-            background-image: url("../image/logo.png");
+            background-image: url("<c:url value='/news/image/logo.png'/>");
         }
 
         /*
@@ -271,7 +271,7 @@
             background-repeat: no-repeat;
             background-position: center;
             padding: 15px;
-            background-image: url('../image/nav_arrow.png');
+            background-image: url('<c:url value='/news/image/nav_arrow.png'/>');
             -webkit-box-flex: 1;
             -webkit-flex: 1;
             flex: 1;
@@ -289,9 +289,10 @@
 <body onload="initSlide()">
 <!-- page -->
 <div data-role="page" id="fpmxListPage" data-iscroll="enable">
-    <link rel="stylesheet" href="../css/pull.css"/>
-    <script type="text/javascript" charset="utf-8" src="../js/iscroll.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../js/initScroll.js"></script>
+    <link rel="stylesheet" href="<c:url value='/news/css/pull.css'/>"/>
+    <script type="text/javascript" charset="utf-8" src="<c:url value='/news/js/iscroll.js'/>"></script>
+    <script type="text/javascript" charset="utf-8" src="<c:url value='/news/js/initScroll.js'/>"></script>
+
     <script type="text/javascript">
         $(document).bind("pageinit", function () {
             isInit = 0;
@@ -299,7 +300,6 @@
             startNum = 1;//当前页
             countNum = 1000; //总页数
         });
-
     </script>
 
     <!-- content-->
@@ -336,22 +336,22 @@
                 <div id='slide' class='swipe'>
                     <div class='swipe-wrap' id="banner-content">
                         <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="../image/83.png"/>
+                            <img src="<c:url value='/news/image/83.png'/>"/>
                         </div>
                         <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="../image/84.png"/>
+                            <img src="<c:url value='/news/image/84.png'/>"/>
                         </div>
                         <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="../image/85.png"/>
+                            <img src="<c:url value='/news/image/85.png'/>"/>
                         </div>
                         <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="../image/86.png"/>
+                            <img src="<c:url value='/news/image/86.png'/>"/>
                         </div>
                         <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="../image/87.png"/>
+                            <img src="<c:url value='/news/image/87.png'/>"/>
                         </div>
                         <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="../image/88.png"/>
+                            <img src="<c:url value='/news/image/83.png'/>"/>
                         </div>
                     </div>
                 </div>
@@ -368,10 +368,12 @@
                     </div>
                 </div>
                 <%--轮播图 结束--%>
+
+                <%--具体的新闻展示界面 开始--%>
                 <ul data-theme="a" class="listView" id="fpmxList">
                     <li>
                         <a class="listView-item">
-                            <div class="listView-img"><img src="../image/91.png"></div>
+                            <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
                                 <p class="listView-text-title">apicloud云端一体</p>
 
@@ -383,7 +385,7 @@
                     </li>
                     <li>
                         <a class="listView-item">
-                            <div class="listView-img"><img src="../image/93.png"></div>
+                            <div class="listView-img"><img src="<c:url value='/news/image/93.png'/>"></div>
                             <div class="listView-text">
                                 <p class="listView-text-title">apicloud云端一体</p>
 
@@ -395,7 +397,7 @@
                     </li>
                     <li>
                         <a class="listView-item">
-                            <div class="listView-img"><img src="../image/91.png"></div>
+                            <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
                                 <p class="listView-text-title">apicloud云端一体</p>
 
@@ -407,7 +409,7 @@
                     </li>
                     <li>
                         <a class="listView-item">
-                            <div class="listView-img"><img src="../image/94.png"></div>
+                            <div class="listView-img"><img src="<c:url value='/news/image/94.png'/>"></div>
                             <div class="listView-text">
                                 <p class="listView-text-title">apicloud云端一体</p>
 
@@ -418,6 +420,7 @@
                         </a>
                     </li>
                 </ul>
+                <%--具体的新闻展示界面 结束--%>
 
                 <div id="pullUp">
                     <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
@@ -429,9 +432,9 @@
     </div>
 </div>
 <!-- /page -->
-<script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/iscroll.js"></script>
-<script type="text/javascript" src="../script/swipe.js"></script>
+<script type="text/javascript" src="<c:url value='/news/script/api.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/news/script/iscroll.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/news/script/swipe.js'/>"></script>
 <script>
 
     var myScroll;

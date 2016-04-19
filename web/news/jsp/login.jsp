@@ -8,8 +8,8 @@
     <meta name="viewport"
           content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='../css/api.css'/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value='../css/common.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
     <style>
         body {
             display: -webkit-box;
@@ -27,7 +27,7 @@
 
         .back {
             background-size: 40px !important;
-            background-image: url("<c:url value='../image/weather_back@2x.png'/>");
+            background-image: url("<c:url value='/news/image/weather_back@2x.png'/>");
             background-position: right !important;
         }
 
@@ -52,11 +52,11 @@
         }
 
         .user {
-            background-image: url("<c:url value='../image/login_username_icon@2x.png'/>");
+            background-image: url("<c:url value='/news/image/login_username_icon@2x.png'/>");
         }
 
         .password {
-            background-image: url("<c:url value='../image/login_password_icon@2x.png'/>");
+            background-image: url("<c:url value='/news/image/login_password_icon@2x.png'/>");
         }
 
         .input-wrap {
@@ -121,11 +121,11 @@
         }
 
         .sina {
-            background-image: url("<c:url value='../image/share_platform_sina@2x.png'/>");
+            background-image: url("<c:url value='/news/image/share_platform_sina@2x.png'/>");
         }
 
         .qq {
-            background-image: url("<c:url value='../image/share_platform_qqfriends@2x.png'/>");
+            background-image: url("<c:url value='/news/image/share_platform_qqfriends@2x.png'/>");
         }
 
         .other-login div span {
@@ -172,23 +172,23 @@
         </div>
     </div>
     <div class="btn" id="login" tapmode="" onclick="login()">登录</div>
-    <div class="other-login-wrap">
-        <div class="other-login-lable">
-            还可选择以下方式登陆
-        </div>
-        <div class="other-login">
-            <div class="sina">
-                <span class="sina-label">新浪微博登陆</span>
-            </div>
-            <div class="qq">
-                <span class="qq-label">QQ登陆</span>
-            </div>
-        </div>
-    </div>
+    <%--<div class="other-login-wrap">--%>
+        <%--<div class="other-login-lable">--%>
+            <%--还可选择以下方式登陆--%>
+        <%--</div>--%>
+        <%--<div class="other-login">--%>
+            <%--<div class="sina">--%>
+                <%--<span class="sina-label">新浪微博登陆</span>--%>
+            <%--</div>--%>
+            <%--<div class="qq">--%>
+                <%--<span class="qq-label">QQ登陆</span>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
 <footer>
     <div>没有账号？</div>
-    <div class="fast-reg" tapmode=""><a href="<c:url value='../jsp/register.jsp'/>">立即注册</a></div>
+    <div class="fast-reg" tapmode=""><a href="<c:url value='/news/jsp/register.jsp'/>">立即注册</a></div>
 </footer>
 
 </body>

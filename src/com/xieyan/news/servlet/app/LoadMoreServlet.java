@@ -29,6 +29,7 @@ public class LoadMoreServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("utf-8");
         System.out.println(request.getParameter("startNum"));
+
         String data = "<li>\n" +
                 "                        <a class=\"listView-item\">\n" +
                 "                            <div class=\"listView-img\"><img src=\"../image/91.png\"></div>\n" +

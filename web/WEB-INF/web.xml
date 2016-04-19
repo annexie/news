@@ -95,6 +95,6 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>news/jsp/login.jsp</welcome-file>
+        <welcome-file>news/jsp/news-list.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
