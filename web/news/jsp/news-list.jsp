@@ -300,6 +300,13 @@
             startNum = 1;//当前页
             countNum = 1000; //总页数
         });
+
+        /**
+         * 在新闻list主页进入用户中心的时候点击跳转的链接
+         */
+        function onClickUserCenter() {
+            window.location.href = '<c:url value='/news/jsp/user_center.jsp'/>'
+        }
     </script>
 
     <!-- content-->
@@ -311,7 +318,7 @@
                 </div>
                 <header style="margin-top: 40px;">
                     <div class="header detail-header">
-                        <a class="user" tapmode="" href="<c:url value='http://127.0.0.1:8080/news/jsp/user_center.jsp'/>"></a>
+                        <a class="user" tapmode="" href="javascript:onClickUserCenter()"></a>
                     </div>
                 </header>
                 <nav>

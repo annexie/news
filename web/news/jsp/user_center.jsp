@@ -7,8 +7,8 @@
 <meta name="viewport"
       content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
 <title></title>
-<link rel="stylesheet" type="text/css" href="/news/css/api.css"/>
-<link rel="stylesheet" type="text/css" href="/news/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
 <style>
     body, html {
     }
@@ -259,7 +259,7 @@
         </span>
     </li>
 </ul>
-<script src="/news/script/zepto.min.js"></script>
+<script src="<c:url value='/news/script/zepto.min.js'/>"></script>
 <script>
     /*setTimeout(function () {
      $("#user").addClass('prize flip');

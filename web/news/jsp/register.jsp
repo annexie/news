@@ -144,7 +144,9 @@
             style="line-height: 24px; color: #ffffff;font-size: medium">注册</p>
     </button>
 </div>
-
+<footer>
+    <div>已有账号，立即登录</div><div class="fast-reg" tapmode=""><a href="<c:url value='/news/jsp/login.jsp'/>">立即登录</a></div>
+</footer>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="userRegisterModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
      aria-labelledby="myModalLabel" aria-hidden="true">
