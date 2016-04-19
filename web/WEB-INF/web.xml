@@ -16,12 +16,12 @@
 
     <!-- App使用的Servlet 开始 -->
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>UserClientServlet</servlet-name>
         <servlet-class>com.xieyan.news.servlet.app.UserClientServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <servlet-name>UserClientServlet</servlet-name>
+        <url-pattern>/userclient</url-pattern>
     </servlet-mapping>
 
     <servlet>

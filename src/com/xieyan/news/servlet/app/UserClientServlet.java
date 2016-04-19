@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 登录Servlet
@@ -20,6 +21,33 @@ public class UserClientServlet extends BaseServlet {
 
     transient static final Logger logger = LoggerFactory.getLogger(UserClientServlet.class);
 
+    public void register(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String checkPassword = request.getParameter("re_password");
+
+        //获取前台输出对象
+        PrintWriter out = response.getWriter();
+
+        //判断两次输入的密码是否相同
+        if (password.equals(checkPassword)) {
+
+            User user = new User();
+            user.setUserName(username);
+            user.setUserPassword(password);
+            user.setValid("1");
+            UserController userController = new UserControllerImpl();
+            if (userController.register(user)) {
+                out.write("success");
+            } else {
+                out.write("failed");
+            }
+        } else {
+            out.write("repwdError");
+        }
+    }
 
     public String login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,13 +62,11 @@ public class UserClientServlet extends BaseServlet {
         if (user != null) {
 
             // 将用户存放到session中去
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("CLIENT_USER", user);
 
             return "news/jsp/user-list.jsp";
 
         } else {
-//            JOptionPane.showMessageDialog(null, "请输入正确的用户名密码！");
-//            response.sendRedirect("news/jsp/login.jsp");
 
             return "news/jsp/login.jsp";
         }

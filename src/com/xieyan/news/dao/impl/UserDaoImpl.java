@@ -3,6 +3,9 @@ package com.xieyan.news.dao.impl;
 import com.xieyan.news.bean.User;
 import com.xieyan.news.dao.UserDao;
 import com.xieyan.news.utils.DBUtil;
+import com.xieyan.news.utils.TxQueryRunner;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,55 +21,84 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean register(User user) {
-        Connection connection = DBUtil.getConn();
-        String sql = "insert into user values (null,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
-        PreparedStatement preparedStatement = null;
-        boolean flag = false;
+        String sql = "insert into user(`userName`,`userPassword`,`valid`) values (?,?,?)";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getUserName() + "");
-            preparedStatement.setString(2, user.getUserPassword() + "");
-            int isOk = preparedStatement.executeUpdate(); //执行executeUpdate()方法:这里是update数据相当于更新、插入
-            if (isOk > 0) {
-                return !flag;
-            } else {
-                return flag;
-            }
+
+            //执行的参数
+            Object[] params = {user.getUserName(), user.getUserPassword(), user.getValid()};
+
+            int isOk = qr.update(sql, params);
+
+            return isOk > 0 ? true : false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
-            preparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        DBUtil.close(connection, null, preparedStatement, null);
-        return flag;
+        return false;
+//        Connection connection = DBUtil.getConn();
+//        String sql = "insert into user('useName','userPassword','valid') values (?,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
+//        PreparedStatement preparedStatement = null;
+//        boolean flag = false;
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, user.getUserName() + "");
+//            preparedStatement.setString(2, user.getUserPassword() + "");
+//            int isOk = preparedStatement.executeUpdate(); //执行executeUpdate()方法:这里是update数据相当于更新、插入
+//            if (isOk > 0) {
+//                return !flag;
+//            } else {
+//                return flag;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            preparedStatement.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        DBUtil.close(connection, null, preparedStatement, null);
+//        return flag;
     }
 
     @Override
     public User login(String username, String password) {
-        Connection connection = DBUtil.getConn();
-        String sql = "select * from user where user_name = ? and user_password = ?";// 编写sql语句，第一个字段不需要插入，是自动增加的
-        PreparedStatement preparedStatement = null;
+        String sql = "select * from user where userName = ? and userPassword = ?";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username + "");
-            preparedStatement.setString(2, password + "");
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                User user = new User();
-                user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getLong("id"));
-                return user;
-            } else {
-                return null;
-            }
+
+            //执行的参数
+            Object[] params = {username, password};
+
+            User user = qr.query(sql, new BeanHandler<User>(User.class), params);
+            return user == null ? null : user;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        DBUtil.close(connection, preparedStatement, preparedStatement, null);
         return null;
+
+//        Connection connection = DBUtil.getConn();
+//        String sql = "select * from user where user_name = ? and user_password = ?";// 编写sql语句，第一个字段不需要插入，是自动增加的
+//        PreparedStatement preparedStatement = null;
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, username + "");
+//            preparedStatement.setString(2, password + "");
+//            ResultSet rs = preparedStatement.executeQuery();
+//            if (rs.next()) {
+//                User user = new User();
+//                user.setUserName(rs.getString("user_name"));
+//                user.setId(rs.getLong("id"));
+//                return user;
+//            } else {
+//                return null;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        return null;
     }
 
     @Override
