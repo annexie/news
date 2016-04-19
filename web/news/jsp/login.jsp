@@ -211,7 +211,7 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:8080/userclient",
+            url: "http://192.168.1.208:8080/userclient",
             data: {
                 type: "login",
                 username: $("#username").val(),
