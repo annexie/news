@@ -1,3 +1,4 @@
+<%@ page import="com.xieyan.news.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="taglibs.jsp" %>
 
@@ -16,6 +17,8 @@
     .login-header-btn {
         display: inline-block;
         padding: 30px;
+        /*width: 80px;*/
+        height: 80px;
         background-size: 50px;
         background-repeat: no-repeat;
         background-position: center;
@@ -34,6 +37,11 @@
         background-image: url("/news/image/user_defaulthead@2x.png");
     }
 
+    .login-header .login-user {
+        -webkit-transform: rotateY(0deg);
+        background-image: url("/news/image/92.png");
+    }
+
     .login-header .prize {
         -webkit-transform: rotateY(180deg);
         background-image: url("/news/image/user_defaultgift@2x.png");
@@ -50,9 +58,9 @@
         background-color: #1C1515;
     }
 
-    .title {
+      .title {
         text-align: center;
-        padding-top: 15px;
+        padding-top: 20px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
     }
@@ -179,20 +187,40 @@
         background-image: url("/news/image/user_weiboimage_netease@2x.png");
     }
 </style>
+<script type="text/javascript">
+    function backNewsList() {
+        window.location.href = "${IP}/news?type=newsBack";
+    }
+</script>
 </head>
 <body>
 <header>
     <div class="login-header header ">
-        <div class="login-header-btn close" tapmode=""></div>
+        <div class="login-header-btn"><a style="color: #ffffff" onclick="backNewsList()">< 返回</a></div>
         <div class="hidden title">
             <div class="login-header-btn login-user" tapmode="" onclick="toSetting()"></div>
             <div class="login">xxxx</div>
             <div class="score">720金币 6个任务未完成</div>
         </div>
         <div class=" title">
+            <%
+                User user = (User) request.getSession().getAttribute("CLIENT_USER");
+                if (null != user) { //已经进行登录
+            %>
+            <div class="login-header-btn" id="user" tapmode="">
+                <img src="/news/image/92.png" style="width: 80px;height: 80px;">
+            </div>
+            <div class="login">欢迎:<%=user.getUserName()%>
+            </div>
+            <%
+            } else {
+            %>
             <div class="login-header-btn nologin-user" id="user" tapmode="" onclick="toLogin()"></div>
             <div class="login">立即登录</div>
             <div class="score">赢积分抢大礼!</div>
+            <%
+                }
+            %>
         </div>
         <div class="login-header-btn setting hidden-v" tapmode=""></div>
     </div>
