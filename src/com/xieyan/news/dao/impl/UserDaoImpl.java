@@ -2,16 +2,12 @@ package com.xieyan.news.dao.impl;
 
 import com.xieyan.news.bean.User;
 import com.xieyan.news.dao.UserDao;
-import com.xieyan.news.utils.DBUtil;
 import com.xieyan.news.utils.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,7 +75,7 @@ public class UserDaoImpl implements UserDao {
         return null;
 
 //        Connection connection = DBUtil.getConn();
-//        String sql = "select * from user where user_name = ? and user_password = ?";// 编写sql语句，第一个字段不需要插入，是自动增加的
+//        String sql = "select * from user where userName = ? and userPassword = ?";// 编写sql语句，第一个字段不需要插入，是自动增加的
 //        PreparedStatement preparedStatement = null;
 //        try {
 //            preparedStatement = connection.prepareStatement(sql);
@@ -88,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 //            ResultSet rs = preparedStatement.executeQuery();
 //            if (rs.next()) {
 //                User user = new User();
-//                user.setUserName(rs.getString("user_name"));
+//                user.setUserName(rs.getString("userName"));
 //                user.setId(rs.getLong("id"));
 //                return user;
 //            } else {
@@ -103,145 +99,224 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> query(String username, String valid) {
-        Connection connection = DBUtil.getConn();
-        String sql = "select * from user where user_name = ? and valid = ? ";
-        PreparedStatement preparedStatement = null;
-        List<User> users = new ArrayList<User>();
+        String sql = "select * from user where userName = ? and valid = ? ";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username + "");
-            preparedStatement.setString(2, valid + "");
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                User user = new User();
-                user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getLong("id"));
-                user.setValid(rs.getString("valid"));
-                users.add(user);
-            }
-            return users;
+
+            //执行的参数
+            Object[] params = {username, valid};
+
+            List<User> users = qr.query(sql, new BeanListHandler<User>(User.class), params);
+            return users == null ? null : users;
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
-        return new ArrayList<User>();
+        return null;
+//
+//        Connection connection = DBUtil.getConn();
+//        String sql = "select * from user where userName = ? and valid = ? ";
+//        PreparedStatement preparedStatement = null;
+//        List<User> users = new ArrayList<User>();
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, username + "");
+//            preparedStatement.setString(2, valid + "");
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                User user = new User();
+//                user.setUserName(rs.getString("userName"));
+//                user.setId(rs.getLong("id"));
+//                user.setValid(rs.getString("valid"));
+//                users.add(user);
+//            }
+//            return users;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return new ArrayList<User>();
     }
 
     @Override
     public List<User> queryByName(String username) {
-        Connection connection = DBUtil.getConn();
-        String sql = "select * from user where user_name = ? ";
-        PreparedStatement preparedStatement = null;
-        List<User> users = new ArrayList<User>();
+        String sql = "select * from user where userName = ?";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username + "");
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                User user = new User();
-                user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getLong("id"));
-                user.setValid(rs.getString("valid"));
-                users.add(user);
-            }
-            return users;
+
+            //执行的参数
+            Object[] params = {username};
+
+            List<User> users = qr.query(sql, new BeanListHandler<User>(User.class), params);
+            return users == null ? null : users;
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
-        return new ArrayList<User>();
+        return null;
+
+//        Connection connection = DBUtil.getConn();
+//        String sql = "select * from user where userName = ? ";
+//        PreparedStatement preparedStatement = null;
+//        List<User> users = new ArrayList<User>();
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, username + "");
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                User user = new User();
+//                user.setUserName(rs.getString("userName"));
+//                user.setId(rs.getLong("id"));
+//                user.setValid(rs.getString("valid"));
+//                users.add(user);
+//            }
+//            return users;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return new ArrayList<User>();
     }
 
     @Override
     public List<User> queryByIsValid(String valid) {
-        Connection connection = DBUtil.getConn();
-        String sql = "select * from user where valid = ? ";
-        PreparedStatement preparedStatement = null;
-        List<User> users = new ArrayList<User>();
+        String sql = "select * from user where valid = ?";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, valid + "");
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                User user = new User();
-                user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getLong("id"));
-                user.setValid(rs.getString("valid"));
-                users.add(user);
-            }
-            return users;
+
+            //执行的参数
+            Object[] params = {valid};
+
+            List<User> users = qr.query(sql, new BeanListHandler<User>(User.class), params);
+            return users == null ? null : users;
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
-        return new ArrayList<User>();
+        return null;
+
+//        Connection connection = DBUtil.getConn();
+//        String sql = "select * from user where valid = ? ";
+//        PreparedStatement preparedStatement = null;
+//        List<User> users = new ArrayList<User>();
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, valid + "");
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                User user = new User();
+//                user.setUserName(rs.getString("userName"));
+//                user.setId(rs.getLong("id"));
+//                user.setValid(rs.getString("valid"));
+//                users.add(user);
+//            }
+//            return users;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return new ArrayList<User>();
     }
 
     @Override
     public List<User> listUser() {
-        Connection connection = DBUtil.getConn();
         String sql = "select * from user";
-        PreparedStatement preparedStatement = null;
-        List<User> users = new ArrayList<User>();
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                User user = new User();
-                user.setUserName(rs.getString("user_name"));
-                user.setId(rs.getLong("id"));
-                user.setValid(rs.getString("valid"));
-                users.add(user);
-            }
-            return users;
+
+            List<User> users = qr.query(sql, new BeanListHandler<User>(User.class));
+            return users == null ? null : users;
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
-        return new ArrayList<User>();
+        return null;
+
+//        Connection connection = DBUtil.getConn();
+//        String sql = "select * from user";
+//        PreparedStatement preparedStatement = null;
+//        List<User> users = new ArrayList<User>();
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                User user = new User();
+//                user.setUserName(rs.getString("userName"));
+//                user.setId(rs.getLong("id"));
+//                user.setValid(rs.getString("valid"));
+//                users.add(user);
+//            }
+//            return users;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return new ArrayList<User>();
     }
 
     @Override
     public boolean update(User user) {
-        Connection connection = DBUtil.getConn();
-        String sql = "update user set user_name = ? , valid =? where id =?";
-        PreparedStatement preparedStatement = null;
+        String sql = "update user set userName = ? , valid =? where id =?";
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, user.getUserName() + "");
-            preparedStatement.setString(2, user.getValid() + "");
-            preparedStatement.setLong(3, user.getId());
-            int flag = preparedStatement.executeUpdate();
-            if (flag == 1) {
-                return true;
-            }
+            Object[] params = {user.getUserName(), user.getValid(), user.getId()};
+            int falg = qr.update(sql, params);
+            return falg == 1 ? true : false;
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
         return false;
+//        Connection connection = DBUtil.getConn();
+//        String sql = "update user set userName = ? , valid =? where id =?";
+//        PreparedStatement preparedStatement = null;
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, user.getUserName() + "");
+//            preparedStatement.setString(2, user.getValid() + "");
+//            preparedStatement.setLong(3, user.getId());
+//            int flag = preparedStatement.executeUpdate();
+//            if (flag == 1) {
+//                return true;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return false;
     }
 
     @Override
     public boolean delete(String id) {
-        Connection connection = DBUtil.getConn();
         String sql = "delete from user where id = ?";
-        PreparedStatement preparedStatement = null;
+        QueryRunner qr = new TxQueryRunner();
         try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setLong(1, Long.parseLong(id.trim()));
-            boolean flag = preparedStatement.execute();
-            return true;
+            Object[] params = {id};
+            int falg = qr.update(sql, params);
+            return falg == 1 ? true : false;
+
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, preparedStatement, preparedStatement, null);
         }
         return false;
+//        Connection connection = DBUtil.getConn();
+//        String sql = "delete from user where id = ?";
+//        PreparedStatement preparedStatement = null;
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setLong(1, Long.parseLong(id.trim()));
+//            boolean flag = preparedStatement.execute();
+//            return true;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
+//        }
+//        return false;
     }
 }
