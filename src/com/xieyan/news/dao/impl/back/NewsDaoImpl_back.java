@@ -172,6 +172,11 @@ public class NewsDaoImpl_back implements NewsDao {
         return 0;
     }
 
+    @Override
+    public News getNewsById(int newsID) {
+        return null;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      */

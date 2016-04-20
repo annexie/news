@@ -17,12 +17,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LoadMoreServlet</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.app.LoadMoreServlet</servlet-class>
+        <servlet-name>NewsServlet</servlet-name>
+        <servlet-class>com.xieyan.news.servlet.app.NewsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoadMoreServlet</servlet-name>
-        <url-pattern>/loadmore</url-pattern>
+        <servlet-name>NewsServlet</servlet-name>
+        <url-pattern>/news</url-pattern>
     </servlet-mapping>
     <!-- App使用的Servlet 结束 -->
 

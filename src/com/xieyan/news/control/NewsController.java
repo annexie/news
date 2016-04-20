@@ -20,4 +20,6 @@ public interface NewsController {
     List<News> loadNews(int startNum);
 
     int countNews();
+
+    News getNewsById(int newsID);
 }

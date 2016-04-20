@@ -317,7 +317,7 @@
 //                    return;
 //                }
 //            }, "json");
-            window.location.href = "http://192.168.1.208:8080/loadmore?type=nextPage"
+            window.location.href = "http://192.168.1.208:8080/news?type=nextPage"
         }
         function loadProPage() {
 //            $.post("http://192.168.1.208:8080/loadmore?type=proPage", null, function (result) {
@@ -326,7 +326,7 @@
 //                    return;
 //                }
 //            }, "json");
-            window.location.href = "http://192.168.1.208:8080/loadmore?type=proPage"
+            window.location.href = "http://192.168.1.208:8080/news?type=proPage"
         }
 
     </script>
@@ -419,7 +419,7 @@
                         for (News news : newsList) {
                     %>
                     <li>
-                        <a class="listView-item newsLi">
+                        <a class="listView-item newsLi" href="http://192.168.1.208:8080/news?type=newsDetail&newsId=<%=news.getId()%>">
                             <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
                                 <p class="listView-text-title"><%=news.getNewsTitle()%>

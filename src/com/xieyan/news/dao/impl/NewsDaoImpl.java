@@ -5,6 +5,7 @@ import com.xieyan.news.dao.NewsDao;
 import com.xieyan.news.utils.JdbcUtils;
 import com.xieyan.news.utils.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.*;
@@ -300,6 +301,22 @@ public class NewsDaoImpl implements NewsDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public News getNewsById(int newsID) {
+        String sql = "select * from news_list where ID = ?";
+        QueryRunner qr = new TxQueryRunner();
+        try {
+            //执行的参数
+            Object[] params = {newsID};
+
+            News news = qr.query(sql, new BeanHandler<News>(News.class), params);
+            return news == null ? null : news;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
