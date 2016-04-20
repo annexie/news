@@ -310,15 +310,18 @@
             window.location.href = '<c:url value='/news/jsp/user_center.jsp'/>'
         }
 
+        /**
+         * 加载更多
+         */
         function loadMore() {
             window.location.href = "${IP}/news?type=nextPage"
         }
-        function loadProPage() {
-            window.location.href = "${IP}/news?type=proPage"
-        }
 
+        /**
+         * 显示新闻的详细信息，得到请求的数据之后会跳转到news-detail.jsp界面
+         * @param newsId 新闻的id
+         */
         function showNewsDetail(newsId) {
-            alert(newsId);
             window.location.href = "${IP}/news?type=newsDetail&newsId=" + newsId;
         }
 
@@ -450,33 +453,6 @@
                     %>
 
                 </div>
-
-
-                <%--<div>--%>
-                <%--<input type="hidden" name="pageStart" id="pageStartID" value="1"/>--%>
-                <%--<%--%>
-                <%--Integer pageStrart = (Integer) request.getAttribute("pageStart");--%>
-                <%--System.out.println("pageStrart--------" + pageStrart);--%>
-                <%--Integer countNum = (Integer) request.getAttribute("countNum");--%>
-                <%--if (null == newsList || pageStrart == 0) { //第一页--%>
-                <%--%>--%>
-                <%--<button type="button" onclick="loadMore()">下一页</button>--%>
-                <%--<%--%>
-                <%--} else if (pageStrart < countNum) { //中间页--%>
-
-                <%--%>--%>
-                <%--<button type="button" onclick="loadProPage()">上一页</button>--%>
-                <%--<button type="button" onclick="loadMore()">下一页</button>--%>
-                <%--<%--%>
-                <%--} else { //最后一页--%>
-                <%--%>--%>
-                <%--<button type="button" onclick="loadProPage()"> 上一页</button>--%>
-                <%--<%--%>
-                <%--}--%>
-                <%--%>--%>
-
-                <%--</div>--%>
-
             </div>
         </div>
 

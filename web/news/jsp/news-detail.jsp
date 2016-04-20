@@ -130,6 +130,16 @@
 
     <script type="text/javascript">
 
+        /**
+         * 当用户在进行收藏的时候没有登录的话则进入登录界面
+         */
+        function goLogin() {
+            window.location.href = '<c:url value='/news/jsp/login.jsp'/>';
+        }
+
+        /**
+         * 执行用户收藏操作，返回成功信息的时候进行显示
+         */
         function collection() {
             $.ajax({
                 type: "POST",
@@ -144,11 +154,11 @@
                     $('#modalResultTextID').empty(); //清空上一次追加的内容
                     if (data == "success") {
                         //向提示框中插入数据
-                        $('#modalResultTextID').append("收藏成功！正在为你跳转");
+                        $('#modalResultTextID').append("收藏成功！");
                     } else if (data == "loginError") {
                         $('#modalResultTextID').append("对不起！还没有进行登录！请登录！");
                         $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                        window.location.href = '<c:url value='${IP}/news/jsp/register.jsp'/>';
+                        <%--window.location.href = '<c:url value='${IP}/news/jsp/register.jsp'/>';--%>
                     } else {
                         $('#modalResultTextID').append("对不起！收藏失败！");
                         $('#modalFooterId').css({display: 'none'});
@@ -182,6 +192,11 @@
                 </h4>
             </div>
             <div class="modal-body" id="modalResultTextID">
+            </div>
+            <div class="modal-footer" id="modalFooterId" style="display: none">
+                <button type="button" onclick="goLogin()" class="btn btn-primary"><p
+                        style="line-height: 24px; color: #ffffff">立即登录</p>
+                </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
