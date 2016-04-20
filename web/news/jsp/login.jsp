@@ -224,7 +224,7 @@
                     //向提示框中插入数据
                     $('#modalResultTextID').append("登录成功！正在为你跳转");
                     $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                    window.location.href = '${IP}/news?type=nextPage';
+                    window.location.href = '${IP}/news?type=newsBack';
                 } else {
                     $('#modalResultTextID').append("对不起！登录失败！");
                     $('#modalFooterId').css({display: 'none'});
