@@ -424,7 +424,7 @@
                                 </p>
 
                                 <p class="listView-text-subtitle">
-                                    <%=news.getNewsText().substring(0, 10)%>
+                                    <%=news.getNewsText().substring(0, 8)%>
                                 </p>
                                 <span class="listView-text-tips"><%=news.getDate()%></span></div>
                         </a>
