@@ -177,6 +177,11 @@ public class NewsDaoImpl_back implements NewsDao {
         return null;
     }
 
+    @Override
+    public boolean newsCollection(int newsId, Long userId, String newTitle) {
+        return false;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      */

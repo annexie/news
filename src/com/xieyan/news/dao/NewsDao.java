@@ -22,4 +22,6 @@ public interface NewsDao {
     int countNews();
 
     News getNewsById(int newsID);
+
+    boolean newsCollection(int newsId, Long userId, String newTitle);
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="taglibs.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -211,7 +211,7 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: "http://192.168.1.208:8080/userclient",
+            url: "${IP}/userclient",
             data: {
                 type: "login",
                 username: $("#username").val(),
@@ -224,7 +224,7 @@
                     //向提示框中插入数据
                     $('#modalResultTextID').append("登录成功！正在为你跳转");
                     $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                    window.location.href = '<c:url value='/news/jsp/news-list.jsp'/>';
+                    window.location.href = '${IP}/news?type=nextPage';
                 } else {
                     $('#modalResultTextID').append("对不起！登录失败！");
                     $('#modalFooterId').css({display: 'none'});

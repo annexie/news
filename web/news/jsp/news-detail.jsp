@@ -1,6 +1,6 @@
 ﻿<%@ page import="com.xieyan.news.bean.News" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="taglibs.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -19,6 +19,8 @@
     <script type="text/javascript" src="<c:url value='/news/js/mobileinit.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/fastclick.js'/>"></script>
+    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
+    <script src="/admin/assets/js/bootstrap.min.js"></script>
 
     <style>
 
@@ -125,9 +127,65 @@
         }
 
     </style>
+
+    <script type="text/javascript">
+
+        function collection() {
+            $.ajax({
+                type: "POST",
+                url: "${IP}/news",
+                data: {
+                    type: "newsColle",
+                    newsID: $("#newsIdHiddenID").val(),
+                    newsTitle: $("#newsTitleHiddenID").val(),
+                },
+                dataType: "html",
+                success: function (data) {
+                    $('#modalResultTextID').empty(); //清空上一次追加的内容
+                    if (data == "success") {
+                        //向提示框中插入数据
+                        $('#modalResultTextID').append("收藏成功！正在为你跳转");
+                    } else if (data == "loginError") {
+                        $('#modalResultTextID').append("对不起！还没有进行登录！请登录！");
+                        $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                        window.location.href = '<c:url value='${IP}/news/jsp/register.jsp'/>';
+                    } else {
+                        $('#modalResultTextID').append("对不起！收藏失败！");
+                        $('#modalFooterId').css({display: 'none'});
+                    }
+                    $('#userLoginModalID').modal({
+                        keyboard: true
+                    });
+                }
+            });
+        }
+
+        function newBack() {
+            window.location.href = "${IP}/news?type=nextPage";
+        }
+    </script>
 </head>
 <body onload="initSlide()">
 <!-- page -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="userLoginModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    登录提示
+                </h4>
+            </div>
+            <div class="modal-body" id="modalResultTextID">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <div data-role="page" id="fpmxListPage" data-iscroll="enable">
     <link rel="stylesheet" href="<c:url value='/news/css/pull.css'/>"/>
     <script type="text/javascript" charset="utf-8" src="<c:url value='/news/js/iscroll.js'/>"></script>
@@ -160,19 +218,23 @@
                     <%
                     } else {
                     %>
-                    <div style="width: 320px;height: 40px; margin: auto; line-height: 40px; text-align: center"><%=news.getNewsTitle()%>
+                    <div style="width: 320px;height: 40px; margin: auto; line-height: 40px; text-align: center"
+                         id="newTitleID"><%=news.getNewsTitle()%>
                     </div>
-                    <div style="width: 320px;height: 50px; margin: auto;">新闻作者：<%=news.getNewsAuthor()%> <br/>新闻发布时间：<%=news.getDate()%><br/>新闻详细信息如下：
+                    <div style="width: 320px;height: 50px; margin: auto;">新闻作者：<%=news.getNewsAuthor()%>
+                        <br/>新闻发布时间：<%=news.getDate()%><br/>新闻详细信息如下：
                     </div>
 
                     <div style="width: 90%;height: auto; margin: auto;">
                         <%=news.getNewsText()%>
                     </div>
+                    <input type="hidden" value="<%=news.getId()%>" id="newsIdHiddenID"/>
+                    <input type="hidden" value="<%=news.getNewsTitle()%>" id="newsTitleHiddenID"/>
 
                     <%--新闻的详细信息展示div 结束--%>
                     <div style="margin: auto; width: 80%;">
-                        <button type="button" onclick="loadMore()">收藏</button>
-                        <button type="button" onclick="loadMore()">返回</button>
+                        <button class="btn btn-green " onclick="collection()">收藏</button>
+                        <button class="btn  btn-green " onclick="newBack()">返回</button>
                     </div>
                     <%
                         }
@@ -183,6 +245,7 @@
 
     </div>
 </div>
+
 <!-- /page -->
 <script type="text/javascript" src="<c:url value='/news/script/api.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/iscroll.js'/>"></script>

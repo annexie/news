@@ -1,7 +1,7 @@
 <%@ page import="com.xieyan.news.bean.News" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="taglibs.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -298,7 +298,7 @@
     <script type="text/javascript">
         $(document).bind("pageinit", function () {
             isInit = 0;
-            serverURL = "http://192.168.1.208:8080/loadmore"; //服务器地址
+            serverURL = "${IP}/loadmore"; //服务器地址
             startNum = 1;//当前页
             countNum = 1000; //总页数
         });
@@ -311,22 +311,15 @@
         }
 
         function loadMore() {
-//            $.post("http://192.168.1.208:8080/loadmore?type=nextPage", null, function (result) {
-//                if (result == "") {
-//                    alert("没有数据了哦！亲！");
-//                    return;
-//                }
-//            }, "json");
-            window.location.href = "http://192.168.1.208:8080/news?type=nextPage"
+            window.location.href = "${IP}/news?type=nextPage"
         }
         function loadProPage() {
-//            $.post("http://192.168.1.208:8080/loadmore?type=proPage", null, function (result) {
-//                if (result == "") {
-//                    alert("没有数据了哦！亲！");
-//                    return;
-//                }
-//            }, "json");
-            window.location.href = "http://192.168.1.208:8080/news?type=proPage"
+            window.location.href = "${IP}/news?type=proPage"
+        }
+
+        function showNewsDetail(newsId) {
+            alert(newsId);
+            window.location.href = "${IP}/news?type=newsDetail&newsId=" + newsId;
         }
 
     </script>
@@ -399,6 +392,7 @@
                 <ul data-theme="a" class="listView" id="fpmxList">
                     <%
                         List<News> newsList = (List<News>) request.getAttribute("newsList");
+
                         if (null == newsList) {
                     %>
                     <li>
@@ -416,10 +410,11 @@
                     </li>
                     <%
                     } else {
+                        System.out.println(newsList.size() + "newsList--------" + newsList.toString());
                         for (News news : newsList) {
                     %>
                     <li>
-                        <a class="listView-item newsLi" href="http://192.168.1.208:8080/news?type=newsDetail&newsId=<%=news.getId()%>">
+                        <a class="listView-item newsLi" onclick="showNewsDetail('<%=news.getId()%>')">
                             <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
                                 <p class="listView-text-title"><%=news.getNewsTitle()%>
@@ -431,7 +426,6 @@
                                 <span class="listView-text-tips"><%=news.getDate()%></span></div>
                         </a>
                     </li>
-
                     <%
                             }
                         }

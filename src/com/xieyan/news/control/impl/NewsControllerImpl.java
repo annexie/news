@@ -53,4 +53,10 @@ public class NewsControllerImpl implements NewsController {
         NewsDao newsDao = new NewsDaoImpl();
         return newsDao.getNewsById(newsID);
     }
+
+    @Override
+    public boolean newsCollection(int newsId, Long userId, String newTitle) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.newsCollection(newsId, userId, newTitle);
+    }
 }

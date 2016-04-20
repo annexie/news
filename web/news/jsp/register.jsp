@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="taglibs.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -182,7 +182,7 @@
     function register() {
         $.ajax({
             type: "POST",
-            url: "http://192.168.1.208:8080/userclient",
+            url: "${IP}/userclient",
             data: {
                 type: "register",
                 username: $("#username").val(),

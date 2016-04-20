@@ -1,6 +1,7 @@
 package com.xieyan.news.servlet.app;
 
 import com.xieyan.news.bean.News;
+import com.xieyan.news.bean.User;
 import com.xieyan.news.control.NewsController;
 import com.xieyan.news.control.impl.NewsControllerImpl;
 import com.xieyan.news.servlet.BaseServlet;
@@ -82,6 +83,31 @@ public class NewsServlet extends BaseServlet {
         News news = newsController.getNewsById(newsId);
         request.setAttribute("newsDetail", news);
         request.getRequestDispatcher("/news/jsp/news-detail.jsp").forward(request, response);
+    }
+
+    public void newsColle(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+
+        int newsId = Integer.parseInt(request.getParameter("newsID"));
+        String newTitle = request.getParameter("newsTitle");
+        NewsController newsController = new NewsControllerImpl();
+        User user = (User) request.getSession().getAttribute("CLIENT_USER");
+
+        //判断用户是否登录，如果没有登录的话要进行登录,提示用户进行登录之后操作
+        if (null == user) {
+            out.write("loginError");
+            return;
+        }
+
+        boolean falg = newsController.newsCollection(newsId, user.getId(), newTitle);
+        if (falg) {
+            out.write("success");
+        } else {
+            out.write("failed");
+        }
     }
 }
 

@@ -319,6 +319,23 @@ public class NewsDaoImpl implements NewsDao {
         return null;
     }
 
+    @Override
+    public boolean newsCollection(int newsId, Long userId, String newsTitle) {
+        String sql = "insert into news_collection(`userId`,`newsId`,`newsTitle`,`collectionDate`) values (?,?,?,?)";
+        QueryRunner qr = new TxQueryRunner();
+        int falg = 0;
+        try {
+            //执行的参数
+            Object[] params = {userId, newsId, newsTitle, new java.util.Date()};
+
+            falg = qr.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return falg == 1 ? true : false;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      */
