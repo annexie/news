@@ -18,4 +18,6 @@ public interface NewsDao {
     boolean deleteById(long id);
 
     List<News> loadNews(int startNum);
+
+    int countNews();
 }

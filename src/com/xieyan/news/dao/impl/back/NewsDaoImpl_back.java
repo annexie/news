@@ -167,6 +167,11 @@ public class NewsDaoImpl_back implements NewsDao {
         return null;
     }
 
+    @Override
+    public int countNews() {
+        return 0;
+    }
+
     /**
      * 根据查询的条件构造sql语句
      */

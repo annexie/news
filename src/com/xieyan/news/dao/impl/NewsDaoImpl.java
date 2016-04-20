@@ -268,7 +268,7 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public List<News> loadNews(int startNum) {
-        String sql = "select * from news_list order by date limit ?,5 ";
+        String sql = "select * from news_list order by date limit 0,? ";
         QueryRunner qr = new TxQueryRunner();
         try {
             //执行的参数
@@ -280,6 +280,26 @@ public class NewsDaoImpl implements NewsDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public int countNews() {
+        Connection connection = null;
+        String sql = "select * from news_list";
+        PreparedStatement ps = null;
+        try {
+            connection = JdbcUtils.getConnection();
+            ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
+            int count = 0;
+            while (rs.next()) {
+                count++;
+            }
+            return count;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     /**

@@ -441,23 +441,47 @@
                 <div id="pullUp"></div>
 
                 <div>
-                    <input type="hidden" name="pageStart" id="pageStartID" value="1"/>
                     <%
-                        Integer pageStrart = (Integer) request.getAttribute("pageStart");
-                        if (null == newsList || pageStrart == 0) {
+                        Integer loadCount = (Integer) request.getSession().getAttribute("LOAD_COUNT");
+                        System.out.println("loadCount------------" + loadCount);
+                        if ((null != loadCount) && (loadCount == newsList.size())) {
                     %>
-                    <button type="button" onclick="loadMore()">下一页</button>
+                    <button type="button">没有内容了哦</button>
                     <%
                     } else {
-
                     %>
-                    <button type="button" onclick="loadProPage()">上一页</button>
                     <button type="button" onclick="loadMore()">下一页</button>
                     <%
                         }
                     %>
 
                 </div>
+
+
+                <%--<div>--%>
+                <%--<input type="hidden" name="pageStart" id="pageStartID" value="1"/>--%>
+                <%--<%--%>
+                <%--Integer pageStrart = (Integer) request.getAttribute("pageStart");--%>
+                <%--System.out.println("pageStrart--------" + pageStrart);--%>
+                <%--Integer countNum = (Integer) request.getAttribute("countNum");--%>
+                <%--if (null == newsList || pageStrart == 0) { //第一页--%>
+                <%--%>--%>
+                <%--<button type="button" onclick="loadMore()">下一页</button>--%>
+                <%--<%--%>
+                <%--} else if (pageStrart < countNum) { //中间页--%>
+
+                <%--%>--%>
+                <%--<button type="button" onclick="loadProPage()">上一页</button>--%>
+                <%--<button type="button" onclick="loadMore()">下一页</button>--%>
+                <%--<%--%>
+                <%--} else { //最后一页--%>
+                <%--%>--%>
+                <%--<button type="button" onclick="loadProPage()"> 上一页</button>--%>
+                <%--<%--%>
+                <%--}--%>
+                <%--%>--%>
+
+                <%--</div>--%>
 
             </div>
         </div>
@@ -490,6 +514,7 @@
     }
 
     function initSlide() {
+
         var $pointer = $api.byId('pointer');
         window.mySlide = Swipe(slide, {
             continuous: true,
@@ -512,6 +537,9 @@
             scrollY: false,
             preventDefault: false
         });
+
+        //执行第一次加载新闻的请求
+//        window.location.href = "http://192.168.1.208:8080/loadmore?type=firstLoad"
     }
     //    initSlide();
 
