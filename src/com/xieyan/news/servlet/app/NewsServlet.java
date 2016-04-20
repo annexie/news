@@ -67,6 +67,33 @@ public class NewsServlet extends BaseServlet {
         }
     }
 
+    public void newsBack(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+
+        NewsController newsController = new NewsControllerImpl();
+        int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + "");
+        if (loadCount < 0) {
+            out.write("");
+            return;
+        }
+        //获取所有的新闻条数
+        int count = newsController.countNews();
+        List<News> list = newsController.loadNews(loadCount - 5); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+        if (null == list) { //没有数据可以加载
+            out.write("");
+            return;
+        } else {
+            request.setAttribute("newsList", list);
+            request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + ""));
+            request.setAttribute("countNum", count);
+            out.write("success");
+            request.getRequestDispatcher("/news/jsp/news-list.jsp").forward(request, response);
+        }
+    }
+
     /**
      * 新闻的详细信息展示
      * @param request

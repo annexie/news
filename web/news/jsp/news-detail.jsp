@@ -171,7 +171,7 @@
         }
 
         function newBack() {
-            window.location.href = "${IP}/news?type=nextPage";
+            window.location.href = "${IP}/news?type=newsBack";
         }
     </script>
 </head>
