@@ -188,7 +188,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    登录提示
+                    收藏提示
                 </h4>
             </div>
             <div class="modal-body" id="modalResultTextID">

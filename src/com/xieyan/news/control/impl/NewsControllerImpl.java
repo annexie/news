@@ -1,6 +1,7 @@
 package com.xieyan.news.control.impl;
 
 import com.xieyan.news.bean.News;
+import com.xieyan.news.bean.NewsCollection;
 import com.xieyan.news.control.NewsController;
 import com.xieyan.news.dao.NewsDao;
 import com.xieyan.news.dao.impl.NewsDaoImpl;
@@ -58,5 +59,11 @@ public class NewsControllerImpl implements NewsController {
     public boolean newsCollection(int newsId, Long userId, String newTitle) {
         NewsDao newsDao = new NewsDaoImpl();
         return newsDao.newsCollection(newsId, userId, newTitle);
+    }
+
+    @Override
+    public List<NewsCollection> listCollection(int userId) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.listCollection(userId);
     }
 }

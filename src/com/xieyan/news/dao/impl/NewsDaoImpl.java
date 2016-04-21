@@ -1,6 +1,7 @@
 package com.xieyan.news.dao.impl;
 
 import com.xieyan.news.bean.News;
+import com.xieyan.news.bean.NewsCollection;
 import com.xieyan.news.dao.NewsDao;
 import com.xieyan.news.utils.JdbcUtils;
 import com.xieyan.news.utils.TxQueryRunner;
@@ -334,6 +335,23 @@ public class NewsDaoImpl implements NewsDao {
         }
 
         return falg == 1 ? true : false;
+    }
+
+    @Override
+    public List<NewsCollection> listCollection(int userId) {
+        String sql = "select * from news_collection where userId = ?";
+        QueryRunner qr = new TxQueryRunner();
+        try {
+            //执行的参数
+            Object[] params = {userId};
+
+            List<NewsCollection> news = qr.query(sql, new BeanListHandler<NewsCollection>(NewsCollection.class), params);
+            return null == news ? null : news;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**

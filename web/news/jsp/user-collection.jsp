@@ -1,4 +1,6 @@
+<%@ page import="com.xieyan.news.bean.NewsCollection" %>
 <%@ page import="com.xieyan.news.bean.User" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="taglibs.jsp" %>
 <html>
@@ -9,6 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/news/css/api.css"/>
     <link rel="stylesheet" type="text/css" href="/news/css/common.css"/>
+    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <style>
         body, html {
         }
@@ -22,21 +25,21 @@
         }
 
         .close {
-            background-image: url("../image/close_icon_normal@2x.png");
+            background-image: url("/news/image/close_icon_normal@2x.png");
         }
 
         .setting {
-            background-image: url("../image/setting_icon_normal@2x.png");
+            background-image: url("/news/image/setting_icon_normal@2x.png");
         }
 
         .login-header .nologin-user {
             -webkit-transform: rotateY(0deg);
-            background-image: url("../image/user_defaulthead@2x.png");
+            background-image: url("/news/image/user_defaulthead@2x.png");
         }
 
         .login-header .prize {
             -webkit-transform: rotateY(180deg);
-            background-image: url("../image/user_defaultgift@2x.png");
+            background-image: url("/news/image/user_defaultgift@2x.png");
         }
 
         .flip {
@@ -100,15 +103,15 @@
         }
 
         .read {
-            background-image: url("../image/user_reading_circle@2x.png");
+            background-image: url("/news/image/user_reading_circle@2x.png");
         }
 
         .star {
-            background-image: url("../image/user_favor_circle@2x.png");
+            background-image: url("/news/image/user_favor_circle@2x.png");
         }
 
         .comment {
-            background-image: url("../image/user_comment_circle@2x.png");
+            background-image: url("/news/image/user_comment_circle@2x.png");
         }
 
         .activity {
@@ -120,7 +123,7 @@
             background-size: 8px;
             background-repeat: no-repeat;
             background-position: right;
-            background-image: url("../image/setting_cell_arrow@2x.png");
+            background-image: url("/news/image/setting_cell_arrow@2x.png");
             border-bottom: 1px solid #F6F6F6;
         }
 
@@ -157,27 +160,27 @@
         }
 
         .plugin {
-            background-image: url("../image/plugin_icon_setting@2x.png");
+            background-image: url("/news/image/plugin_icon_setting@2x.png");
         }
 
         .offline {
-            background-image: url("../image/pluginboard_icon_offline@2x.png");
+            background-image: url("/news/image/pluginboard_icon_offline@2x.png");
         }
 
         .night {
-            background-image: url("../image/pluginboard_icon_night@2x.png");
+            background-image: url("/news/image/pluginboard_icon_night@2x.png");
         }
 
         .search {
-            background-image: url("../image/pluginboard_icon_search@2x.png");
+            background-image: url("/news/image/pluginboard_icon_search@2x.png");
         }
 
         .more {
-            background-image: url("../image/pluginboard_icon_more@2x.png");
+            background-image: url("/news/image/pluginboard_icon_more@2x.png");
         }
 
         .login-user {
-            background-image: url("../image/user_weiboimage_netease@2x.png");
+            background-image: url("/news/image/user_weiboimage_netease@2x.png");
         }
     </style>
 </head>
@@ -232,7 +235,6 @@
         </span>
     </li>
     <%
-
         }
     %>
 
@@ -243,22 +245,32 @@
     </li>
 </ul>
 <ul class="activity">
-    <li onclick="toSetting()" tapmode="">
-        <span class="a1 tag">商城</span>
-        <span class="subtitle">敬孝心,带着爸妈免费体检</span>
+    <%
+        List<NewsCollection> newsList = (List<NewsCollection>) request.getAttribute("newsCollectionList");
+        for (NewsCollection news : newsList) {
+
+    %>
+    <li tapmode="" onclick="goNewsDetail('<%=news.getNewsId()%>')">
+        <span class="a1 tag" style="width: 20px;"><%=news.getNewsId()%></span>
+        <span class="subtitle"><%=news.getNewsTitle()%></span>
+        <span class="subtitle" style="width: 180px;border: 1px solid  #dddddd;"><%=news.getCollectionDate()%></span>
     </li>
-    <li onclick="toSetting()" tapmode="">
-        <span class="a2 tag">活动</span>
-        <span class="subtitle">办证：挖掘机技术专业证</span>
-    </li>
-    <li onclick="toSetting()" tapmode="">
-        <span class="a3 tag">应用</span>
-        <span class="subtitle">挖金币技术哪里强</span>
-    </li>
-    <li onclick="toSetting()" tapmode="">
-        <span class="a4 tag">游戏</span>
-        <span class="subtitle">该升级了 带着礼包奔跑吧</span>
-    </li>
+    <%--<li tapmode="">--%>
+    <%--<span class="a2 tag">活动</span>--%>
+    <%--<span class="subtitle">办证：挖掘机技术专业证</span>--%>
+    <%--</li>--%>
+    <%--<li tapmode="">--%>
+    <%--<span class="a3 tag">应用</span>--%>
+    <%--<span class="subtitle">挖金币技术哪里强</span>--%>
+    <%--</li>--%>
+    <%--<li tapmode="">--%>
+    <%--<span class="a4 tag">游戏</span>--%>
+    <%--<span class="subtitle">该升级了 带着礼包奔跑吧</span>--%>
+    <%--</li>--%>
+    <%
+        }
+    %>
+
 </ul>
 <ul class="bottom hidden">
     <li class="plugin">
@@ -287,14 +299,31 @@
         </span>
     </li>
 </ul>
-<script src="../script/zepto.min.js"></script>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="userLoginModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    登录提示
+                </h4>
+            </div>
+            <div class="modal-body" id="modalResultTextID">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
+<script src="/admin/assets/js/bootstrap.min.js"></script>
+<script src="/news/script/zepto.min.js"></script>
 <script>
-    /*setTimeout(function () {
-     $("#user").addClass('prize flip');
-     }, 500)
-     setTimeout(function () {
-     $("#user").removeClass('prize');
-     }, 2000)*/
     apiready = function () {
         checkUserId();
         fixIos7Bar($(".header"));
@@ -328,7 +357,31 @@
     }
 
     function listCollection(userId) {
+        <%--$.ajax({--%>
+            <%--type: "POST",--%>
+            <%--url: "${IP}/news",--%>
+            <%--data: {--%>
+                <%--type: "listCollection",--%>
+                <%--userId: userId,--%>
+            <%--},--%>
+            <%--dataType: "html",--%>
+            <%--success: function (data) {--%>
+                <%--$('#modalResultTextID').empty(); //清空上一次追加的内容--%>
+                <%--if (data == "loginError") {--%>
+                    <%--$('#modalResultTextID').append("对不起！你还未登录！");--%>
+                    <%--$('#modalFooterId').css({display: 'none'});--%>
+                <%--}--%>
+                <%--$('#userLoginModalID').modal({--%>
+                    <%--keyboard: true--%>
+                <%--});--%>
+            <%--}--%>
+        <%--});--%>
+
         window.location.href = '${IP}/news?type=listCollection&userId=' + userId;
+    }
+
+    function goNewsDetail(newsId) {
+        window.location.href = '${IP}/news?type=newsDetail&newsId=' + newsId;
     }
 
     function goNewsList() {

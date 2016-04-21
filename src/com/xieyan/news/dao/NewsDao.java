@@ -1,6 +1,7 @@
 package com.xieyan.news.dao;
 
 import com.xieyan.news.bean.News;
+import com.xieyan.news.bean.NewsCollection;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface NewsDao {
     News getNewsById(int newsID);
 
     boolean newsCollection(int newsId, Long userId, String newTitle);
+
+    List<NewsCollection> listCollection(int newsId);
 }
