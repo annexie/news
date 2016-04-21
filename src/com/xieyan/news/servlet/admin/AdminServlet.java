@@ -45,7 +45,7 @@ public class AdminServlet extends BaseServlet {
         }
         if (null != result) { //Admin登陆成功
             HttpSession session = req.getSession();//返回与当前request相关联的session，如果没有则在服务器端创建一个;
-            session.setAttribute("ADMIN_LOGIN", admin);
+            session.setAttribute("ADMIN_LOGIN", result);
         }
         return "/admin/jsp/admin-index.jsp";
     }

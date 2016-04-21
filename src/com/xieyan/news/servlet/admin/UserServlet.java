@@ -1,8 +1,10 @@
 package com.xieyan.news.servlet.admin;
 
+import com.xieyan.news.bean.Admin;
 import com.xieyan.news.bean.User;
 import com.xieyan.news.control.UserController;
 import com.xieyan.news.control.impl.UserControllerImpl;
+import com.xieyan.news.enums.AdminEnum;
 import com.xieyan.news.servlet.BaseServlet;
 import com.xieyan.news.utils.CheckAdminLoginUtil;
 import com.xieyan.news.utils.PageUtil;
@@ -60,48 +62,61 @@ public class UserServlet extends BaseServlet {
         out.print("success");
     }
 
-    public String update(HttpServletRequest request, HttpServletResponse response)
+    public void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
-        //获取前台传入的参数
-        String id = request.getParameter("id").trim();
-        String username = request.getParameter("username").trim();
-        String valid = request.getParameter("valid").trim();
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
+        int role = admin.getAdminRole();
+        if (role == AdminEnum.NORMAL_ADMIN.getCode()) { // 普通管理员没有权限进行修改
+            out.write("adminError");
+            return;
+        } else {
 
-        //封装成User对象
-        User user = new User(Long.parseLong(id), username, valid);
-        //进行更新操作
-        UserController userControl = new UserControllerImpl();
-        userControl.update(user);
+            //获取前台传入的参数
+            String id = request.getParameter("id").trim();
+            String username = request.getParameter("username").trim();
+            String valid = request.getParameter("valid").trim();
 
-        //返回前端新的用户列表信息
-        List<User> userList = userControl.queryByCondition("", "");
-        request.setAttribute("userList", userList);
+            //封装成User对象
+            User user = new User(Long.parseLong(id), username, valid);
+            //进行更新操作
+            UserController userControl = new UserControllerImpl();
+            boolean flag = userControl.update(user);
 
-        //返回前台成功消息
-        request.setAttribute("updateFlag", true);
-
-        return "/admin/jsp/user-list.jsp";
+            if (flag) {
+                out.write("success");
+            } else {
+                out.write("error");
+            }
+        }
     }
 
-    public String delete(HttpServletRequest request, HttpServletResponse response)
+    public void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
-        //获取前台传入的参数
-        String id = request.getParameter("id").trim();
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
+        int role = admin.getAdminRole();
+        if (role == AdminEnum.NORMAL_ADMIN.getCode() || role == AdminEnum.SENIOR_ADMIN.getCode()) { // 普通管理员没有权限进行修改
+            out.write("adminError");
+            return;
+        } else {
+            //获取前台传入的参数
+            String id = request.getParameter("id").trim();
 
-        UserController userControl = new UserControllerImpl();
-        if (userControl.delete(id)) {
-            PrintWriter out = response.getWriter();
-            out.print("success");
-
-            List<User> userList = userControl.queryByCondition("", "");
-            request.setAttribute("userList", userList);
+            UserController userControl = new UserControllerImpl();
+            if (userControl.delete(id)) {
+                out.print("success");
+            } else {
+                out.print("error");
+            }
         }
-        return "/admin/jsp/user-list.jsp";
     }
 }

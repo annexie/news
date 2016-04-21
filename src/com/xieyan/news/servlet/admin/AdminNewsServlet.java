@@ -1,8 +1,10 @@
 package com.xieyan.news.servlet.admin;
 
+import com.xieyan.news.bean.Admin;
 import com.xieyan.news.bean.News;
 import com.xieyan.news.control.NewsController;
 import com.xieyan.news.control.impl.NewsControllerImpl;
+import com.xieyan.news.enums.AdminEnum;
 import com.xieyan.news.servlet.BaseServlet;
 import com.xieyan.news.utils.CheckAdminLoginUtil;
 import com.xieyan.news.utils.PageUtil;
@@ -13,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -69,9 +72,23 @@ public class AdminNewsServlet extends BaseServlet {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
+        int role = admin.getAdminRole();
+        if (role == AdminEnum.SENIOR_ADMIN.getCode() || role == AdminEnum.NORMAL_ADMIN.getCode()) { // 高级管理员和普通管理员没有权限进行修改
+            out.write("adminError");
+            return;
+        }
+
         NewsController newsController = new NewsControllerImpl();
         String id = request.getParameter("id").trim();
         boolean flag = newsController.deleteById(Long.parseLong(id));
+        if (flag) {
+            out.write("success");
+        } else {
+            out.write("error");
+        }
 
     }
 
@@ -79,6 +96,15 @@ public class AdminNewsServlet extends BaseServlet {
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
+
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
+        int role = admin.getAdminRole();
+        if (role == AdminEnum.NORMAL_ADMIN.getCode()) { // 普通管理员的话没有权限进行修改
+            out.write("adminError");
+            return;
+        }
 
         //获取前台传入的参数
         String id = request.getParameter("id");
@@ -90,7 +116,12 @@ public class AdminNewsServlet extends BaseServlet {
         News news = new News(Long.parseLong(id), newsTitle, newsAuthor, newsKind);
         NewsController newsController = new NewsControllerImpl();
         //进行更新操作
-        newsController.update(news);
+        boolean flag = newsController.update(news);
+        if (flag) {
+            out.write("success");
+        } else {
+            out.write("error");
+        }
     }
 
     /**

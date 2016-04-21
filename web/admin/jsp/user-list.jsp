@@ -51,17 +51,40 @@
                 alert("not found");
             } else {
                 btnAdd.on('click', function () {
-                    var form = $('#userUpdateFormID');
-                    modalUpdateRequest('${pageContext.request.contextPath}/user', form)
                     $('#updateUserModalID').modal('hide');
-                    alert("更新用户成功！3秒后自动跳转到列表界面!");
-                    sleep(2000);
-                    window.location.href = '${pageContext.request.contextPath}/user?type=list';
+                    var form = $('#userUpdateFormID');
+                    $.ajax({
+                        type: "POST",
+                        url: "${IP}/user?type=update",
+                        data: form.serialize(),
+                        dataType: "html",
+                        success: function (data) {
+                            $('#modalResultTextID').empty(); //清空上一次追加的内容
+                            if (data == "success") {
+                                //向提示框中插入数据
+                                $('#modalResultTextID').append("修改成功！正在为你跳转");
+                                $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                                //2秒后跳转到主界面
+                                setTimeout(goUserList, 2000);
+                            } else if (data == "adminError") {
+                                $('#modalResultTextID').append("对不起！你没有权限进行修改！");
+                                $('#modalFooterId').css({display: 'none'});
+                            }
+                            $('#userListModalID').modal({
+                                keyboard: true
+                            });
+                        }
+                    });
+                    $('#userListModalID').modal('hide');
                 });
             }
         }
 
-        function userDelete(element) {
+        function goUserList() {
+            window.location.href = '${pageContext.request.contextPath}/user?type=list'
+        }
+
+        function userDelete(userId) {
 
             var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
                     + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
@@ -83,17 +106,30 @@
             var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
             deleteConfirm.on('click', function () {
                 confirmDeleteDialog.modal('hide'); //隐藏dialog
-                //需要回调的函数
-                var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
-                var url = '${pageContext.request.contextPath}/user?type=delete&id=' + idToDel;
-
-                $.get(url, function (result) {
-                }, "json");
-
-                alert("删除用户成功！3秒后自动跳转到列表界面!");
-                sleep(2000);
-                window.location.href = '${pageContext.request.contextPath}/user?type=list';
-
+                $.ajax({
+                    type: "POST",
+                    url: "${IP}/user?type=delete",
+                    data: {
+                        id: userId,
+                    },
+                    dataType: "html",
+                    success: function (data) {
+                        $('#modalResultTextID').empty(); //清空上一次追加的内容
+                        if (data == "success") {
+                            //向提示框中插入数据
+                            $('#modalResultTextID').append("删除成功！正在为你跳转");
+                            $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                            //2秒后跳转到主界面
+                            setTimeout(goUserList, 2000);
+                        } else if (data == "adminError") {
+                            $('#modalResultTextID').append("对不起！你没有权限进行修改！");
+                            $('#modalFooterId').css({display: 'none'});
+                        }
+                        $('#userListModalID').modal({
+                            keyboard: true
+                        });
+                    }
+                });
             });
         }
 
@@ -112,25 +148,26 @@
 
 <body>
 
-<div class="modal" id="mymodal">
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="userListModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
+     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                        class="sr-only">Close</span></button>
-                <h4 class="modal-title">模态弹出窗标题</h4>
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    提示信息
+                </h4>
             </div>
-            <div class="modal-body">
-                <p>模态弹出窗主体内容</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存</button>
+            <div class="modal-body" id="modalResultTextID">
             </div>
         </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+    </div><!-- /.modal -->
+</div>
 
 <div class="navbar navbar-default" style="height: 30px;" id="navbar">
     <script type="text/javascript">
@@ -419,7 +456,7 @@
                             </td>
                             <td>
                                 <a onclick="userUpdate(this)">修改</a>
-                                <a onclick="userDelete(this)">删除</a>
+                                <a onclick="userDelete('<%=u.getId()%>')">删除</a>
                             </td>
                         </tr>
                         <%
