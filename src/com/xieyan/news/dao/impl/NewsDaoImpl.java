@@ -269,12 +269,12 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
-    public List<News> loadNews(int startNum) {
-        String sql = "select * from news_list order by date limit 0,? ";
+    public List<News> loadNews(int startNum, Long newsKind) {
+        String sql = "select * from news_list where newsKind= ? limit 0,?";
         QueryRunner qr = new TxQueryRunner();
         try {
             //执行的参数
-            Object[] params = {startNum};
+            Object[] params = {newsKind, startNum};
 
             List<News> newsList = qr.query(sql, new BeanListHandler<News>(News.class), params);
             return null == newsList ? null : newsList;
@@ -285,19 +285,16 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
-    public int countNews() {
-        Connection connection = null;
-        String sql = "select * from news_list";
-        PreparedStatement ps = null;
+    public int countNews(Long newsKind) {
+
+        String sql = "select * from news_list where newsKind = ?";
+        QueryRunner qr = new TxQueryRunner();
+        //执行的参数
+        Object[] params = {newsKind};
+
         try {
-            connection = JdbcUtils.getConnection();
-            ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery(sql);
-            int count = 0;
-            while (rs.next()) {
-                count++;
-            }
-            return count;
+            List<News> newsList = qr.query(sql, new BeanListHandler<News>(News.class), params);
+            return newsList.size();
         } catch (SQLException e) {
             e.printStackTrace();
         }

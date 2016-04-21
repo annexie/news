@@ -358,23 +358,23 @@
 
     function listCollection(userId) {
         <%--$.ajax({--%>
-            <%--type: "POST",--%>
-            <%--url: "${IP}/news",--%>
-            <%--data: {--%>
-                <%--type: "listCollection",--%>
-                <%--userId: userId,--%>
-            <%--},--%>
-            <%--dataType: "html",--%>
-            <%--success: function (data) {--%>
-                <%--$('#modalResultTextID').empty(); //清空上一次追加的内容--%>
-                <%--if (data == "loginError") {--%>
-                    <%--$('#modalResultTextID').append("对不起！你还未登录！");--%>
-                    <%--$('#modalFooterId').css({display: 'none'});--%>
-                <%--}--%>
-                <%--$('#userLoginModalID').modal({--%>
-                    <%--keyboard: true--%>
-                <%--});--%>
-            <%--}--%>
+        <%--type: "POST",--%>
+        <%--url: "${IP}/news",--%>
+        <%--data: {--%>
+        <%--type: "listCollection",--%>
+        <%--userId: userId,--%>
+        <%--},--%>
+        <%--dataType: "html",--%>
+        <%--success: function (data) {--%>
+        <%--$('#modalResultTextID').empty(); //清空上一次追加的内容--%>
+        <%--if (data == "loginError") {--%>
+        <%--$('#modalResultTextID').append("对不起！你还未登录！");--%>
+        <%--$('#modalFooterId').css({display: 'none'});--%>
+        <%--}--%>
+        <%--$('#userLoginModalID').modal({--%>
+        <%--keyboard: true--%>
+        <%--});--%>
+        <%--}--%>
         <%--});--%>
 
         window.location.href = '${IP}/news?type=listCollection&userId=' + userId;

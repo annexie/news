@@ -38,15 +38,15 @@ public class NewsControllerImpl implements NewsController {
     }
 
     @Override
-    public List<News> loadNews(int loadCount) {
+    public List<News> loadNews(int loadCount, Long newsKind) {
         NewsDao newsDao = new NewsDaoImpl();
-        return newsDao.loadNews(loadCount);
+        return newsDao.loadNews(loadCount, newsKind);
     }
 
     @Override
-    public int countNews() {
+    public int countNews(Long newsKind) {
         NewsDao newsDao = new NewsDaoImpl();
-        return newsDao.countNews();
+        return newsDao.countNews(newsKind);
     }
 
     @Override

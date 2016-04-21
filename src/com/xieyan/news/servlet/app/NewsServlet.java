@@ -37,34 +37,105 @@ public class NewsServlet extends BaseServlet {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
 
-        if (null == request.getSession().getAttribute("LOAD_COUNT")) { //当没有在session中设置起始记录的时候，进行设置
-            request.getSession().setAttribute("LOAD_COUNT", 5);
+        Long newsKind = Long.parseLong(request.getParameter("newsKind"));
+        if (null == newsKind || "".equals(newsKind)) {
+            newsKind = 1L; //设置默认的新闻类别为1：科技
         }
-
-        NewsController newsController = new NewsControllerImpl();
-        int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + "");
-        if (loadCount < 0) {
-            out.write("");
-            return;
-        }
-        //获取所有的新闻条数
-        int count = newsController.countNews();
-        List<News> list = newsController.loadNews(loadCount);
-        if (null == list) { //没有数据可以加载
-            out.write("");
-            return;
-        } else {
-            if (loadCount + 5 < count) { //当还没有到最后一个的数据
-                request.getSession().setAttribute("LOAD_COUNT", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + "") + 5); //重新设置起始记录
-            } else { //当时最后一页的时候
-                request.getSession().setAttribute("LOAD_COUNT", count);
+        System.out.println("newsKind----" + newsKind);
+        if (newsKind == 3L) { //人文信息
+            if (null == request.getSession().getAttribute("LOAD_COUNT_RW")) { //当没有在session中设置起始记录的时候，进行设置
+                request.getSession().setAttribute("LOAD_COUNT_RW", 5);
             }
 
-            request.setAttribute("newsList", list);
-            request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + ""));
-            request.setAttribute("countNum", count);
-            out.write("success");
-            request.getRequestDispatcher("/news/jsp/news-list.jsp").forward(request, response);
+            NewsController newsController = new NewsControllerImpl();
+            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "");
+            System.out.println("loadCount----" + loadCount);
+            if (loadCount < 0) {
+                out.write("");
+                return;
+            }
+            //获取所有的新闻条数
+            int count = newsController.countNews(newsKind);
+            List<News> list = newsController.loadNews(loadCount, newsKind);
+            if (null == list) { //没有数据可以加载
+                out.write("");
+                return;
+            } else {
+                if (loadCount + 5 < count) { //当还没有到最后一个的数据
+                    request.getSession().setAttribute("LOAD_COUNT_RW", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "") + 5); //重新设置起始记录
+                } else { //当时最后一页的时候
+                    request.getSession().setAttribute("LOAD_COUNT_RW", count);
+                }
+
+                request.setAttribute("newsList", list);
+                request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + ""));
+                request.getSession().setAttribute("countNum", count);
+                out.write("success");
+                request.getRequestDispatcher("/news/jsp/news-list-rw.jsp").forward(request, response);
+            }
+        } else if (newsKind == 2L) { //计算机信息信息
+
+            if (null == request.getSession().getAttribute("LOAD_COUNT_JSJ")) { //当没有在session中设置起始记录的时候，进行设置
+                request.getSession().setAttribute("LOAD_COUNT_JSJ", 5);
+            }
+
+            NewsController newsController = new NewsControllerImpl();
+            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + "");
+            System.out.println("loadCount----" + loadCount);
+            if (loadCount < 0) {
+                out.write("");
+                return;
+            }
+            //获取所有的新闻条数
+            int count = newsController.countNews(newsKind);
+            List<News> list = newsController.loadNews(loadCount, newsKind);
+            if (null == list) { //没有数据可以加载
+                out.write("");
+                return;
+            } else {
+                if (loadCount + 5 < count) { //当还没有到最后一个的数据
+                    request.getSession().setAttribute("LOAD_COUNT_JSJ", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + "") + 5); //重新设置起始记录
+                } else { //当时最后一页的时候
+                    request.getSession().setAttribute("LOAD_COUNT_JSJ", count);
+                }
+
+                request.setAttribute("newsList", list);
+                request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + ""));
+                request.getSession().setAttribute("countNum", count);
+                out.write("success");
+                request.getRequestDispatcher("/news/jsp/news-list-jsj.jsp").forward(request, response);
+            }
+        } else if (newsKind == 1L) { //科技信息
+            if (null == request.getSession().getAttribute("LOAD_COUNT_KJ")) { //当没有在session中设置起始记录的时候，进行设置
+                request.getSession().setAttribute("LOAD_COUNT_KJ", 5);
+            }
+
+            NewsController newsController = new NewsControllerImpl();
+            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_KJ") + "");
+            System.out.println("loadCount----" + loadCount);
+            if (loadCount < 0) {
+                out.write("");
+                return;
+            }
+            //获取所有的新闻条数
+            int count = newsController.countNews(newsKind);
+            List<News> list = newsController.loadNews(loadCount, newsKind);
+            if (null == list) { //没有数据可以加载
+                out.write("");
+                return;
+            } else {
+                if (loadCount + 5 < count) { //当还没有到最后一个的数据
+                    request.getSession().setAttribute("LOAD_COUNT_KJ", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_KJ") + "") + 5); //重新设置起始记录
+                } else { //当时最后一页的时候
+                    request.getSession().setAttribute("LOAD_COUNT_KJ", count);
+                }
+
+                request.setAttribute("newsList", list);
+                request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_KJ") + ""));
+                request.getSession().setAttribute("countNum", count);
+                out.write("success");
+                request.getRequestDispatcher("/news/jsp/news-list.jsp").forward(request, response);
+            }
         }
     }
 
@@ -74,24 +145,66 @@ public class NewsServlet extends BaseServlet {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
 
-        NewsController newsController = new NewsControllerImpl();
-        int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + "");
-        if (loadCount < 0) {
-            out.write("");
-            return;
+        String newsKind = request.getParameter("newsKind");
+        if (null == newsKind || "".equals(newsKind)) {
+            newsKind = "1"; //设置默认的新闻类别为1：科技
         }
-        //获取所有的新闻条数
-        int count = newsController.countNews();
-        List<News> list = newsController.loadNews(loadCount - 5); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
-        if (null == list) { //没有数据可以加载
-            out.write("");
-            return;
-        } else {
-            request.setAttribute("newsList", list);
-            request.setAttribute("pageStart", Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT") + ""));
-            request.setAttribute("countNum", count);
-            out.write("success");
-            request.getRequestDispatcher("/news/jsp/news-list.jsp").forward(request, response);
+        NewsController newsController = new NewsControllerImpl();
+        if (newsKind.equals("3")) {
+
+            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "");
+            System.out.println("LOAD_COUNT_RW----" + loadCount);
+            if (loadCount < 0) {
+                out.write("");
+                return;
+            }
+            //获取所有的新闻条数
+            int count = newsController.countNews(Long.parseLong(newsKind));
+            List<News> list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            if (null == list) { //没有数据可以加载
+                out.write("");
+                return;
+            } else {
+                request.setAttribute("newsList", list);
+                request.getSession().setAttribute("countNum", count);
+                request.getRequestDispatcher("/news/jsp/news-list-rw.jsp").forward(request, response);
+            }
+        } else if (newsKind.equals("2")) {
+            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + "");
+            System.out.println("LOAD_COUNT_JSJ----" + loadCount);
+            if (loadCount < 0) {
+                out.write("");
+                return;
+            }
+            //获取所有的新闻条数
+            int count = newsController.countNews(Long.parseLong(newsKind));
+            List<News> list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            if (null == list) { //没有数据可以加载
+                out.write("");
+                return;
+            } else {
+                request.setAttribute("newsList", list);
+                request.getSession().setAttribute("countNum", count);
+                request.getRequestDispatcher("/news/jsp/news-list-jsj.jsp").forward(request, response);
+            }
+        } else if (newsKind.equals("1")) {
+            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_KJ") + "");
+            System.out.println("LOAD_COUNT_KJ----" + loadCount);
+            if (loadCount < 0) {
+                out.write("");
+                return;
+            }
+            //获取所有的新闻条数
+            int count = newsController.countNews(Long.parseLong(newsKind));
+            List<News> list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            if (null == list) { //没有数据可以加载
+                out.write("");
+                return;
+            } else {
+                request.setAttribute("newsList", list);
+                request.getSession().setAttribute("countNum", count);
+                request.getRequestDispatcher("/news/jsp/news-list.jsp").forward(request, response);
+            }
         }
     }
 

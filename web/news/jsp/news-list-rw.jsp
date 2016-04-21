@@ -345,9 +345,9 @@
                     <div id="wrapper">
                         <div id="scroller">
                             <ul>
-                                <li class="nav_active" tapmode="" onclick="getKindsNews('1')">科技</li>
+                                <li class="" tapmode="" onclick="getKindsNews('1')">科技</li>
                                 <li class="" tapmode="" onclick="getKindsNews('2')">计算机</li>
-                                <li class="" tapmode="" onclick="getKindsNews('3')">人文</li>
+                                <li class="nav_active" tapmode="" onclick="getKindsNews('3')">人文</li>
                                 <li class="" tapmode="" onclick="">
                                     <a class="user" tapmode="" href="user_center.jsp"></a>
                                 </li>
@@ -454,6 +454,7 @@
                     <%
                         }
                     %>
+
                 </div>
             </div>
         </div>

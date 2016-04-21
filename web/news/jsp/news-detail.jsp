@@ -170,8 +170,8 @@
             });
         }
 
-        function newBack() {
-            window.location.href = "${IP}/news?type=newsBack";
+        function newBack(newsKind) {
+            window.location.href = "${IP}/news?type=newsBack&newsKind=" + newsKind;
         }
     </script>
 </head>
@@ -249,7 +249,7 @@
                     <%--新闻的详细信息展示div 结束--%>
                     <div style="margin: auto; width: 80%;">
                         <button class="btn btn-green " onclick="collection()">收藏</button>
-                        <button class="btn  btn-green " onclick="newBack()">返回</button>
+                        <button class="btn  btn-green " onclick="newBack(<%=news.getNewsKind()%>)">返回</button>
                     </div>
                     <%
                         }

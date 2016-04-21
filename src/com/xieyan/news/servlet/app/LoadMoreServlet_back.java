@@ -45,8 +45,8 @@ public class LoadMoreServlet_back extends HttpServlet {
             return;
         }
         //获取所有的新闻条数
-        int count = newsController.countNews();
-        List<News> list = newsController.loadNews(start);
+        int count = newsController.countNews(1L);
+        List<News> list = newsController.loadNews(start, 1L);
         if (null == list) { //没有数据可以加载
             out.write("");
             return;
