@@ -352,13 +352,14 @@
 
                                         <div style="margin-left:15px;float:left;">
                                             <input name="newsTitle" class="form-control" type="text"
-                                                   style="width:120px;"/>
+                                                   style="width:120px;" value="${param.newsTitle}"/>
                                         </div>
 
                                         <label class="control-label" style="width:50px;float:left;">作者:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
                                             <input name="newsAuthor" class="form-control" type="text"
+                                                   value="${param.newsAuthor}"
                                                    style="width:120px;"/>
                                         </div>
 
@@ -366,10 +367,29 @@
 
                                         <div style="margin-left:15px;float:left;">
                                             <select name="newsKind" class="form-control">
-                                                <option value="1">科技</option>
-                                                <option value="2">计算机</option>
-                                                <option value="3">人文</option>
-                                                <option value="" selected="selected">全部</option>
+
+                                                <c:if test="${param.newsKind == 1}">
+                                                    <option value="1" selected="selected">科技</option>
+                                                    <option value="2">计算机</option>
+                                                    <option value="3">人文</option>
+                                                </c:if>
+                                                <c:if test="${param.newsKind == 2}">
+                                                    <option value="1">科技</option>
+                                                    <option value="2" selected="selected">计算机</option>
+                                                    <option value="3">人文</option>
+                                                </c:if>
+                                                <c:if test="${param.newsKind == 3}">
+                                                    <option value="1">科技</option>
+                                                    <option value="2">计算机</option>
+                                                    <option value="3" selected="selected">人文</option>
+                                                </c:if>
+                                                <c:if test="${param.newsKind != 1 && param.newsKind != 2 && param.newsKind != 3}">
+                                                    <option value="1">科技</option>
+                                                    <option value="2">计算机</option>
+                                                    <option value="3">人文</option>
+                                                    <option value="" selected="selected">全部</option>
+                                                </c:if>
+
                                             </select>
                                         </div>
                                     </div>
@@ -420,31 +440,34 @@
                         %>
                     </table>
                     <!--分页效果的  开始-->
-                    <c:if test="${param.cur == null}">
-                        <a href="/newsedit?type=list&cur=1">首页</a>
-                        <a href="/newsedit?type=list&cur=${param.cur + 2}">下一页</a>
-                    </c:if>
+                    <%--分页数大于1的时候才显示--%>
+                    <c:if test="${requestScope.totalPage >1}">
+                        <c:if test="${param.cur == null}">
+                            <a href="/newsedit?type=list&cur=1&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">首页</a>
+                            <a href="/newsedit?type=list&cur=${param.cur + 2}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">下一页</a>
+                        </c:if>
 
-                    <c:if test="${param.cur != 1 && param.cur != null}">
-                        <a href="/newsedit?type=list&cur=1">首页</a>
-                        <a href="/newsedit?type=list&cur=${param.cur - 1}">上一页</a>
-                    </c:if>
+                        <c:if test="${param.cur != 1 && param.cur != null}">
+                            <a href="/newsedit?type=list&cur=1&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">首页</a>
+                            <a href="/newsedit?type=list&cur=${param.cur - 1}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">上一页</a>
+                        </c:if>
 
-                    <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
-                        <a href="/newsedit?type=list&cur=${param.cur + 1}">下一页</a>
-                        <a href="/newsedit?type=list&cur=${requestScope.totalPage}">尾页</a>
-                    </c:if>
+                        <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
+                            <a href="/newsedit?type=list&cur=${param.cur + 1}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">下一页</a>
+                            <a href="/newsedit?type=list&cur=${requestScope.totalPage}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">尾页</a>
+                        </c:if>
 
-                    <%--展示下边的信息--%>
-                    <c:if test="${param.cur == null}">
-                        <p>
-                            当前第1页 总共${requestScope.totalPage}页
-                        </p>
-                    </c:if>
-                    <c:if test="${param.cur != null}">
-                        <p>
-                            当前第${param.cur}页 总共${requestScope.totalPage}页
-                        </p>
+                        <%--展示下边的信息--%>
+                        <c:if test="${param.cur == null}">
+                            <p>
+                                当前第1页 总共${requestScope.totalPage}页
+                            </p>
+                        </c:if>
+                        <c:if test="${param.cur != null}">
+                            <p>
+                                当前第${param.cur}页 总共${requestScope.totalPage}页
+                            </p>
+                        </c:if>
                     </c:if>
                     <!--分页效果的  结束-->
                 </div>

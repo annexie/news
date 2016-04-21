@@ -364,16 +364,25 @@
 
                                         <div style="margin-left:15px;float:left;">
                                             <input name="username" class="form-control" type="text" style="width:120px;"
-                                                   id="usernameID"/>
+                                                   id="usernameID" value="${param.username}"/>
                                         </div>
 
                                         <label class="control-label" style="width:80px;float:left;">&nbsp;&nbsp;&nbsp;&nbsp;是否有效:&nbsp;</label>
 
                                         <div style="margin-left:15px;float:left;">
                                             <select name="valid" style="width:100px;" class="form-control">
-                                                <option value="1">有效</option>
-                                                <option value="0">无效</option>
-                                                <option value="" selected="selected">全部状态</option>
+                                                <c:if test="${param.valid == 1}">
+                                                    <option value="1" selected="selected">有效</option>
+                                                    <option value="0">无效</option>
+                                                </c:if>
+                                                <c:if test="${param.valid == 0}">
+                                                    <option value="1">有效</option>
+                                                    <option value="0" selected="selected">无效</option>
+                                                </c:if>
+                                                <c:if test="${param.valid != 1 && param.valid != 0}">
+                                                    <option value="1" selected="selected">有效</option>
+                                                    <option value="0">无效</option>
+                                                </c:if>
                                             </select>
                                         </div>
                                     </div>
@@ -418,31 +427,34 @@
                         %>
                     </table>
                     <!--分页效果的  开始-->
-                    <c:if test="${param.cur == null}">
-                        <a href="/user?type=list&cur=1">首页</a>
-                        <a href="/user?type=list&cur=${param.cur + 2}">下一页</a>
-                    </c:if>
+                    <%--分页数大于1的时候才显示--%>
+                    <c:if test="${requestScope.totalPage >1}">
+                        <c:if test="${param.cur == null}">
+                            <a href="/user?type=list&cur=1&username=${param.username}&valid=${param.valid}">首页</a>
+                            <a href="/user?type=list&cur=${param.cur + 2}&username=${param.username}&valid=${param.valid}">下一页</a>
+                        </c:if>
 
-                    <c:if test="${param.cur != 1 && param.cur != null}">
-                        <a href="/user?type=list&cur=1">首页</a>
-                        <a href="/user?type=list&cur=${param.cur - 1}">上一页</a>
-                    </c:if>
+                        <c:if test="${param.cur != 1 && param.cur != null}">
+                            <a href="/user?type=list&cur=1&username=${param.username}&valid=${param.valid}">首页</a>
+                            <a href="/user?type=list&cur=${param.cur - 1}&username=${param.username}&valid=${param.valid}">上一页</a>
+                        </c:if>
 
-                    <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
-                        <a href="/user?type=list&cur=${param.cur + 1}">下一页</a>
-                        <a href="/user?type=list&cur=${requestScope.totalPage}">尾页</a>
-                    </c:if>
+                        <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
+                            <a href="/user?type=list&cur=${param.cur + 1}&username=${param.username}&valid=${param.valid}">下一页</a>
+                            <a href="/user?type=list&cur=${requestScope.totalPage}&username=${param.username}&valid=${param.valid}">尾页</a>
+                        </c:if>
 
-                    <%--展示下边的信息--%>
-                    <c:if test="${param.cur == null}">
-                        <p>
-                            当前第1页 总共${requestScope.totalPage}页
-                        </p>
-                    </c:if>
-                    <c:if test="${param.cur != null}">
-                        <p>
-                            当前第${param.cur}页 总共${requestScope.totalPage}页
-                        </p>
+                        <%--展示下边的信息--%>
+                        <c:if test="${param.cur == null}">
+                            <p>
+                                当前第1页 总共${requestScope.totalPage}页
+                            </p>
+                        </c:if>
+                        <c:if test="${param.cur != null}">
+                            <p>
+                                当前第${param.cur}页 总共${requestScope.totalPage}页
+                            </p>
+                        </c:if>
                     </c:if>
                     <!--分页效果的  结束-->
                 </div>
