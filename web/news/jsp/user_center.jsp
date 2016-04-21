@@ -200,7 +200,7 @@
             } else {
             %>
             <div class="login-header-btn nologin-user" id="user" tapmode="" onclick="toLogin()"></div>
-            <div class="login">立即登录</div>
+            <div class="login" onclick="toLogin()">立即登录</div>
             <div class="score">赢积分抢大礼!</div>
             <%
                 }
@@ -315,10 +315,7 @@
     }
 
     function toLogin() {
-        api.openWin({
-            name: 'login',
-            url: 'win_login.html'
-        })
+        window.location.href = '${IP}/news/jsp/login.jsp';
     }
     function toSetting() {
         api.openWin({
