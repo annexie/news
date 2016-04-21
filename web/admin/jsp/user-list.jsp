@@ -428,11 +428,6 @@
                         <a href="/user?type=list&cur=${param.cur - 1}">上一页</a>
                     </c:if>
 
-                    <c:if test="${param.cur == requestScope.totalPage && param.cur != null }">
-                        <a>下一页</a>
-                        <a>尾页</a>
-                    </c:if>
-
                     <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
                         <a href="/user?type=list&cur=${param.cur + 1}">下一页</a>
                         <a href="/user?type=list&cur=${requestScope.totalPage}">尾页</a>

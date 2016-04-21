@@ -36,11 +36,11 @@
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>NewsEditServlet</servlet-name>
-        <servlet-class>com.xieyan.news.servlet.admin.NewsEditServlet</servlet-class>
+        <servlet-name>AdminNewsServlet</servlet-name>
+        <servlet-class>com.xieyan.news.servlet.admin.AdminNewsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>NewsEditServlet</servlet-name>
+        <servlet-name>AdminNewsServlet</servlet-name>
         <url-pattern>/newsedit</url-pattern>
     </servlet-mapping>
     <servlet>

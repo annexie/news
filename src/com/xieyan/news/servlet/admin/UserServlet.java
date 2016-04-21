@@ -43,7 +43,6 @@ public class UserServlet extends BaseServlet {
         String cur = (String) request.getParameter("cur");
         if (null == cur) { //在第一次访问链接的时候，这个参数是没有的，默认设置为1
             cur = "1";
-            request.setAttribute("cur", 1); //将参数设置在request中，这是为了在第一次的时候，设置前台界面的页数
         }
         List<User> userList = userControl.pageByCondition(username, valid, Integer.parseInt(cur));
         request.setAttribute("userList", userList);

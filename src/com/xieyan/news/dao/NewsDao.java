@@ -27,4 +27,6 @@ public interface NewsDao {
     boolean newsCollection(int newsId, Long userId, String newTitle);
 
     List<NewsCollection> listCollection(int newsId);
+
+    List<News> pageByCondition(String newsTitle, String newsAuthor, String newsKind, int cur);
 }

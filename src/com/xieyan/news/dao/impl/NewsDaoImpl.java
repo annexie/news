@@ -4,6 +4,7 @@ import com.xieyan.news.bean.News;
 import com.xieyan.news.bean.NewsCollection;
 import com.xieyan.news.dao.NewsDao;
 import com.xieyan.news.utils.JdbcUtils;
+import com.xieyan.news.utils.PageUtil;
 import com.xieyan.news.utils.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -348,6 +349,23 @@ public class NewsDaoImpl implements NewsDao {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    @Override
+    public List<News> pageByCondition(String newsTitle, String newsAuthor, String newsKind, int cur) {
+        String sql = getSqlUrl(newsTitle, newsAuthor, newsKind);
+        StringBuilder sb = new StringBuilder(sql);
+        //追加分页的信息，每页PageUtil.PAGE_SIZE条数据
+        sb = sb.append(" limit " + PageUtil.PAGE_SIZE * (cur - 1) + " , " + PageUtil.PAGE_SIZE);
+
+        QueryRunner qr = new TxQueryRunner();
+        try {
+            List<News> news = qr.query(sb.toString(), new BeanListHandler<News>(News.class));
+            return null == news ? null : news;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

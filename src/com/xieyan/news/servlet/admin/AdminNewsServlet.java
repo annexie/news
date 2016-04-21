@@ -5,6 +5,7 @@ import com.xieyan.news.control.NewsController;
 import com.xieyan.news.control.impl.NewsControllerImpl;
 import com.xieyan.news.servlet.BaseServlet;
 import com.xieyan.news.utils.CheckAdminLoginUtil;
+import com.xieyan.news.utils.PageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,9 +20,9 @@ import java.util.List;
  * 信息编辑的Servlet
  * Created by xieyan on 16/1/9.
  */
-public class NewsEditServlet extends BaseServlet {
+public class AdminNewsServlet extends BaseServlet {
 
-    transient static final Logger logger = LoggerFactory.getLogger(NewsEditServlet.class);
+    transient static final Logger logger = LoggerFactory.getLogger(AdminNewsServlet.class);
 
     public String list(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,8 +35,20 @@ public class NewsEditServlet extends BaseServlet {
         String newsAuthor = request.getParameter("newsAuthor");
         String newsKind = request.getParameter("newsKind");
 
+        //根据查询条件到数据库中查找符合条件的全部数据，去计算页数
         List<News> userList = newsController.queryByCondition(newsTitle, newsAuthor, newsKind);
-        request.setAttribute("newsList", userList);
+        //计算分页的多少，就是有多少页数据
+        request.setAttribute("totalPage", PageUtil.getPageCount(userList.size()));
+
+        //选择当前页的数据，返回到前台
+        String cur = (String) request.getParameter("cur");
+        if (null == cur) { //在第一次访问链接的时候，这个参数是没有的，默认设置为1
+            cur = "1";
+        }
+
+        //去进行分页查询
+        List<News> resultList = newsController.pageByCondition(newsTitle, newsAuthor, newsKind, Integer.parseInt(cur));
+        request.setAttribute("newsList", resultList);
 
         return "/admin/jsp/news-list.jsp";
     }

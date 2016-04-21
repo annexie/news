@@ -66,4 +66,10 @@ public class NewsControllerImpl implements NewsController {
         NewsDao newsDao = new NewsDaoImpl();
         return newsDao.listCollection(userId);
     }
+
+    @Override
+    public List<News> pageByCondition(String newsTitle, String newsAuthor, String newsKind, int cur) {
+        NewsDao newsDao = new NewsDaoImpl();
+        return newsDao.pageByCondition(newsTitle, newsAuthor, newsKind, cur);
+    }
 }

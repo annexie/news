@@ -27,4 +27,6 @@ public interface NewsController {
     boolean newsCollection(int newsId, Long userId, String newTitle);
 
     List<NewsCollection> listCollection(int userId);
+
+    List<News> pageByCondition(String newsTitle, String newsAuthor, String newsKind, int cur);
 }

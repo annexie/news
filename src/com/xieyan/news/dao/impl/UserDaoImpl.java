@@ -345,7 +345,7 @@ public class UserDaoImpl implements UserDao {
             sb = sb.append(" and valid = " + valid);
         }
         //追加分页的信息，每页五条数据
-        sb = sb.append(" limit " + 5 * (cur - 1) + " , " + PageUtil.PAGE_SIZE);
+        sb = sb.append(" limit " + PageUtil.PAGE_SIZE * (cur - 1) + " , " + PageUtil.PAGE_SIZE);
         return sb.toString();
     }
 }

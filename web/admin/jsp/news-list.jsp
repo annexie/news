@@ -419,8 +419,34 @@
                             }
                         %>
                     </table>
-                    <!--分页效果的-->
-                    <%--<%@include file="/commons/page.jsp" %>--%>
+                    <!--分页效果的  开始-->
+                    <c:if test="${param.cur == null}">
+                        <a href="/newsedit?type=list&cur=1">首页</a>
+                        <a href="/newsedit?type=list&cur=${param.cur + 2}">下一页</a>
+                    </c:if>
+
+                    <c:if test="${param.cur != 1 && param.cur != null}">
+                        <a href="/newsedit?type=list&cur=1">首页</a>
+                        <a href="/newsedit?type=list&cur=${param.cur - 1}">上一页</a>
+                    </c:if>
+
+                    <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
+                        <a href="/newsedit?type=list&cur=${param.cur + 1}">下一页</a>
+                        <a href="/newsedit?type=list&cur=${requestScope.totalPage}">尾页</a>
+                    </c:if>
+
+                    <%--展示下边的信息--%>
+                    <c:if test="${param.cur == null}">
+                        <p>
+                            当前第1页 总共${requestScope.totalPage}页
+                        </p>
+                    </c:if>
+                    <c:if test="${param.cur != null}">
+                        <p>
+                            当前第${param.cur}页 总共${requestScope.totalPage}页
+                        </p>
+                    </c:if>
+                    <!--分页效果的  结束-->
                 </div>
             </div>
             <!-- 显示具体的界面信息 end-->
