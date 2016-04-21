@@ -2,6 +2,7 @@ package com.xieyan.news.dao.impl;
 
 import com.xieyan.news.bean.User;
 import com.xieyan.news.dao.UserDao;
+import com.xieyan.news.utils.PageUtil;
 import com.xieyan.news.utils.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -318,5 +319,33 @@ public class UserDaoImpl implements UserDao {
 //            DBUtil.close(connection, preparedStatement, preparedStatement, null);
 //        }
 //        return false;
+    }
+
+    @Override
+    public List<User> pageUserByCondition(String username, String valid, int cur) {
+        String sql = getQuertSQL(username, valid, cur);
+        QueryRunner qr = new TxQueryRunner();
+        try {
+
+            List<User> users = qr.query(sql, new BeanListHandler<User>(User.class));
+            return users == null ? null : users;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String getQuertSQL(String username, String valid, int cur) {
+        StringBuilder sb = new StringBuilder("select * from user where 1=1  ");
+        if ((null != username) && (!("").equals(username))) {
+            sb = sb.append(" and userName = " + username);
+        }
+        if ((null != valid) && (!("").equals(valid))) {
+            sb = sb.append(" and valid = " + valid);
+        }
+        //追加分页的信息，每页五条数据
+        sb = sb.append(" limit " + 5 * (cur - 1) + " , " + PageUtil.PAGE_SIZE);
+        return sb.toString();
     }
 }

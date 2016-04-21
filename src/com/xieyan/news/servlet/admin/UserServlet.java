@@ -5,6 +5,7 @@ import com.xieyan.news.control.UserController;
 import com.xieyan.news.control.impl.UserControllerImpl;
 import com.xieyan.news.servlet.BaseServlet;
 import com.xieyan.news.utils.CheckAdminLoginUtil;
+import com.xieyan.news.utils.PageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,8 +33,19 @@ public class UserServlet extends BaseServlet {
         String username = request.getParameter("username");
         String valid = request.getParameter("valid");
 
+        //先根据条件找到所有符合条件的数据
         UserController userControl = new UserControllerImpl();
-        List<User> userList = userControl.queryByCondition(username, valid);
+        List<User> userCountList = userControl.queryByCondition(username, valid);
+        //计算分页的多少，就是有多少页数据
+        request.setAttribute("totalPage", PageUtil.getPageCount(userCountList.size()));
+
+        //选择当前页的数据，返回到前台
+        String cur = (String) request.getParameter("cur");
+        if (null == cur) { //在第一次访问链接的时候，这个参数是没有的，默认设置为1
+            cur = "1";
+            request.setAttribute("cur", 1); //将参数设置在request中，这是为了在第一次的时候，设置前台界面的页数
+        }
+        List<User> userList = userControl.pageByCondition(username, valid, Integer.parseInt(cur));
         request.setAttribute("userList", userList);
         return "/admin/jsp/user-list.jsp";
     }

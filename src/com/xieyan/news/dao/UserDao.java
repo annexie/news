@@ -24,4 +24,6 @@ public interface UserDao {
     boolean update(User user);
 
     boolean delete(String id);
+
+    List<User> pageUserByCondition(String username, String valid, int cur);
 }

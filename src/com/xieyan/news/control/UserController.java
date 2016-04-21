@@ -41,6 +41,14 @@ public interface UserController {
     List<User> queryByCondition(String username, String valid);
 
     /**
+     * 根据调价查找用户
+     * @param username
+     * @param valid
+     * @return
+     */
+    List<User> pageByCondition(String username, String valid, int cur);
+
+    /**
      * 更新用户信息
      * @param user
      * @return

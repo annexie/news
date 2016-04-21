@@ -41,6 +41,12 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    public List<User> pageByCondition(String username, String valid, int cur) {
+        UserDao userDao = new UserDaoImpl();
+        return userDao.pageUserByCondition(username, valid, cur);
+    }
+
+    @Override
     public boolean update(User user) {
         UserDao userDao = new UserDaoImpl();
         return userDao.update(user);
