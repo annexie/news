@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -160,7 +161,12 @@ public class NewsServlet extends BaseServlet {
             }
             //获取所有的新闻条数
             int count = newsController.countNews(Long.parseLong(newsKind));
-            List<News> list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            List<News> list = new ArrayList<>();
+            if (loadCount <= count) { //即出现session被减到负值时
+                list = newsController.loadNews(count, Long.parseLong(newsKind));
+            } else {
+                list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            }
             if (null == list) { //没有数据可以加载
                 out.write("");
                 return;
@@ -178,7 +184,12 @@ public class NewsServlet extends BaseServlet {
             }
             //获取所有的新闻条数
             int count = newsController.countNews(Long.parseLong(newsKind));
-            List<News> list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            List<News> list = new ArrayList<>();
+            if (loadCount <= count) { //即出现session被减到负值时
+                list = newsController.loadNews(count, Long.parseLong(newsKind));
+            } else {
+                list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            }
             if (null == list) { //没有数据可以加载
                 out.write("");
                 return;
@@ -196,7 +207,12 @@ public class NewsServlet extends BaseServlet {
             }
             //获取所有的新闻条数
             int count = newsController.countNews(Long.parseLong(newsKind));
-            List<News> list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            List<News> list = new ArrayList<>();
+            if (loadCount <= count) { //即出现session被减到负值时
+                list = newsController.loadNews(count, Long.parseLong(newsKind));
+            } else {
+                list = newsController.loadNews(loadCount - 5, Long.parseLong(newsKind)); //因为在点击loadNextPage下一页的时候session中存放的LOAD_COUNT已经被加5操作了
+            }
             if (null == list) { //没有数据可以加载
                 out.write("");
                 return;
