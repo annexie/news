@@ -2,28 +2,31 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <title></title>
     <link rel="stylesheet" type="text/css" href="../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <style>
-        .detail-header{
+        .detail-header {
             border-bottom: 1px solid #CDCDCD;
             background-color: #DD3237;
         }
-        .back{
-            background-size: 40px!important;
+
+        .back {
+            background-size: 40px !important;
             background-image: url("../image/weather_back@2x.png");
-            background-position: right!important;
+            background-position: right !important;
         }
 
-        .detail-header a{
-            padding:25px;
+        .detail-header a {
+            padding: 25px;
         }
-        .title{
+
+        .title {
             color: #FFFFFF;
             text-align: center;
-            line-height:50px;
+            line-height: 50px;
             font-size: 18px;
         }
 
@@ -50,12 +53,14 @@
             background-image: url("../image/setting_cell_arrow@2x.png");
             border-bottom: 1px solid #F6F6F6;
         }
-        .no-arrow{
-            background-image:none!important;
+
+        .no-arrow {
+            background-image: none !important;
         }
+
         .value {
             position: absolute;
-            right:20px;
+            right: 20px;
         }
 
         .btn {
@@ -67,10 +72,11 @@
             height: 40px;
             line-height: 40px;
             border: 1px solid #CECECE;
-            background-color:#DD3237 ;
+            background-color: #DD3237;
             margin-top: 20px;
         }
-        .user-photo{
+
+        .user-photo {
             background-position: center center;
             background-size: 30px;
             width: 30px;
@@ -124,36 +130,34 @@
 
 
     function closeWin() {
-        api.closeWin({
-
-        })
+        api.closeWin({})
     }
     function logout() {
         api.showProgress();
         var user = api.require('user');
-        user.logout(function(ret, err){
+        user.logout(function (ret, err) {
             api.hideProgress();
-            if(ret){
+            if (ret) {
                 api.confirm({
                     title: '确定要登出账号?',
-                    buttons:[ '取消', '确定']
-                },function(ret,err){
-                    if(ret.buttonIndex == 2){
+                    buttons: ['取消', '确定']
+                }, function (ret, err) {
+                    if (ret.buttonIndex == 2) {
                         localStorage.removeItem('userId');
                         api.execScript({
-                            name:'user',
-                            script:'checkUserId()'
+                            name: 'user',
+                            script: 'checkUserId()'
                         });
                         api.execScript({
-                            name:'root',
-                            script:'checkUserId()'
+                            name: 'root',
+                            script: 'checkUserId()'
                         })
                         closeWin();
-                    }else{
+                    } else {
 
                     }
                 });
-            }else{
+            } else {
                 api.toast({msg: err.message, location: "middle"})
             }
         });
