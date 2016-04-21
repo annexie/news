@@ -1,207 +1,191 @@
 <%@ page import="com.xieyan.news.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="taglibs.jsp" %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<meta charset="utf-8">
-<meta name="viewport"
-      content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-<title></title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
-<style>
-    body, html {
-    }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/news/css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="/news/css/common.css"/>
+    <style>
+        body, html {
+        }
 
-    .login-header-btn {
-        display: inline-block;
-        padding: 30px;
-        /*width: 80px;*/
-        height: 80px;
-        background-size: 50px;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
+        .login-header-btn {
+            display: inline-block;
+            padding: 30px;
+            background-size: 50px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
 
-    .close {
-        background-image: url("/news/image/close_icon_normal@2x.png");
-    }
+        .close {
+            background-image: url("../image/close_icon_normal@2x.png");
+        }
 
-    .setting {
-        background-image: url("/news/image/setting_icon_normal@2x.png");
-    }
+        .setting {
+            background-image: url("../image/setting_icon_normal@2x.png");
+        }
 
-    .login-header .nologin-user {
-        -webkit-transform: rotateY(0deg);
-        background-image: url("/news/image/user_defaulthead@2x.png");
-    }
+        .login-header .nologin-user {
+            -webkit-transform: rotateY(0deg);
+            background-image: url("../image/user_defaulthead@2x.png");
+        }
 
-    .login-header .login-user {
-        -webkit-transform: rotateY(0deg);
-        background-image: url("/news/image/92.png");
-    }
+        .login-header .prize {
+            -webkit-transform: rotateY(180deg);
+            background-image: url("../image/user_defaultgift@2x.png");
+        }
 
-    .login-header .prize {
-        -webkit-transform: rotateY(180deg);
-        background-image: url("/news/image/user_defaultgift@2x.png");
-    }
+        .flip {
+            -webkit-transition-property: -webkit-transform, background-image;
+            -webkit-transition-duration: 1.5s, 0.1s;
+            -webkit-transition-delay: 0.1s;
+        }
 
-    .flip {
-        -webkit-transition-property: -webkit-transform, background-image;
-        -webkit-transition-duration: 1.5s, 0.1s;
-        -webkit-transition-delay: 0.1s;
-    }
+        .login-header {
+            height: 240px;
+            background-color: #1C1515;
+        }
 
-    .login-header {
-        height: 35%;
-        background-color: #1C1515;
-    }
+        .title {
+            height: 200px;
+            text-align: center;
+            padding-top: 15px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
 
-      .title {
-        text-align: center;
-        padding-top: 20px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
+        .login {
+            color: #FFFFFF;
+            font-size: 18px;
+        }
 
-    .login {
-        color: #FFFFFF;
-        font-size: 18px;
-    }
+        .score {
+            padding-top: 7px;
+            color: #EFED84;
+        }
 
-    .score {
-        padding-top: 7px;
-        color: #EFED84;
-    }
+        .mine {
+            background-color: #1C1515;
+            padding-top: 5px;
+        }
 
-    .mine {
-        background-color: #1C1515;
-        padding-top: 5px;
-    }
+        .mine li, .bottom li {
+            display: inline-block;
+            width: 32%;
+            text-align: center;
+            padding: 20px 0 6px;
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: top;
+        }
 
-    .mine li, .bottom li {
-        display: inline-block;
-        width: 32%;
-        text-align: center;
-        padding: 20px 0 6px;
-        background-size: 30px;
-        background-repeat: no-repeat;
-        background-position: top;
-    }
+        .bottom li {
+            width: 19%;
+            background-size: 30px;
+        }
 
-    .bottom li {
-        width: 19%;
-        background-size: 30px;
-    }
+        .mine li span {
+            margin: 15px 10px 0 10px;
+            color: #737377;
+        }
 
-    .mine li span {
-        margin: 15px 10px 0 10px;
-        color: #737377;
-    }
+        .bottom li span {
+            margin: 15px 10px 0 10px;
+            color: #737377;
+            font-size: 12px;
+        }
 
-    .bottom li span {
-        margin: 15px 10px 0 10px;
-        color: #737377;
-        font-size: 12px;
-    }
+        .read {
+            background-image: url("../image/user_reading_circle@2x.png");
+        }
 
-    .read {
-        background-image: url("/news/image/user_reading_circle@2x.png");
-    }
+        .star {
+            background-image: url("../image/user_favor_circle@2x.png");
+        }
 
-    .star {
-        background-image: url("/news/image/user_favor_circle@2x.png");
-    }
+        .comment {
+            background-image: url("../image/user_comment_circle@2x.png");
+        }
 
-    .comment {
-        background-image: url("/news/image/user_comment_circle@2x.png");
-    }
+        .activity {
+            margin: 0 10px;
+        }
 
-    .activity {
-        margin: 0 10px;
-    }
+        .activity li {
+            padding: 15px 0;
+            background-size: 8px;
+            background-repeat: no-repeat;
+            background-position: right;
+            background-image: url("../image/setting_cell_arrow@2x.png");
+            border-bottom: 1px solid #F6F6F6;
+        }
 
-    .activity li {
-        padding: 15px 0;
-        background-size: 8px;
-        background-repeat: no-repeat;
-        background-position: right;
-        background-image: url("/news/image/setting_cell_arrow@2x.png");
-        border-bottom: 1px solid #F6F6F6;
-    }
+        .activity li:last-child {
+            border-bottom: none;
+        }
 
-    .activity li:last-child {
-        border-bottom: none;
-    }
+        .subtitle {
+            font-size: 16px;
+            margin-left: 10px;
+        }
 
-    .subtitle {
-        font-size: 16px;
-        margin-left: 10px;
-    }
+        .tag {
+            color: #FFFFFF;
+            padding: 2px;
+            font-size: 13px;
+            border-radius: 2px;
+        }
 
-    .tag {
-        color: #FFFFFF;
-        padding: 2px;
-        font-size: 13px;
-        border-radius: 2px;
-    }
+        .a1 {
+            background-color: #FB000D;
+        }
 
-    .a1 {
-        background-color: #FB000D;
-    }
+        .a2 {
+            background-color: #2CA6E6;
+        }
 
-    .a2 {
-        background-color: #2CA6E6;
-    }
+        .a3 {
+            background-color: #FC5E48;
+        }
 
-    .a3 {
-        background-color: #FC5E48;
-    }
+        .a4 {
+            background-color: #04BC6F;
+        }
 
-    .a4 {
-        background-color: #04BC6F;
-    }
+        .plugin {
+            background-image: url("../image/plugin_icon_setting@2x.png");
+        }
 
-    .plugin {
-        background-image: url("/news/image/plugin_icon_setting@2x.png");
-    }
+        .offline {
+            background-image: url("../image/pluginboard_icon_offline@2x.png");
+        }
 
-    .offline {
-        background-image: url("/news/image/pluginboard_icon_offline@2x.png");
-    }
+        .night {
+            background-image: url("../image/pluginboard_icon_night@2x.png");
+        }
 
-    .night {
-        background-image: url("/news/image/pluginboard_icon_night@2x.png");
-    }
+        .search {
+            background-image: url("../image/pluginboard_icon_search@2x.png");
+        }
 
-    .search {
-        background-image: url("/news/image/pluginboard_icon_search@2x.png");
-    }
+        .more {
+            background-image: url("../image/pluginboard_icon_more@2x.png");
+        }
 
-    .more {
-        background-image: url("/news/image/pluginboard_icon_more@2x.png");
-    }
-
-    .login-user {
-        background-image: url("/news/image/user_weiboimage_netease@2x.png");
-    }
-</style>
-<script type="text/javascript">
-    function backNewsList() {
-        window.location.href = "${IP}/news?type=newsBack";
-    }
-</script>
+        .login-user {
+            background-image: url("../image/user_weiboimage_netease@2x.png");
+        }
+    </style>
 </head>
 <body>
 <header>
     <div class="login-header header ">
-        <div class="login-header-btn"><a style="color: #ffffff" onclick="backNewsList()">< 返回</a></div>
-        <div class="hidden title">
-            <div class="login-header-btn login-user" tapmode="" onclick="toSetting()"></div>
-            <div class="login">xxxx</div>
-            <div class="score">720金币 6个任务未完成</div>
-        </div>
+        <div class="login-header-btn close" tapmode="" onclick="goNewsList()"></div>
+
         <div class=" title">
             <%
                 User user = (User) request.getSession().getAttribute("CLIENT_USER");
@@ -287,7 +271,7 @@
         </span>
     </li>
 </ul>
-<script src="<c:url value='/news/script/zepto.min.js'/>"></script>
+<script src="../script/zepto.min.js"></script>
 <script>
     /*setTimeout(function () {
      $("#user").addClass('prize flip');
@@ -314,9 +298,6 @@
         }
     }
 
-    function closeWin() {
-        api.closeWin({})
-    }
     function toLogin() {
         api.openWin({
             name: 'login',
@@ -328,6 +309,11 @@
             name: 'setting',
             url: 'win_setting.html'
         })
+    }
+    
+    
+    function goNewsList() {
+        window.location.href='${IP}/news?type=newsBack';
     }
 </script>
 </body>
