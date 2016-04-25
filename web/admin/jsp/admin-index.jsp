@@ -263,10 +263,9 @@
 
                             欢迎使用
                             <strong class="green">
-                                系统
+                                新闻后台管理系统
                                 <small>(v1.2)</small>
                             </strong>
-                            ,这里为你提供更更全面的房源信息管理.
                         </div>
 
 
