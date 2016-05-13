@@ -161,7 +161,7 @@ public class NewsServlet extends BaseServlet {
             }
             //获取所有的新闻条数
             int count = newsController.countNews(Long.parseLong(newsKind));
-            List<News> list = new ArrayList<>();
+            List<News> list = new ArrayList<News>();
             if (loadCount <= count) { //即出现session被减到负值时
                 list = newsController.loadNews(count, Long.parseLong(newsKind));
             } else {
@@ -184,7 +184,7 @@ public class NewsServlet extends BaseServlet {
             }
             //获取所有的新闻条数
             int count = newsController.countNews(Long.parseLong(newsKind));
-            List<News> list = new ArrayList<>();
+            List<News> list = new ArrayList<News>();
             if (loadCount <= count) { //即出现session被减到负值时
                 list = newsController.loadNews(count, Long.parseLong(newsKind));
             } else {
@@ -207,7 +207,7 @@ public class NewsServlet extends BaseServlet {
             }
             //获取所有的新闻条数
             int count = newsController.countNews(Long.parseLong(newsKind));
-            List<News> list = new ArrayList<>();
+            List<News> list = new ArrayList<News>();
             if (loadCount <= count) { //即出现session被减到负值时
                 list = newsController.loadNews(count, Long.parseLong(newsKind));
             } else {
