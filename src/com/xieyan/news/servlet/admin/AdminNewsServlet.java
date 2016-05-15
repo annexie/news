@@ -134,7 +134,7 @@ public class AdminNewsServlet extends BaseServlet {
         String id = request.getParameter("id");
         String newsKind = request.getParameter("newsKind");
         String newsAuthor = request.getParameter("newsAuthor");
-        String newImageUrl = request.getParameter("newImageUrl");
+        String imageUrl = request.getParameter("imageUrl");
         String newText = request.getParameter("newText");
 
         News news = new News();
@@ -143,7 +143,7 @@ public class AdminNewsServlet extends BaseServlet {
         news.setNewsAuthor(newsAuthor);
         news.setNewsKind(newsKind);
         news.setValid(1);
-        news.setImageUrl(newImageUrl);
+        news.setImageUrl(imageUrl);
         news.setOriginType("1");
         news.setNewsText(newText);
         return news;
