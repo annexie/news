@@ -56,7 +56,6 @@ public class AdminNewsServlet extends BaseServlet {
         return "/admin/jsp/news-list.jsp";
     }
 
-
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
@@ -135,6 +134,7 @@ public class AdminNewsServlet extends BaseServlet {
         String id = request.getParameter("id");
         String newsKind = request.getParameter("newsKind");
         String newsAuthor = request.getParameter("newsAuthor");
+        String newImageUrl = request.getParameter("newImageUrl");
         String newText = request.getParameter("newText");
 
         News news = new News();
@@ -143,9 +143,9 @@ public class AdminNewsServlet extends BaseServlet {
         news.setNewsAuthor(newsAuthor);
         news.setNewsKind(newsKind);
         news.setValid(1);
-        news.setNewsOriginType("1");
+        news.setImageUrl(newImageUrl);
+        news.setOriginType("1");
         news.setNewsText(newText);
-        news.setDate(new Date());
         return news;
     }
 }

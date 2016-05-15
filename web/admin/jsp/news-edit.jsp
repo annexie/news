@@ -205,7 +205,7 @@
                 </li>
 
             </ul>
-            
+
             <!-- /.nav-list -->
 
             <div class="sidebar-collapse" id="sidebar-collapse">
@@ -299,6 +299,14 @@
                             </td>
                             <td>
                                 <input type="text" name="newsAuthor">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻图片地址：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="imageUrl">
                             </td>
                         </tr>
                         <tr>
@@ -434,7 +442,7 @@
 
     $('#articleAddBtn').click(function () {
         $("#addArticleForm").ajaxSubmit({
-            url: '${pageContext.request.contextPath}/newsedit',
+            url: '${pageContext.request.contextPath}/newsedit?type=add',
             success: function (data) {
                 alert("添加文章成功！2秒后自动跳转到列表界面!");
                 sleep(2000);

@@ -16,8 +16,8 @@ public class News implements Serializable {
     private Date date;
     private Date updateDate;
     private String newsUrl;
-    private String newImageUrl;
-    private String newsOriginType;
+    private String imageUrl;
+    private String originType;
     private int valid;
 
     public String getNewsTitle() {
@@ -92,20 +92,20 @@ public class News implements Serializable {
         this.valid = valid;
     }
 
-    public String getNewsOriginType() {
-        return newsOriginType;
+    public String getOriginType() {
+        return originType;
     }
 
-    public void setNewsOriginType(String newsOriginType) {
-        this.newsOriginType = newsOriginType;
+    public void setOriginType(String originType) {
+        this.originType = originType;
     }
 
-    public String getNewImageUrl() {
-        return newImageUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setNewImageUrl(String newImageUrl) {
-        this.newImageUrl = newImageUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Long getId() {
@@ -137,8 +137,8 @@ public class News implements Serializable {
                 ", date=" + date +
                 ", updateDate=" + updateDate +
                 ", newsUrl='" + newsUrl + '\'' +
-                ", newImageUrl='" + newImageUrl + '\'' +
-                ", newsOriginType='" + newsOriginType + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", originType='" + originType + '\'' +
                 ", valid=" + valid +
                 '}';
     }

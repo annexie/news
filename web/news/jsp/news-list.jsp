@@ -404,12 +404,9 @@
                         <a class="listView-item newsLi">
                             <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
-                                <p class="listView-text-title">
-                                </p>
+                                <p class="listView-text-title">欢迎信息</p>
 
-                                <p class="listView-text-subtitle">
-
-                                </p>
+                                <p class="listView-text-subtitle"></p>
                                 <span class="listView-text-tips"></span></div>
                         </a>
                     </li>
@@ -420,15 +417,12 @@
                     %>
                     <li>
                         <a class="listView-item newsLi" onclick="showNewsDetail('<%=news.getId()%>')">
-                            <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
+                            <div class="listView-img"><img style="width: 80px;height: 60px" src="<%=news.getImageUrl()%>"/></div>
                             <div class="listView-text">
-                                <p class="listView-text-title"><%=news.getNewsTitle()%>
-                                </p>
-
-                                <p class="listView-text-subtitle">
-                                    <%=news.getNewsText().substring(0, 8)%>
-                                </p>
-                                <span class="listView-text-tips"><%=news.getDate()%></span></div>
+                                <p class="listView-text-title"><%=news.getNewsTitle()%></p>
+                                <%--<p class="listView-text-subtitle"><%=news.getNewsText().substring(0, 8)%></p>--%>
+                                <span class="listView-text-tips"><%=news.getDate()%></span>
+                            </div>
                         </a>
                     </li>
                     <%

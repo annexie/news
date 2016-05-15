@@ -163,7 +163,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="news-edit.jsp">
+                            <a href="${pageContext.request.contextPath}/admin/jsp/news-edit.jsp">
                                 <i class="icon-double-angle-right"></i>
                                 新闻编辑
                             </a>

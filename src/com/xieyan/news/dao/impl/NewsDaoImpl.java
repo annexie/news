@@ -29,8 +29,8 @@ public class NewsDaoImpl implements NewsDao {
 //
 //            //执行的参数
 //            Object[] params = {new BeanHandler<News>(News.class), news.getNewsTitle(), news.getNewsAuthor(), news.getNewsText(),
-//                    news.getNewsUrl(), news.getNewsOriginType(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()),
-//                    news.getValid(), news.getNewImageUrl(), new Date(System.currentTimeMillis()), news.getNewsKind()};
+//                    news.getNewsUrl(), news.getOriginType(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()),
+//                    news.getValid(), news.getImageUrl(), new Date(System.currentTimeMillis()), news.getNewsKind()};
 //
 //            isOk = qr.update(sql, params);
 //            if (isOk > 0) {
@@ -52,7 +52,7 @@ public class NewsDaoImpl implements NewsDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String sql = "insert into news_list(`newsTitle`, `newsAuthor`, `newsText`, `newsUrl`, `originType`,`date`,`updateDate`, `valid`, `imageUrl`, `newsKind`) values (?,?,?,?,?,?,?,?,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
+        String sql = "insert into news_list(`newsTitle`, `newsAuthor`, `newsText`, `newsUrl`, `originType`, `valid`, `imageUrl`, `newsKind`) values (?,?,?,?,?,?,?,?)";// 编写sql语句，第一个字段不需要插入，是自动增加的
         PreparedStatement ps = null;
         boolean flag = false;
         try {
@@ -61,12 +61,10 @@ public class NewsDaoImpl implements NewsDao {
             ps.setString(2, news.getNewsAuthor() + "");
             ps.setString(3, news.getNewsText() + "");
             ps.setString(4, news.getNewsUrl() + "");
-            ps.setString(5, news.getNewsOriginType());
-            ps.setDate(6, new Date(System.currentTimeMillis()));
-            ps.setDate(7, new Date(System.currentTimeMillis()));
-            ps.setInt(8, news.getValid());
-            ps.setString(9, news.getNewImageUrl());
-            ps.setString(10, news.getNewsKind());
+            ps.setString(5, news.getOriginType());
+            ps.setInt(6, news.getValid());
+            ps.setString(7, news.getImageUrl());
+            ps.setString(8, news.getNewsKind());
             int isOk = ps.executeUpdate(); //执行executeUpdate()方法:这里是update数据相当于更新、插入
 
             if (isOk > 0) { //news插入成功
@@ -103,7 +101,7 @@ public class NewsDaoImpl implements NewsDao {
      */
     private boolean insertNewsKind(Long geneNewsId, String newsKind, Connection connection) {
 
-        String sql = "insert into news_kinds_list(`newsKinds`,`newId`) values (?,?)";
+        String sql = "insert into news_kinds_list(`newsKinds`,`newsId`) values (?,?)";
         QueryRunner qr = new TxQueryRunner();
         try {
 
