@@ -49,7 +49,7 @@
             } else {
                 btnAdd.on('click', function () {
                     var form = $('#adminUpdateFormID');
-                    modalUpdateRequest('${pageContext.request.contextPath}/admin', form)
+                    modalUpdateRequest('${pageContext.request.contextPath}/admin?type=update', form)
                     $('#updateAdminModalID').modal('hide');
                     alert("更新管理员成功！3秒后自动跳转到列表界面!");
                     sleep(2000);

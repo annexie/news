@@ -91,7 +91,7 @@ public class AdminNewsServlet extends BaseServlet {
 
     }
 
-    public void udpate(HttpServletRequest request, HttpServletResponse response)
+    public void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);

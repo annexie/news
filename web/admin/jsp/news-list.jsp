@@ -54,7 +54,7 @@
             } else {
                 btnAdd.on('click', function () {
                     var form = $('#updateNewsFormID');
-                    modalUpdateRequest('${pageContext.request.contextPath}/newsedit', form)
+                    modalUpdateRequest('${pageContext.request.contextPath}/newsedit?type=update', form)
                     $('#updateNewsModalID').modal('hide');
 
                     alert("修改新闻信息成功！2秒后自动跳转到列表界面!");
