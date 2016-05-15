@@ -221,23 +221,24 @@
                 </div>
 
                 <%--新闻的详细信息展示div 开始--%>
-                <div style="height: auto; min-height: 220px; margin: auto; width: 90%;">
+                <div style="height: auto; min-height: 280px; margin: auto; width: 90%;">
                     <%
                         News news = (News) request.getAttribute("newsDetail");
                         if (null == news) {
                     %>
                     <div style="width: 90%;height: auto; margin: auto;">
-                        <img src="<c:url value='/news/image/404.png'/>"
-                             style="width: 100%; height:auto;"/>
+                        <img src="<c:url value='/news/image/404.png'/>" style="width: 100%; height:auto;"/>
                     </div>
                     <%
                     } else {
                     %>
-                    <div style="width: 320px;height: 40px; margin: auto; line-height: 40px; text-align: center"
-                         id="newTitleID"><%=news.getNewsTitle()%>
-                    </div>
-                    <div style="width: 320px;height: 50px; margin: auto;">新闻作者：<%=news.getNewsAuthor()%>
-                        <br/>新闻发布时间：<%=news.getDate()%><br/>新闻详细信息如下：
+                    <div style="width: 100%;height: 180px; margin: auto; line-height: 40px; text-align: center">
+                        <div style="width: 320px;height: 30px;  line-height: 20px; text-align: center" id="newTitleID">
+                            <%=news.getNewsTitle()%>
+                        </div>
+                        <div style="width: 320px;height: 30px; ">新闻作者：<%=news.getNewsAuthor()%>
+                            <br/>新闻发布时间：<%=news.getDate()%><br/>新闻详细信息如下：
+                        </div>
                     </div>
 
                     <div style="width: 90%;height: auto; margin: auto;">
