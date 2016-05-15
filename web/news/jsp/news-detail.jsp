@@ -267,7 +267,6 @@
 <script type="text/javascript" src="<c:url value='/news/script/iscroll.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/swipe.js'/>"></script>
 <script>
-
     var myScroll;
     apiready = function () {
         var $header = $api.dom('.header');

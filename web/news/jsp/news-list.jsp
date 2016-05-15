@@ -1,4 +1,5 @@
 <%@ page import="com.xieyan.news.bean.News" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="taglibs.jsp" %>
@@ -15,7 +16,6 @@
     <link rel="stylesheet" href="<c:url value='/news/css/jquery.mobile.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/news/css/theme/theme.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/news/css/styles.css'/>"/>
-    <!-- <link rel="stylesheet" href="css/styles-custom.css" /> -->
     <script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/mobileinit.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
@@ -296,12 +296,6 @@
     <script type="text/javascript" charset="utf-8" src="<c:url value='/news/js/initScroll.js'/>"></script>
 
     <script type="text/javascript">
-        $(document).bind("pageinit", function () {
-            isInit = 0;
-            serverURL = "${IP}/loadmore"; //服务器地址
-            startNum = 1;//当前页
-            countNum = 1000; //总页数
-        });
 
         /**
          * 在新闻list主页进入用户中心的时候点击跳转的链接
@@ -334,8 +328,9 @@
     <div data-role="content" style="padding: 0px;">
         <div id="wrapperIndex" class="wrapper">
             <div id="scrollerIndex" class="scroller">
-                <div id="pullDown">
-                </div>
+                <%--这个是支持上下拉动需要的div--%>
+                <div id="pullDown"></div>
+
                 <header style="margin-top: 40px;">
                     <div class="header detail-header">
                         <a class="user" tapmode="" href="javascript:onClickUserCenter()"></a>
@@ -356,6 +351,7 @@
                     </div>
                     <a class="arrow_down" onclick="" tapmode=""></a>
                 </nav>
+
                 <%--轮播图 开始--%>
                 <div id='slide' class='swipe'>
                     <div class='swipe-wrap' id="banner-content">
@@ -397,17 +393,15 @@
                 <ul data-theme="a" class="listView" id="fpmxList">
                     <%
                         List<News> newsList = (List<News>) request.getAttribute("newsList");
-
                         if (null == newsList) {
                     %>
                     <li>
                         <a class="listView-item newsLi">
                             <div class="listView-img"><img src="<c:url value='/news/image/91.png'/>"></div>
                             <div class="listView-text">
-                                <p class="listView-text-title">欢迎信息</p>
-
-                                <p class="listView-text-subtitle"></p>
-                                <span class="listView-text-tips"></span></div>
+                                <p class="listView-text-title">欢迎信息,这是一条默认的新闻</p>
+                                <span class="listView-text-tips"></span><%=new Date()%>
+                            </div>
                         </a>
                     </li>
                     <%
@@ -417,10 +411,11 @@
                     %>
                     <li>
                         <a class="listView-item newsLi" onclick="showNewsDetail('<%=news.getId()%>')">
-                            <div class="listView-img"><img style="width: 80px;height: 60px" src="<%=news.getImageUrl()%>"/></div>
+                            <div class="listView-img"><img style="width: 80px;height: 60px"
+                                                           src="<%=news.getImageUrl()%>"/></div>
                             <div class="listView-text">
-                                <p class="listView-text-title"><%=news.getNewsTitle()%></p>
-                                <%--<p class="listView-text-subtitle"><%=news.getNewsText().substring(0, 8)%></p>--%>
+                                <p class="listView-text-title"><%=news.getNewsTitle()%>
+                                </p>
                                 <span class="listView-text-tips"><%=news.getDate()%></span>
                             </div>
                         </a>
@@ -431,8 +426,11 @@
                     %>
                 </ul>
                 <%--具体的新闻展示界面 结束--%>
+
+                <%--这个是支持上下拉动需要的div--%>
                 <div id="pullUp"></div>
 
+                <%--是否展示下一页的显示信息--%>
                 <div>
                     <%
                         Integer countNum = (Integer) request.getSession().getAttribute("countNum");
@@ -451,7 +449,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <!-- /page -->
