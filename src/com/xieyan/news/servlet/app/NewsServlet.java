@@ -153,7 +153,15 @@ public class NewsServlet extends BaseServlet {
         NewsController newsController = new NewsControllerImpl();
         if (newsKind.equals("3")) {
 
-            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "");
+//            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "");
+
+            int loadCount = 0;
+            if (null == request.getSession().getAttribute("LOAD_COUNT_RW")) {
+                loadCount = 5;
+            } else {
+                loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "");
+            }
+
             System.out.println("LOAD_COUNT_RW----" + loadCount);
             if (loadCount < 0) {
                 out.write("");
@@ -176,7 +184,15 @@ public class NewsServlet extends BaseServlet {
                 request.getRequestDispatcher("/news/jsp/news-list-rw.jsp").forward(request, response);
             }
         } else if (newsKind.equals("2")) {
-            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + "");
+//            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + "");
+
+            int loadCount = 0;
+            if (null == request.getSession().getAttribute("LOAD_COUNT_JSJ")) {
+                loadCount = 5;
+            } else {
+                loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_JSJ") + "");
+            }
+
             System.out.println("LOAD_COUNT_JSJ----" + loadCount);
             if (loadCount < 0) {
                 out.write("");
@@ -199,7 +215,12 @@ public class NewsServlet extends BaseServlet {
                 request.getRequestDispatcher("/news/jsp/news-list-jsj.jsp").forward(request, response);
             }
         } else if (newsKind.equals("1")) {
-            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_KJ") + "");
+            int loadCount = 0;
+            if (null == request.getSession().getAttribute("LOAD_COUNT_KJ")) {
+                loadCount = 5;
+            } else {
+                loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_KJ") + "");
+            }
             System.out.println("LOAD_COUNT_KJ----" + loadCount);
             if (loadCount < 0) {
                 out.write("");
