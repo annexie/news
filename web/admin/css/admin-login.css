@@ -3,6 +3,7 @@ body {
     font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
     color: #404040;
     background: #0ca3d2;
+    background: url(../images/login-bg.jpg) no-repeat 0px 0px;
 }
 
 input[type=checkbox],
@@ -135,7 +136,7 @@ select {
 }
 
 .login p.submit {
-    text-align: right;
+    text-align: center;
 }
 
 .login-help {
@@ -195,6 +196,7 @@ input[type=text]:focus, input[type=password]:focus {
 input[type=submit] {
     padding: 0 18px;
     height: 29px;
+    width: 180px;
     font-size: 12px;
     font-weight: bold;
     color: #527881;
@@ -202,7 +204,7 @@ input[type=submit] {
     background: #cde5ef;
     border: 1px solid;
     border-color: #b4ccce #b3c0c8 #9eb9c2;
-    border-radius: 16px;
+    border-radius: 10px;
     outline: 0;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
