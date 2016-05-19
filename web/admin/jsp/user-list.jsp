@@ -162,7 +162,7 @@
             <div class="content_bottom">
                 <div class="col-md-12 span_3">
                     <%--搜索框 开始--%>
-                    <div class=" bs-example1 " style="height: 60px;">
+                    <div class=" bs-example1 " style="height: 70px;padding: 20px;">
                         <form name="form" id="airlineSearchFormID" target="_self" method="get"
                               action="${pageContext.request.contextPath}/user">
                             <input type="hidden" name="page.currentPage" value="1">
@@ -212,8 +212,8 @@
                     <%--搜索框 结束--%>
 
                     <!-- 显示具体的界面信息 start-->
-                    <div class="bs-example1 " data-example-id="contextual-table">
-                        <table class="table">
+                    <div class="bs-example1 table-responsive" data-example-id="contextual-table">
+                        <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <td class="info">用户ID</td>

@@ -143,7 +143,7 @@
                     <!-- 显示具体的界面信息 start-->
                     <div id="userAddFormId">
                         <%--搜索框 开始--%>
-                        <div class="bs-example1" style="height: 60px;">
+                        <div class="bs-example1" style="height: 70px;padding: 20px;">
                             <form name="form" id="airlineSearchFormID" target="_self" method="get"
                                   action="${pageContext.request.contextPath}/admin">
                                 <input type="hidden" name="page.currentPage" value="1">
@@ -183,9 +183,9 @@
                             </form>
                         </div>
                         <%--搜索框 结束--%>
-                        <%--白名单展示列表 开始--%>
-                        <div class="bs-example1" style="text-align: center;">
-                            <table class="table">
+                        <%--展示列表 开始--%>
+                            <div class="bs-example1 table-responsive" data-example-id="contextual-table">
+                                <table class="table table-bordered">
                                 <tr class="table-hover form-horizontal">
                                     <td class="info">管理员ID</td>
                                     <td class="info">管理员账户</td>

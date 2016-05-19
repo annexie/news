@@ -150,7 +150,7 @@
                     <!-- 显示具体的界面信息 start-->
                     <div id="userAddFormId">
                         <%--搜索框 开始--%>
-                        <div class="bs-example1" style="height: 60px;">
+                        <div class="bs-example1" style="height: 70px;padding: 20px;">
                             <form name="form" target="_self" method="get"
                                   action="${pageContext.request.contextPath}/newsedit">
                                 <input type="hidden" name="type" value="list">
@@ -218,8 +218,8 @@
                         </div>
                         <%--搜索框 结束--%>
                         <%--展示列表 开始--%>
-                        <div class="bs-example1" style="text-align: center;">
-                            <table class="table">
+                        <div class="bs-example1 table-responsive" data-example-id="contextual-table">
+                            <table class="table table-bordered">
                                 <tr class="table-hover form-horizontal">
                                     <td class="info">新闻ID</td>
                                     <td class="info">新闻标题</td>
