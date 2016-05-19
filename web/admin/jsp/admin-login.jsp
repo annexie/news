@@ -11,13 +11,15 @@
 <div class="container">
     <div class="login">
         <h1>后台管理系统 登录</h1>
-        <form method="post" action="${pageContext.request.contextPath}/admin?type=login">
+        <form method="post" action="${pageContext.request.contextPath}/back/admin?type=login">
             <p>
-                <input type="text" name="adminName" value="123" id="inputNameID" placeholder="请输入登录账户" onblur="verifyName()">
+                <input type="text" name="adminName" value="123" id="inputNameID" placeholder="请输入登录账户"
+                       onblur="verifyName()">
             <p id="frmVerifyNameTipsID" style="color: red;display: none">用户名不可以为空,请输入用户名!</p></p>
             </p>
             <p>
-                <input type="password" name="adminPassword" value="123" id="inputPwdID" placeholder="请输入密码" onblur="verifyPwd()">
+                <input type="password" name="adminPassword" value="123" id="inputPwdID" placeholder="请输入密码"
+                       onblur="verifyPwd()">
             <p id="frmVerifyPwdTipsID" style="color: red;display: none">密码不可以为空,请输入密码!</p></p>
             </p>
             <p>
@@ -26,7 +28,7 @@
             </p>
             <%--将img的src指向VerifyCodeServlet--%>
             <p>
-                <img id="imgId" src="${pageContext.request.contextPath}/verifycode?type=getCode&">&nbsp;&nbsp;
+                <img id="imgId" src="${ctx}/verifycode?type=getCode&">&nbsp;&nbsp;
                 <a href="javascript:changeVerifyCode()">换一张</a>
             </p>
             <p class="submit"><input type="submit" id="submitID" name="commit" value="登录"></p>

@@ -124,7 +124,7 @@
         UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
         UE.Editor.prototype.getActionUrl = function (action) {
             if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-                return '${ctx}/uploadimage';
+                return '${ctx}/back/uploadimage';
             } else {
                 return this._bkGetActionUrl.call(this, action);
             }
@@ -138,7 +138,7 @@
 
         $.ajax({
             type: "POST",
-            url: "${ctx}/newsedit?type=add",
+            url: "${ctx}/back/newsedit?type=add",
             data: {
                 newsTitle: $('#newsTitleID').val().trim(),
                 newsKind: $('#newsKindID').val().trim(),
@@ -167,7 +167,7 @@
     });
 
     function goNewsList() {
-        window.location.href = '${pageContext.request.contextPath}/newsedit?type=list';
+        window.location.href = '${pageContext.request.contextPath}/back/newsedit?type=list';
     }
 
 </script>

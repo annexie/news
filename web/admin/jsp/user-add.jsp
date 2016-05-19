@@ -101,7 +101,7 @@
         var userAddForm = $("#userAddFormId");
         $.ajax({
             type: "POST",
-            url: "${ctx}/user?type=add",
+            url: "${ctx}/back/user?type=add",
             data: {
                 username: $('#usernameID').val().trim(),
                 valid: $('#validID').val().trim(),
@@ -128,7 +128,7 @@
     }
 
     function goUserList() {
-        window.location.href = '${pageContext.request.contextPath}/user?type=list'
+        window.location.href = '${pageContext.request.contextPath}/back/user?type=list'
     }
 
 </script>

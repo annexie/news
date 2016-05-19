@@ -1,4 +1,4 @@
-package com.xieyan.news.utils;
+package com.xieyan.news.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

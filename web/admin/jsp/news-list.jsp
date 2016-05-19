@@ -48,7 +48,7 @@
                         <%--搜索框 开始--%>
                         <div class="bs-example1" style="height: 70px;padding: 20px;">
                             <form name="form" target="_self" method="get"
-                                  action="${pageContext.request.contextPath}/newsedit">
+                                  action="${pageContext.request.contextPath}/back/newsedit">
                                 <input type="hidden" name="type" value="list">
                                 <input type="hidden" name="page.currentPage" value="1">
                                 <table border="0" cellspacing="0" cellpadding="0">
@@ -140,13 +140,13 @@
                                     </td>
 
                                     <%
-                                        if (n.getNewsKind().equals("1")) { //计算机
-                                    %>
-                                    <td>计算机</td>
-                                    <%
-                                    } else if (n.getNewsKind().equals("2")) { //科技
+                                        if (n.getNewsKind().equals("1")) { //科技
                                     %>
                                     <td>科技</td>
+                                    <%
+                                    } else if (n.getNewsKind().equals("2")) { //计算机
+                                    %>
+                                    <td>计算机</td>
                                     <%
                                     } else if (n.getNewsKind().equals("3")) { //人文
                                     %>
@@ -177,18 +177,18 @@
                         <%--分页数大于1的时候才显示--%>
                         <c:if test="${requestScope.totalPage >1}">
                             <c:if test="${param.cur == null}">
-                                <a href="/newsedit?type=list&cur=1&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">首页</a>
-                                <a href="/newsedit?type=list&cur=${param.cur + 2}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">下一页</a>
+                                <a href="/back/newsedit?type=list&cur=1&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">首页</a>
+                                <a href="/back/newsedit?type=list&cur=${param.cur + 2}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">下一页</a>
                             </c:if>
 
                             <c:if test="${param.cur != 1 && param.cur != null}">
-                                <a href="/newsedit?type=list&cur=1&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">首页</a>
-                                <a href="/newsedit?type=list&cur=${param.cur - 1}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">上一页</a>
+                                <a href="/back/newsedit?type=list&cur=1&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">首页</a>
+                                <a href="/back/newsedit?type=list&cur=${param.cur - 1}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">上一页</a>
                             </c:if>
 
                             <c:if test="${param.cur != requestScope.totalPage && param.cur != null}">
-                                <a href="/newsedit?type=list&cur=${param.cur + 1}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">下一页</a>
-                                <a href="/newsedit?type=list&cur=${requestScope.totalPage}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">尾页</a>
+                                <a href="/back/newsedit?type=list&cur=${param.cur + 1}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">下一页</a>
+                                <a href="/back/newsedit?type=list&cur=${requestScope.totalPage}&newsTitle=${param.newsTitle}&newsAuthor=${param.newsAuthor}&newsKind=${param.newsKind}">尾页</a>
                             </c:if>
 
                             <%--展示下边的信息--%>
@@ -278,7 +278,7 @@
 <script type="text/javascript">
 
     function goNewsList() {
-        window.location.href = '${pageContext.request.contextPath}/newsedit?type=list';
+        window.location.href = '${pageContext.request.contextPath}/back/newsedit?type=list';
     }
 
     function newsUpdate(element) {
@@ -316,7 +316,7 @@
         } else {
             btnAdd.on('click', function () {
                 var form = $('#updateNewsFormID');
-                modalUpdateRequest('${pageContext.request.contextPath}/newsedit?type=update', form)
+                modalUpdateRequest('${pageContext.request.contextPath}/back/newsedit?type=update', form)
                 $('#updateNewsModalID').modal('hide');
 
                 showModal("修改新闻信息成功！2秒后自动跳转到列表界面!");
@@ -349,7 +349,7 @@
             confirmDeleteDialog.modal('hide'); //隐藏dialog
             //需要回调的函数
             var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
-            var url = '${pageContext.request.contextPath}/newsedit?type=delete&id=' + idToDel;
+            var url = '${pageContext.request.contextPath}/back/newsedit?type=delete&id=' + idToDel;
 
             $.get(url, function (result) {
 

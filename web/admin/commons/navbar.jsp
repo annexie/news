@@ -17,7 +17,7 @@
                 <li class="dropdown-menu-header text-center">
                     <strong>个人账户</strong>
                 </li>
-                <li class="m_2"><a href="${ctx}/admin?type=logout"><i class="fa fa-lock"></i>退出</a></li>
+                <li class="m_2"><a href="${ctx}/back/admin?type=logout"><i class="fa fa-lock"></i>退出</a></li>
             </ul>
         </li>
     </ul>
@@ -35,7 +35,7 @@
                     <a href="#"><i class="fa fa-laptop nav_icon"></i>用户管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/user?type=list">用户列表</a>
+                            <a href="${pageContext.request.contextPath}/back/user?type=list">用户列表</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/admin/jsp/user-add.jsp">新增用户</a>
@@ -50,7 +50,7 @@
                             <a href="${pageContext.request.contextPath}/admin/jsp/news-edit.jsp">新闻编辑</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/newsedit?type=list">新闻列表</a>
+                            <a href="${pageContext.request.contextPath}/back/newsedit?type=list">新闻列表</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -59,7 +59,7 @@
                     <a href="#"><i class="fa fa-envelope nav_icon"></i>管理员设置<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin?type=list">管理员列表</a>
+                            <a href="${pageContext.request.contextPath}/back/admin?type=list">管理员列表</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/admin/jsp/admin-add.jsp">添加管理员</a>

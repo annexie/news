@@ -33,7 +33,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/admin</url-pattern>
+        <url-pattern>/back/admin</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminNewsServlet</servlet-name>
@@ -41,7 +41,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminNewsServlet</servlet-name>
-        <url-pattern>/newsedit</url-pattern>
+        <url-pattern>/back/newsedit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>UserServlet</servlet-name>
@@ -49,7 +49,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/user</url-pattern>
+        <url-pattern>/back/user</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -57,7 +57,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
-        <url-pattern>/uploadimage</url-pattern>
+        <url-pattern>/back/uploadimage</url-pattern>
     </servlet-mapping>
     <!-- 后台管理servlet end-->
 
@@ -75,7 +75,7 @@
     <!-- 过滤中文乱码的问题 -->
     <filter>
         <filter-name>EncodeFilter</filter-name>
-        <filter-class>com.xieyan.news.utils.EncodeFilter</filter-class>
+        <filter-class>com.xieyan.news.filter.EncodeFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
@@ -84,6 +84,15 @@
     <filter-mapping>
         <filter-name>EncodeFilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AdminLoginFilter</filter-name>
+        <filter-class>com.xieyan.news.filter.AdminLoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminLoginFilter</filter-name>
+        <url-pattern>/back/*</url-pattern>
     </filter-mapping>
 
     <welcome-file-list>

@@ -100,7 +100,7 @@
     function adminAdd() {
         $.ajax({
             type: "POST",
-            url: "${ctx}/admin?type=add",
+            url: "${ctx}/back/admin?type=add",
             data: {
                 adminName: $('#adminNameID').val().trim(""),
                 adminRole: $('#adminRoleID').val().trim(""),
@@ -130,7 +130,7 @@
      * 跳转到后台的/admin
      */
     function goAdminList() {
-        window.location.href = '${pageContext.request.contextPath}/admin?type=list'
+        window.location.href = '${pageContext.request.contextPath}/back/admin?type=list'
     }
 
 </script>

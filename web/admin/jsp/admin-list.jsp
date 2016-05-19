@@ -47,7 +47,7 @@
                         <%--搜索框 开始--%>
                         <div class="bs-example1" style="height: 70px;padding: 20px;">
                             <form name="form" id="airlineSearchFormID" target="_self" method="get"
-                                  action="${pageContext.request.contextPath}/admin">
+                                  action="${pageContext.request.contextPath}/back/admin">
                                 <input type="hidden" name="page.currentPage" value="1">
                                 <input type="hidden" name="type" value="list">
                                 <table border="0" cellspacing="0" cellpadding="0">
@@ -204,7 +204,7 @@
 <script type="text/javascript">
 
     function goAdminList() {
-        window.location.href = '${pageContext.request.contextPath}/admin?type=list';
+        window.location.href = '${pageContext.request.contextPath}/back/admin?type=list';
     }
 
     function adminUpdate(element) {
@@ -238,7 +238,7 @@
         } else {
             btnAdd.on('click', function () {
                 var form = $('#adminUpdateFormID');
-                modalUpdateRequest('${pageContext.request.contextPath}/admin?type=update', form)
+                modalUpdateRequest('${pageContext.request.contextPath}/back/admin?type=update', form)
                 $('#updateAdminModalID').modal('hide');
                 showModal("更新管理员成功！2秒后自动跳转到列表界面!")
                 setTimeout(goAdminList, 2000);
@@ -270,7 +270,7 @@
             confirmDeleteDialog.modal('hide'); //隐藏dialog
             //需要回调的函数
             var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
-            var url = '${pageContext.request.contextPath}/admin?type=delete&id=' + idToDel;
+            var url = '${pageContext.request.contextPath}/back/admin?type=delete&id=' + idToDel;
 
             $.get(url, function (result) {
             }, "json");

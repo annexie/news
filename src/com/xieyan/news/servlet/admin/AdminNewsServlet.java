@@ -30,7 +30,7 @@ public class AdminNewsServlet extends BaseServlet {
             throws ServletException, IOException {
 
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
+//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         NewsController newsController = new NewsControllerImpl();
         String newsTitle = request.getParameter("newsTitle");
@@ -61,7 +61,7 @@ public class AdminNewsServlet extends BaseServlet {
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
+//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -79,7 +79,7 @@ public class AdminNewsServlet extends BaseServlet {
     public void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
+//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -103,7 +103,7 @@ public class AdminNewsServlet extends BaseServlet {
     public void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
+//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
