@@ -6,7 +6,6 @@ import com.xieyan.news.control.UserController;
 import com.xieyan.news.control.impl.UserControllerImpl;
 import com.xieyan.news.enums.AdminEnum;
 import com.xieyan.news.servlet.BaseServlet;
-import com.xieyan.news.utils.CheckAdminLoginUtil;
 import com.xieyan.news.utils.PageUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
