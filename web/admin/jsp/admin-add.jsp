@@ -46,7 +46,7 @@
                 <div class="col-md-12 span_3">
                     <div class="bs-example1" style=" height: 400px;" id="userAddFormId">
                         <form class="form-horizontal">
-                            <div class="form-group" style="padding: 15px;">
+                            <div class="form-group" style="padding: 15px; width: 50%;float: left;">
                                 <label class="col-lg-3 control-label">用户名:</label>
                                 <div class="col-lg-9">
                                     <input name="adminName" style="display:inline; width:80%;"
@@ -73,7 +73,7 @@
                                     <input name="rePassword" style="display:inline; width:80%;" class="form-control"
                                            type="password" id="rePasswordID"/>
                                 </div>
-                                <div class="col-lg-9" style="margin-top: 20px">
+                                <div class="col-lg-9">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                     <button type="button" class="btn btn-primary" onclick="adminAdd()">保存</button>
                                 </div>

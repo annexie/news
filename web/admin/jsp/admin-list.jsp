@@ -78,7 +78,7 @@
 
         function adminDelete(element) {
 
-            var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
+            var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
                     + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
                     + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
                     + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
@@ -184,8 +184,8 @@
                         </div>
                         <%--搜索框 结束--%>
                         <%--展示列表 开始--%>
-                            <div class="bs-example1 table-responsive" data-example-id="contextual-table">
-                                <table class="table table-bordered">
+                        <div class="bs-example1 table-responsive" data-example-id="contextual-table">
+                            <table class="table table-bordered">
                                 <tr class="table-hover form-horizontal">
                                     <td class="info">管理员ID</td>
                                     <td class="info">管理员账户</td>
@@ -265,8 +265,8 @@
     </div><!-- /.modal -->
 
     <%--修改的modal--%>
-    <div class="modal fade" id="updateAdminModalID">
-        <div class="modal-dialog">
+    <div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;" id="updateAdminModalID">
+        <div class="modal-dialog" style="width: 100%; margin: auto">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -99,7 +99,7 @@
 
         function userDelete(userId) {
 
-            var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
+            var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
                     + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
                     + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
                     + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
@@ -227,13 +227,22 @@
                                 List<User> user = (List<User>) request.getAttribute("userList");
                                 for (User u : user) {
                             %>
-                            <tr class="active">
-                                <td scope="row"><%=u.getId()%>
+                            <tr>
+                                <td><%=u.getId()%>
                                 </td>
                                 <td><%=u.getUserName()%>
                                 </td>
-                                <td><%=u.getValid()%>
-                                </td>
+                                <%
+                                    if (u.getValid().equals("1")) { //有效
+                                %>
+                                <td>有效</td>
+                                <%
+                                } else {
+                                %>
+                                <td>无效</td>
+                                <%
+                                    }
+                                %>
                                 <td>
                                     <a onclick="userUpdate(this)">修改</a>
                                     <a onclick="userDelete('<%=u.getId()%>')">删除</a>
@@ -288,12 +297,12 @@
     <%--右侧内容 结束--%>
 
     <%--修改的modal--%>
-    <div class="modal fade" id="updateUserModalID">
-        <div class="modal-dialog">
+    <div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;" id="updateUserModalID">
+        <div class="modal-dialog" style="width: 100%; margin: auto">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">修改</h4>
+                    <h4 class="modal-title">用户修改</h4>
                 </div>
                 <div class="modal-body">
                     <%--表单的开始--%>
@@ -302,7 +311,7 @@
                         <input name="id" type="hidden" id="updateIdID"/>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">到达:</label>
+                            <label class="col-lg-3 control-label">用户名:</label>
 
                             <div class="col-lg-9">
                                 <input name="username" style="display:inline; width:94%;" class="form-control"

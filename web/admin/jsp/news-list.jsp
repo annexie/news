@@ -84,7 +84,7 @@
 
         function newsDelete(element) {
 
-            var confirmDeleteDialog = $('<div class="modal fade"><div class="modal-dialog">'
+            var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
                     + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
                     + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
                     + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
@@ -239,8 +239,23 @@
                                     </td>
                                     <td><%=n.getNewsAuthor()%>
                                     </td>
-                                    <td><%=n.getNewsKind()%>
-                                    </td>
+
+                                    <%
+                                        if (n.getNewsKind().equals("1")) { //计算机
+                                    %>
+                                    <td>计算机</td>
+                                    <%
+                                    } else if (n.getNewsKind().equals("2")) { //科技
+                                    %>
+                                    <td>科技</td>
+                                    <%
+                                    } else if (n.getNewsKind().equals("3")) { //人文
+                                    %>
+                                    <td>人文</td>
+                                    <%
+                                        }
+                                    %>
+
                                     <td><%=n.getDate()%>
                                     </td>
                                     <td>
@@ -300,25 +315,25 @@
     <%--右侧内容 结束--%>
 
     <%--修改的modal--%>
-    <div class="modal fade" id="updateNewsModalID">
-        <div class="modal-dialog">
+    <div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;" id="updateNewsModalID">
+        <div class="modal-dialog" style="width: 100%; margin: auto">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">修改</h4>
                 </div>
-                <div class="modal-body" style="width: 80%">
+                <div class="modal-body">
                     <%--表单的开始--%>
-                    <form id="updateNewsFormID" enctype="multipart/form-data">
+                    <form id="updateNewsFormID" style="width: 100%;" enctype="multipart/form-data">
                         <input type="hidden" name="type" value="update">
                         <input type="hidden" name="id" id="newsUpdateID">
-                        <table>
+                        <table style="width: 80%; margin: auto;">
                             <tr>
                                 <td>
                                     <label>新闻名称：</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="newsTitle" id="newsTitleID">
+                                    <input type="text" style="width: 100%;" name="newsTitle" id="newsTitleID">
                                 </td>
                             </tr>
                             <tr>
@@ -338,7 +353,7 @@
                                     <label>新闻作者：</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="newsAuthor" id="newsAuthorID">
+                                    <input type="text" style="width: 100%;" name="newsAuthor" id="newsAuthorID">
                                 </td>
                             </tr>
                         </table>

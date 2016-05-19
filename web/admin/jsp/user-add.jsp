@@ -46,7 +46,7 @@
                 <div class="col-md-12 span_3">
                     <div class="bs-example1" style=" height: 380px;" id="userAddFormId">
                         <form class="form-horizontal">
-                            <div class="form-group" style="padding: 15px;">
+                            <div class="form-group" style="padding: 15px; width: 50%;float: left;">
                                 <label class="col-lg-3 control-label">用户名:</label>
                                 <div class="col-lg-9">
                                     <input name="username" style="display:inline; width:80%;" class="form-control"
