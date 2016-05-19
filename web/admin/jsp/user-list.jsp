@@ -187,14 +187,17 @@
                                                     <c:if test="${param.valid == 1}">
                                                         <option value="1" selected="selected">有效</option>
                                                         <option value="0">无效</option>
+                                                        <option value="">全部</option>
                                                     </c:if>
                                                     <c:if test="${param.valid == 0}">
                                                         <option value="1">有效</option>
                                                         <option value="0" selected="selected">无效</option>
+                                                        <option value="">全部</option>
                                                     </c:if>
                                                     <c:if test="${param.valid != 1 && param.valid != 0}">
-                                                        <option value="1" selected="selected">有效</option>
+                                                        <option value="1">有效</option>
                                                         <option value="0">无效</option>
+                                                        <option value="" selected="selected">全部</option>
                                                     </c:if>
                                                 </select>
                                             </div>

@@ -185,16 +185,19 @@
                                                             <option value="1" selected="selected">科技</option>
                                                             <option value="2">计算机</option>
                                                             <option value="3">人文</option>
+                                                            <option value="">全部</option>
                                                         </c:if>
                                                         <c:if test="${param.newsKind == 2}">
                                                             <option value="1">科技</option>
                                                             <option value="2" selected="selected">计算机</option>
                                                             <option value="3">人文</option>
+                                                            <option value="">全部</option>
                                                         </c:if>
                                                         <c:if test="${param.newsKind == 3}">
                                                             <option value="1">科技</option>
                                                             <option value="2">计算机</option>
                                                             <option value="3" selected="selected">人文</option>
+                                                            <option value="">全部</option>
                                                         </c:if>
                                                         <c:if test="${param.newsKind != 1 && param.newsKind != 2 && param.newsKind != 3}">
                                                             <option value="1">科技</option>
