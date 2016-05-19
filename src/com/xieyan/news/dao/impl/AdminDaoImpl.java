@@ -88,11 +88,16 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public int add(Admin admin) throws SQLException {
+    public int add(Admin admin) {
         String sql = "insert into admin(`adminName`,`adminPassword`,`adminRole`) values (?,?,?)";
         QueryRunner qr = new TxQueryRunner();
         Object[] params = {admin.getAdminName(), admin.getAdminPassword(), admin.getAdminRole()};
-        int isOk = qr.update(sql, params);//执行
+        int isOk = 0;//执行
+        try {
+            isOk = qr.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         System.out.println(isOk);
         if (isOk == 1) {
             return 1;

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -50,22 +51,30 @@ public class AdminServlet extends BaseServlet {
         return "/admin/jsp/admin-index.jsp";
     }
 
-    public String add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminController adminController = new AdminControllerImpl();
         //判断管理员是否登录，如果未登录进入登录界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
+
+        resp.setCharacterEncoding("utf-8");
+        PrintWriter out = resp.getWriter();
 
         String adminName = req.getParameter("adminName");
         String adminPassword = req.getParameter("adminPassword");
         String adminRole = req.getParameter("adminRole");
 
         Admin admin = new Admin(adminName, adminPassword, Integer.parseInt(adminRole));
+        int flag = 0;
         try {
-            int flag = adminController.addAdmin(admin);
+            flag = adminController.addAdmin(admin);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "success";
+        if (flag > 0) {
+            out.write("success");
+        } else {
+            out.write("error");
+        }
     }
 
     public String list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
