@@ -94,6 +94,9 @@
 
 <script type="text/javascript">
 
+    /**
+     * 管理员添加Ajax请求
+     */
     function adminAdd() {
         $.ajax({
             type: "POST",
@@ -123,6 +126,9 @@
         });
     }
 
+    /**
+     * 跳转到后台的/admin
+     */
     function goAdminList() {
         window.location.href = '${pageContext.request.contextPath}/admin?type=list'
     }
