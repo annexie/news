@@ -147,25 +147,6 @@
     </div>
     <%--右侧内容 结束--%>
 
-    <div class="modal" id="mymodal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                            class="sr-only">Close</span></button>
-                    <h4 class="modal-title">模态弹出窗标题</h4>
-                </div>
-                <div class="modal-body">
-                    <p>模态弹出窗主体内容</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
     <%--修改的modal--%>
     <div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;" id="updateAdminModalID">
         <div class="modal-dialog" style="width: 100%; margin: auto">

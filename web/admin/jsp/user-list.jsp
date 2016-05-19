@@ -228,25 +228,6 @@
     </div>
     <%--modal结束--%>
 
-    <!-- 模态框（Modal） -->
-    <div class="modal fade" id="userListModalID" tabindex="-1" role="dialog" style="margin-top: 100px;"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close"
-                            data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        提示信息
-                    </h4>
-                </div>
-                <div class="modal-body" id="modalResultTextID">
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
 </div>
 
 <!--显示成功、失败的modal-->
@@ -291,7 +272,7 @@
                 var form = $('#userUpdateFormID');
                 $.ajax({
                     type: "POST",
-                    url: "${IP}/user?type=update",
+                    url: "${ctx}/user?type=update",
                     data: form.serialize(),
                     dataType: "html",
                     success: function (data) {
@@ -306,12 +287,12 @@
                             $('#modalResultTextID').append("对不起！你没有权限进行修改！");
                             $('#modalFooterId').css({display: 'none'});
                         }
-                        $('#userListModalID').modal({
+                        $('#modal-result').modal({
                             keyboard: true
                         });
                     }
                 });
-                $('#userListModalID').modal('hide');
+                $('#modal-result').modal('hide');
             });
         }
     }
@@ -344,7 +325,7 @@
             confirmDeleteDialog.modal('hide'); //隐藏dialog
             $.ajax({
                 type: "POST",
-                url: "${IP}/user?type=delete",
+                url: "${ctx}/user?type=delete",
                 data: {
                     id: userId,
                 },
@@ -361,7 +342,7 @@
                         $('#modalResultTextID').append("对不起！你没有权限进行修改！");
                         $('#modalFooterId').css({display: 'none'});
                     }
-                    $('#userListModalID').modal({
+                    $('#modal-result').modal({
                         keyboard: true
                     });
                 }
