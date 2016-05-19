@@ -105,7 +105,7 @@
         var userAddForm = $("#userAddFormId");
         $.ajax({
             type: "POST",
-            url: "${IP}/user?type=add",
+            url: "${ctx}/user?type=add",
             data: {
                 username: $('#usernameID').val().trim(),
                 valid: $('#validID').val().trim(),
@@ -129,7 +129,6 @@
                 });
             }
         });
-        $('#userListModalID').modal('hide');
     }
 
     function goUserList() {

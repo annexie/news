@@ -72,7 +72,7 @@ public class UserServlet extends BaseServlet {
 
         UserController userControl = new UserControllerImpl();
         boolean isOk = userControl.register(user);
-        if (true == isOk) {//成功
+        if (isOk) {//成功
             out.print("success");
         } else {
             out.print("error");

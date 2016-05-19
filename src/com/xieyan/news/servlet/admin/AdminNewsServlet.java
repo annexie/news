@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,14 +55,25 @@ public class AdminNewsServlet extends BaseServlet {
         return "/admin/jsp/news-list.jsp";
     }
 
+    /**
+     * 添加新闻
+     */
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+
         NewsController newsController = new NewsControllerImpl();
         News news = assemberNews(request);
         boolean flag = newsController.addNews(news);
+        if (flag) {
+            out.write("success"); //添加成功
+        } else {
+            out.write("error"); //添加失败
+        }
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response)
@@ -88,7 +98,6 @@ public class AdminNewsServlet extends BaseServlet {
         } else {
             out.write("error");
         }
-
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response)
@@ -131,21 +140,19 @@ public class AdminNewsServlet extends BaseServlet {
     private News assemberNews(HttpServletRequest request) {
 
         String newsTitle = request.getParameter("newsTitle");
-        String id = request.getParameter("id");
         String newsKind = request.getParameter("newsKind");
         String newsAuthor = request.getParameter("newsAuthor");
         String imageUrl = request.getParameter("imageUrl");
-        String newText = request.getParameter("newText");
+        String newsText = request.getParameter("newsText");
 
         News news = new News();
         news.setNewsTitle(newsTitle);
-        news.setNewsText(newText);
+        news.setNewsText(newsText);
         news.setNewsAuthor(newsAuthor);
         news.setNewsKind(newsKind);
         news.setValid(1);
         news.setImageUrl(imageUrl);
         news.setOriginType("1");
-        news.setNewsText(newText);
         return news;
     }
 }

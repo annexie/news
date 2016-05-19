@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/admin/commons/taglibs.jsp" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <head>
     <meta charset="utf-8"/>
-    <title>News</title>
+    <title>News-新闻编辑</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- basic styles -->
@@ -204,7 +205,7 @@
                 </li>
 
             </ul>
-            
+
             <!-- /.nav-list -->
 
             <div class="sidebar-collapse" id="sidebar-collapse">
@@ -244,7 +245,7 @@
                     News后台管理系统
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        添加新用户
+                        新闻编辑
                     </small>
                 </h1>
             </div>
@@ -263,38 +264,74 @@
                         系统
                         <small>(v1.2)</small>
                     </strong>
+                    ,
                 </div>
             </div>
 
             <!-- 显示具体的界面信息 start-->
-            <div style="max-width: 600px; height: 400px;" id="userAddFormId">
-                <form class="form-horizontal">
-                    <div class="form-group" style="padding: 15px;">
-                        <label class="col-lg-3 control-label">用户名:</label>
-                        <div class="col-lg-9">
-                            <input name="username" style="display:inline; width:94%;" class="form-control" type="text" id="usernameID"/>
-                        </div>
-                        <label class="col-lg-3 control-label">密码:</label>
-
-                        <div class="col-lg-9">
-                            <input name="password" style="display:inline; width:94%;" class="form-control" type="password" id="passwordID"/>
-                        </div>
-                        <label class="col-lg-3 control-label">再次输入密码:</label>
-
-                        <div class="col-lg-9">
-                            <input name="rePassword" style="display:inline; width:94%;" class="form-control" type="password" id="rePasswordID"/>
-                        </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-success" onclick="userAdd()">保存</button>
-                    </div>
+            <div class="container">
+                <form id="addArticleForm" enctype="multipart/form-data">
+                    <input type="hidden" name="type" value="add">
+                    <table>
+                        <tr>
+                            <td>
+                                <label>新闻名称：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="newsTitle">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻类型：</label>
+                            </td>
+                            <td>
+                                <select name="newsKind" class="form-control">
+                                    <option value="1" selected="selected">科技</option>
+                                    <option value="2">计算机</option>
+                                    <option value="3">人文</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻编辑：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="newsAuthor">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻图片地址：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="imageUrl">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>新闻内容：</label>
+                            </td>
+                            <td>
+                                <div class="editer">
+                                    <script id="editor" name="newText" type="text/plain" style="width:766px;"></script>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" id="articleAddBtn" class="btn btn-default">提交</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default">取消</button>
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
             <!-- 显示具体的界面信息 end-->
-            <!-- /.row -->
-            <!-- /.page-content -->
         </div>
-        <!-- /.main-content -->
-
         <div class="ace-settings-container" id="ace-settings-container">
             <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
                 <i class="icon-cog bigger-150"></i>
@@ -342,65 +379,20 @@
                 </div>
             </div>
         </div>
-        <!-- /#ace-settings-container -->
     </div>
-    <!-- /.main-container-inner -->
 
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="icon-double-angle-up icon-only bigger-110"></i>
     </a>
 </div>
-<!-- /.main-container -->
 
-<!-- basic scripts -->
-
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
-</script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>" + "<" + "script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    if ("ontouchend" in document) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
-</script>
 <script src="../assets/js/bootstrap.min.js"></script>
 <script src="../assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<!-- ace scripts -->
 
 <script src="../assets/js/ace-elements.min.js"></script>
 <script src="../assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
-
-<script type="text/javascript">
-
-    function userAdd() {
-        var url = "/user?type=add&";
-        var param = $("#userAddFormId").find('form').serialize();
-        $.get(url + param, function (result) {
-            alert("success");
-            if (result == "success") {
-                alert("success");
-                $("#modal-result-text").addClass("alert alert-success");
-                $("#modal-result-text").text("保存成功！");
-            } else {
-                $("#modal-result-text").addClass("alert alert-warning");
-                $("#modal-result-text").text(result.msg);
-            }
-            $("#modal-result").modal('show');
-        }, "json");
-    }
-
-</script>
 <!--显示成功、失败的modal-->
 <div class="modal fade" id="modal-result" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -429,6 +421,46 @@
 </div>
 <script src="../js/jquery-1.8.3.min.js"></script>
 <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/jquery-form.js"></script>
+<script src="../ueditor/ueditor.config.js"></script>
+<script src="../ueditor/ueditor.all.min.js"></script>
+<script src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function () {
+        UE.getEditor('editor');
+
+        //覆盖原有的请求地址
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        UE.Editor.prototype.getActionUrl = function (action) {
+            if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+                return '${IP}/uploadimage';
+            } else {
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
+    });
+
+    $('#articleAddBtn').click(function () {
+        $("#addArticleForm").ajaxSubmit({
+            url: '${pageContext.request.contextPath}/newsedit?type=add',
+            success: function (data) {
+                alert("添加文章成功！2秒后自动跳转到列表界面!");
+                sleep(2000);
+                window.location.href = '${pageContext.request.contextPath}/newsedit?type=list';
+            }
+        })
+    });
+
+    function sleep(numberMillis) {
+        var now = new Date();
+        var exitTime = now.getTime() + numberMillis;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime)
+                return;
+        }
+    }
+</script>
 </body>
 </html>
 
