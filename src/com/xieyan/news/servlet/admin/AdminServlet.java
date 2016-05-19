@@ -51,6 +51,14 @@ public class AdminServlet extends BaseServlet {
         return "/admin/jsp/admin-index.jsp";
     }
 
+    /**
+     * 退出
+     */
+    public String logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().removeAttribute("ADMIN_LOGIN");
+        return "/admin/jsp/admin-login.jsp";
+    }
+
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminController adminController = new AdminControllerImpl();
         //判断管理员是否登录，如果未登录进入登录界面

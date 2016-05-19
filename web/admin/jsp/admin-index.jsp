@@ -84,7 +84,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
                 <div class="clearfix"></div>
             </div>

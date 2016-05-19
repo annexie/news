@@ -12,9 +12,5 @@
 <%
     Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
     if (null == admin) {
-        //提示未登录信息
-        //JOptionPane.showMessageDialog(null, "对不起，您还未登录，请进行请登录！", "提示", JOptionPane.ERROR_MESSAGE);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/admin-login.jsp");
-//        dispatcher.forward(request, response);
     }
 %>
