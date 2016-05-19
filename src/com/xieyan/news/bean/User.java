@@ -54,6 +54,12 @@ public class User implements Serializable {
         this.valid = valid;
     }
 
+    public User(String userName, String userPassword, String valid) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.valid = valid;
+    }
+
     public User() {
     }
 

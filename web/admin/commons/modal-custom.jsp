@@ -10,7 +10,7 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">信息</h4>
             </div>
-            <div class="modal-body" id="modal-add-result-text">
+            <div class="modal-body" id="modalResultTextID">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="modalBtnCloseID">关闭

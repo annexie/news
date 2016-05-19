@@ -171,7 +171,6 @@
             <div class="content_bottom">
                 <div class="col-md-12 span_3">
                     <%--搜索框 开始--%>
-                    <%--搜索框 开始--%>
                     <div class=" bs-example1 " style="height: 60px;">
                         <form name="form" id="airlineSearchFormID" target="_self" method="get"
                               action="${pageContext.request.contextPath}/user">
@@ -219,7 +218,6 @@
                             </table>
                         </form>
                     </div>
-                    <%--搜索框 结束--%>
                     <%--搜索框 结束--%>
 
                     <!-- 显示具体的界面信息 start-->

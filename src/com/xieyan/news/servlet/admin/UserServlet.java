@@ -51,15 +51,32 @@ public class UserServlet extends BaseServlet {
         return "/admin/jsp/user-list.jsp";
     }
 
+    /**
+     * 添加用户
+     */
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
         CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
-        System.out.println(request.getParameter("username"));
-        System.out.println(request.getParameter("password"));
+        //获取返回前端的out
         PrintWriter out = response.getWriter();
-        out.print("success");
+
+        //获取前端传入的用户名和密码
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String valid = request.getParameter("valid");
+
+        //封装为User对象便于传输,默认情况下用户为有效
+        User user = new User(username, password, valid);
+
+        UserController userControl = new UserControllerImpl();
+        boolean isOk = userControl.register(user);
+        if (true == isOk) {//成功
+            out.print("success");
+        } else {
+            out.print("error");
+        }
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response)

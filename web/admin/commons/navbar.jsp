@@ -15,7 +15,7 @@
                             <a href="${pageContext.request.contextPath}/user?type=list">用户列表</a>
                         </li>
                         <li>
-                            <a href="user-add.jsp">新增用户</a>
+                            <a href="${pageContext.request.contextPath}/admin/jsp/user-add.jsp">新增用户</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
