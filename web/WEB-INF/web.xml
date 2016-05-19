@@ -13,7 +13,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserClientServlet</servlet-name>
-        <url-pattern>/userclient</url-pattern>
+        <url-pattern>/app/userclient</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>NewsServlet</servlet-name>
-        <url-pattern>/news</url-pattern>
+        <url-pattern>/app/news</url-pattern>
     </servlet-mapping>
     <!-- App使用的Servlet 结束 -->
 

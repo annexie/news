@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
-    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
+    <link href="<c:url value='/news/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <style>
         body {
             display: -webkit-box;
@@ -211,7 +211,7 @@
     function login() {
         $.ajax({
             type: "POST",
-            url: "${IP}/userclient",
+            url: "${IP}/app/userclient",
             data: {
                 type: "login",
                 username: $("#username").val(),
@@ -237,7 +237,7 @@
         });
     }
     function goNews() {
-        window.location.href = '${IP}/news?type=newsBack';
+        window.location.href = '${IP}/app/news?type=newsBack';
     }
 </script>
 </body>

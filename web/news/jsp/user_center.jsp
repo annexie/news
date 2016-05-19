@@ -325,11 +325,11 @@
     }
 
     function listCollection(userId) {
-        window.location.href = '${IP}/news?type=listCollection&userId=' + userId;
+        window.location.href = '${IP}/app/news?type=listCollection&userId=' + userId;
     }
 
     function goNewsList() {
-        window.location.href = '${IP}/news?type=newsBack';
+        window.location.href = '${IP}/app/news?type=newsBack';
     }
 </script>
 </body>

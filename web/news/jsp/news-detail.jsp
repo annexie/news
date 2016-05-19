@@ -19,7 +19,7 @@
     <script type="text/javascript" src="<c:url value='/news/js/mobileinit.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/fastclick.js'/>"></script>
-    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
+    <link href="<c:url value='/news/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <script src="/admin/assets/js/bootstrap.min.js"></script>
 
     <style>
@@ -143,7 +143,7 @@
         function collection() {
             $.ajax({
                 type: "POST",
-                url: "${IP}/news",
+                url: "${IP}/app/news",
                 data: {
                     type: "newsColle",
                     newsID: $("#newsIdHiddenID").val(),
@@ -158,7 +158,7 @@
                     } else if (data == "loginError") {
                         $('#modalResultTextID').append("对不起！还没有进行登录！请登录！");
                         $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                        <%--window.location.href = '<c:url value='${IP}/news/jsp/register.jsp'/>';--%>
+                        <%--window.location.href = '<c:url value='${IP}/app/news/jsp/register.jsp'/>';--%>
                     } else {
                         $('#modalResultTextID').append("对不起！收藏失败！");
                         $('#modalFooterId').css({display: 'none'});
@@ -171,7 +171,7 @@
         }
 
         function newBack(newsKind) {
-            window.location.href = "${IP}/news?type=newsBack&newsKind=" + newsKind;
+            window.location.href = "${IP}/app/news?type=newsBack&newsKind=" + newsKind;
         }
     </script>
 </head>

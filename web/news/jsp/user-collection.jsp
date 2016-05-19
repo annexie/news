@@ -11,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/news/css/api.css"/>
     <link rel="stylesheet" type="text/css" href="/news/css/common.css"/>
-    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
+    <link href="<c:url value='/news/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <style>
         body, html {
         }
@@ -359,7 +359,7 @@
     function listCollection(userId) {
         <%--$.ajax({--%>
         <%--type: "POST",--%>
-        <%--url: "${IP}/news",--%>
+        <%--url: "${IP}/app/news",--%>
         <%--data: {--%>
         <%--type: "listCollection",--%>
         <%--userId: userId,--%>
@@ -377,15 +377,15 @@
         <%--}--%>
         <%--});--%>
 
-        window.location.href = '${IP}/news?type=listCollection&userId=' + userId;
+        window.location.href = '${IP}/app/news?type=listCollection&userId=' + userId;
     }
 
     function goNewsDetail(newsId) {
-        window.location.href = '${IP}/news?type=newsDetail&newsId=' + newsId;
+        window.location.href = '${IP}/app/news?type=newsDetail&newsId=' + newsId;
     }
 
     function goNewsList() {
-        window.location.href = '${IP}/news?type=newsBack';
+        window.location.href = '${IP}/app/news?type=newsBack';
     }
 </script>
 </body>

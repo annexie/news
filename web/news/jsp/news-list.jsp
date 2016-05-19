@@ -308,7 +308,7 @@
          * 加载更多
          */
         function loadMore(kind) {
-            window.location.href = "${IP}/news?type=nextPage&newsKind=" + kind;
+            window.location.href = "${IP}/app/news?type=nextPage&newsKind=" + kind;
         }
 
         /**
@@ -316,11 +316,11 @@
          * @param newsId 新闻的id
          */
         function showNewsDetail(newsId) {
-            window.location.href = "${IP}/news?type=newsDetail&newsId=" + newsId;
+            window.location.href = "${IP}/app/news?type=newsDetail&newsId=" + newsId;
         }
 
         function getKindsNews(kind) {
-            window.location.href = "${IP}/news?type=nextPage&newsKind=" + kind;
+            window.location.href = "${IP}/app/news?type=nextPage&newsKind=" + kind;
         }
     </script>
 

@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/api.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/news/css/common.css'/>"/>
-    <link href="<c:url value='/admin/assets/css/bootstrap.min.css'/>" rel="stylesheet"/>
+    <link href="<c:url value='/news/css/bootstrap.min.css'/>" rel="stylesheet"/>
     <style>
         body {
             display: -webkit-box;
@@ -182,7 +182,7 @@
     function register() {
         $.ajax({
             type: "POST",
-            url: "${IP}/userclient",
+            url: "${IP}/app/userclient",
             data: {
                 type: "register",
                 username: $("#username").val(),

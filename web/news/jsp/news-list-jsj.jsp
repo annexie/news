@@ -298,7 +298,7 @@
     <script type="text/javascript">
         $(document).bind("pageinit", function () {
             isInit = 0;
-            serverURL = "${IP}/loadmore"; //服务器地址
+            serverURL = "${IP}/app/loadmore"; //服务器地址
             startNum = 1;//当前页
             countNum = 1000; //总页数
         });
@@ -314,7 +314,7 @@
          * 加载更多
          */
         function loadMore(kind) {
-            window.location.href = "${IP}/news?type=nextPage&newsKind=" + kind;
+            window.location.href = "${IP}/app/news?type=nextPage&newsKind=" + kind;
         }
 
         /**
@@ -322,11 +322,11 @@
          * @param newsId 新闻的id
          */
         function showNewsDetail(newsId) {
-            window.location.href = "${IP}/news?type=newsDetail&newsId=" + newsId;
+            window.location.href = "${IP}/app/news?type=newsDetail&newsId=" + newsId;
         }
 
         function getKindsNews(kind) {
-            window.location.href = "${IP}/news?type=nextPage&newsKind=" + kind;
+            window.location.href = "${IP}/app/news?type=nextPage&newsKind=" + kind;
         }
     </script>
 
