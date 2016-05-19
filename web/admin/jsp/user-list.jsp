@@ -260,7 +260,7 @@
 
                     <!--分页效果的  开始-->
                     <%--分页数大于1的时候才显示--%>
-                    <div class=" bs-example1 " style="height: 60px; text-align: center">
+                    <div class=" bs-example1 " style="height: 100px; text-align: center">
                         <c:if test="${requestScope.totalPage >1}">
                             <c:if test="${param.cur == null}">
                                 <a href="/user?type=list&cur=1&username=${param.username}&valid=${param.valid}">首页</a>
