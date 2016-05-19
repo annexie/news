@@ -26,9 +26,6 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<c:url value="/admin/js/metisMenu.min.js"/>"></script>
     <script src="<c:url value="/admin/js/custom.js"/>"></script>
-    <!-- Graph JavaScript -->
-    <script src="<c:url value="/admin/js/d3.v3.js"/>"></script>
-    <script src="<c:url value="/admin/js/rickshaw.js"/>"></script>
 
 </head>
 <body>
@@ -116,7 +113,6 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/admin/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/admin/js/modal-operate.js"/>"></script>
-<%--<script src="/admin/js/jquery-form.js"></script>--%>
 <script src="../ueditor/ueditor.config.js"></script>
 <script src="../ueditor/ueditor.all.min.js"></script>
 <script src="../ueditor/lang/zh-cn/zh-cn.js"></script>

@@ -28,125 +28,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<c:url value="/admin/js/metisMenu.min.js"/>"></script>
     <script src="<c:url value="/admin/js/custom.js"/>"></script>
-    <!-- Graph JavaScript -->
-    <script src="<c:url value="/admin/js/d3.v3.js"/>"></script>
-    <script src="<c:url value="/admin/js/rickshaw.js"/>"></script>
 
-    <script type="text/javascript">
-
-        function userUpdate(element) {
-
-            var parentTr = element.parentNode.parentNode;
-
-            function UserInfo() {
-                this.id = parentTr.cells[0].innerHTML.trim(""); //出发
-                this.username = parentTr.cells[1].innerHTML.trim(""); //出发
-                this.valid = parentTr.cells[2].innerHTML.trim("");//到达
-            }
-
-            user = new UserInfo();
-            $('#updateUserModalID').modal({
-                keyboard: true
-            });
-
-            //为修改框modal中的设置默认的值
-            $('#updateIdID').attr('value', user.id);
-            $('#updateUsernameID').attr('value', user.username);
-            //设置flightType的select中的值
-            if (user.valid + '' == 1) {
-                $("#updateValidID").attr("value", 1);
-            } else {
-                $('#updateValidID').attr('value', 0);
-            }
-
-            var btnAdd = $('#saveAdd');
-            if (btnAdd == null) {
-                alert("not found");
-            } else {
-                btnAdd.on('click', function () {
-                    $('#updateUserModalID').modal('hide');
-                    var form = $('#userUpdateFormID');
-                    $.ajax({
-                        type: "POST",
-                        url: "${IP}/user?type=update",
-                        data: form.serialize(),
-                        dataType: "html",
-                        success: function (data) {
-                            $('#modalResultTextID').empty(); //清空上一次追加的内容
-                            if (data == "success") {
-                                //向提示框中插入数据
-                                $('#modalResultTextID').append("修改成功！正在为你跳转");
-                                $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                                //2秒后跳转到主界面
-                                setTimeout(goUserList, 2000);
-                            } else if (data == "adminError") {
-                                $('#modalResultTextID').append("对不起！你没有权限进行修改！");
-                                $('#modalFooterId').css({display: 'none'});
-                            }
-                            $('#userListModalID').modal({
-                                keyboard: true
-                            });
-                        }
-                    });
-                    $('#userListModalID').modal('hide');
-                });
-            }
-        }
-
-        function goUserList() {
-            window.location.href = '${pageContext.request.contextPath}/user?type=list'
-        }
-
-        function userDelete(userId) {
-
-            var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
-                    + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
-                    + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
-                    + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
-                    + '<div class="alert alert-warning">确认要删除吗？删除之后无法恢复哦！</div></div><div class="modal-footer">'
-                    + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
-                    + '<button type="button" class="btn btn-success" id="deleteOK">删除</button></div></div>'
-                    + '</div></div>');
-
-            confirmDeleteDialog.modal({
-                keyboard: false
-            }).on({
-                'hidden.bs.modal': function () {
-                    $(this).remove();
-                }
-            });
-
-            var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
-            deleteConfirm.on('click', function () {
-                confirmDeleteDialog.modal('hide'); //隐藏dialog
-                $.ajax({
-                    type: "POST",
-                    url: "${IP}/user?type=delete",
-                    data: {
-                        id: userId,
-                    },
-                    dataType: "html",
-                    success: function (data) {
-                        $('#modalResultTextID').empty(); //清空上一次追加的内容
-                        if (data == "success") {
-                            //向提示框中插入数据
-                            $('#modalResultTextID').append("删除成功！正在为你跳转");
-                            $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                            //2秒后跳转到主界面
-                            setTimeout(goUserList, 2000);
-                        } else if (data == "adminError") {
-                            $('#modalResultTextID').append("对不起！你没有权限进行修改！");
-                            $('#modalFooterId').css({display: 'none'});
-                        }
-                        $('#userListModalID').modal({
-                            keyboard: true
-                        });
-                    }
-                });
-            });
-        }
-
-    </script>
 </head>
 <body>
 
@@ -373,6 +255,120 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/admin/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/admin/js/modal-operate.js"/>"></script>
-<%--<script src="/admin/js/jquery-form.js"></script>--%>
+<script type="text/javascript">
+
+    function userUpdate(element) {
+
+        var parentTr = element.parentNode.parentNode;
+
+        function UserInfo() {
+            this.id = parentTr.cells[0].innerHTML.trim(""); //出发
+            this.username = parentTr.cells[1].innerHTML.trim(""); //出发
+            this.valid = parentTr.cells[2].innerHTML.trim("");//到达
+        }
+
+        user = new UserInfo();
+        $('#updateUserModalID').modal({
+            keyboard: true
+        });
+
+        //为修改框modal中的设置默认的值
+        $('#updateIdID').attr('value', user.id);
+        $('#updateUsernameID').attr('value', user.username);
+        //设置flightType的select中的值
+        if (user.valid + '' == 1) {
+            $("#updateValidID").attr("value", 1);
+        } else {
+            $('#updateValidID').attr('value', 0);
+        }
+
+        var btnAdd = $('#saveAdd');
+        if (btnAdd == null) {
+            alert("not found");
+        } else {
+            btnAdd.on('click', function () {
+                $('#updateUserModalID').modal('hide');
+                var form = $('#userUpdateFormID');
+                $.ajax({
+                    type: "POST",
+                    url: "${IP}/user?type=update",
+                    data: form.serialize(),
+                    dataType: "html",
+                    success: function (data) {
+                        $('#modalResultTextID').empty(); //清空上一次追加的内容
+                        if (data == "success") {
+                            //向提示框中插入数据
+                            $('#modalResultTextID').append("修改成功！正在为你跳转");
+                            $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                            //2秒后跳转到主界面
+                            setTimeout(goUserList, 2000);
+                        } else if (data == "adminError") {
+                            $('#modalResultTextID').append("对不起！你没有权限进行修改！");
+                            $('#modalFooterId').css({display: 'none'});
+                        }
+                        $('#userListModalID').modal({
+                            keyboard: true
+                        });
+                    }
+                });
+                $('#userListModalID').modal('hide');
+            });
+        }
+    }
+
+    function goUserList() {
+        window.location.href = '${pageContext.request.contextPath}/user?type=list'
+    }
+
+    function userDelete(userId) {
+
+        var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
+                + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
+                + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
+                + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
+                + '<div class="alert alert-warning">确认要删除吗？删除之后无法恢复哦！</div></div><div class="modal-footer">'
+                + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
+                + '<button type="button" class="btn btn-success" id="deleteOK">删除</button></div></div>'
+                + '</div></div>');
+
+        confirmDeleteDialog.modal({
+            keyboard: false
+        }).on({
+            'hidden.bs.modal': function () {
+                $(this).remove();
+            }
+        });
+
+        var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
+        deleteConfirm.on('click', function () {
+            confirmDeleteDialog.modal('hide'); //隐藏dialog
+            $.ajax({
+                type: "POST",
+                url: "${IP}/user?type=delete",
+                data: {
+                    id: userId,
+                },
+                dataType: "html",
+                success: function (data) {
+                    $('#modalResultTextID').empty(); //清空上一次追加的内容
+                    if (data == "success") {
+                        //向提示框中插入数据
+                        $('#modalResultTextID').append("删除成功！正在为你跳转");
+                        $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                        //2秒后跳转到主界面
+                        setTimeout(goUserList, 2000);
+                    } else if (data == "adminError") {
+                        $('#modalResultTextID').append("对不起！你没有权限进行修改！");
+                        $('#modalFooterId').css({display: 'none'});
+                    }
+                    $('#userListModalID').modal({
+                        keyboard: true
+                    });
+                }
+            });
+        });
+    }
+
+</script>
 </body>
 </html>

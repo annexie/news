@@ -8,12 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content=""/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
+
     <!-- Bootstrap Core CSS -->
     <link href="/admin/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
     <!-- Custom CSS -->
@@ -31,9 +26,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/admin/js/metisMenu.min.js"></script>
     <script src="/admin/js/custom.js"></script>
-    <!-- Graph JavaScript -->
-    <script src="/admin/js/d3.v3.js"></script>
-    <script src="/admin/js/rickshaw.js"></script>
+
 </head>
 <body>
 <div id="wrapper">

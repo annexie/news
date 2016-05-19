@@ -27,105 +27,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<c:url value="/admin/js/metisMenu.min.js"/>"></script>
     <script src="<c:url value="/admin/js/custom.js"/>"></script>
-    <!-- Graph JavaScript -->
-    <script src="<c:url value="/admin/js/d3.v3.js"/>"></script>
-    <script src="<c:url value="/admin/js/rickshaw.js"/>"></script>
 
-    <script type="text/javascript">
-
-        function goAdminList() {
-            window.location.href = '${pageContext.request.contextPath}/admin?type=list';
-        }
-
-        function adminUpdate(element) {
-
-            var parentTr = element.parentNode.parentNode;
-
-            function AdminInfo() {
-                this.id = parentTr.cells[0].innerHTML.trim("");
-                this.adminName = parentTr.cells[1].innerHTML.trim("");
-                this.adminRole = parentTr.cells[2].innerHTML.trim("");
-            }
-
-            adminInfo = new AdminInfo();
-            $('#updateAdminModalID').modal({
-                keyboard: true
-            });
-
-            //为修改框modal中的设置默认的值
-            $('#updateIdID').attr('value', adminInfo.id);
-            $('#updateAdminNameID').attr('value', adminInfo.adminName);
-            //设置flightType的select中的值
-            if (adminInfo.adminRole == '（2）高级管理员') {
-                $('#updateAdminRoleID').attr('value', 2);
-            } else if (adminInfo.adminRole) {
-                $('#updateAdminRoleID').attr('value', 3);
-            }
-
-            var btnAdd = $('#saveAdd');
-            if (btnAdd == null) {
-                alert("not found");
-            } else {
-                btnAdd.on('click', function () {
-                    var form = $('#adminUpdateFormID');
-                    modalUpdateRequest('${pageContext.request.contextPath}/admin?type=update', form)
-                    $('#updateAdminModalID').modal('hide');
-                    showModal("更新管理员成功！2秒后自动跳转到列表界面!")
-                    setTimeout(goAdminList, 2000);
-                });
-            }
-        }
-
-        function adminDelete(element) {
-
-            var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
-                    + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
-                    + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
-                    + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
-                    + '<div class="alert alert-warning">确认要删除吗？删除之后无法恢复哦！</div></div><div class="modal-footer">'
-                    + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
-                    + '<button type="button" class="btn btn-success" id="deleteOK">删除</button></div></div>'
-                    + '</div></div>');
-
-            confirmDeleteDialog.modal({
-                keyboard: false
-            }).on({
-                'hidden.bs.modal': function () {
-                    $(this).remove();
-                }
-            });
-
-            var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
-            deleteConfirm.on('click', function () {
-                confirmDeleteDialog.modal('hide'); //隐藏dialog
-                //需要回调的函数
-                var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
-                var url = '${pageContext.request.contextPath}/admin?type=delete&id=' + idToDel;
-
-                $.get(url, function (result) {
-                }, "json");
-                showModal("删除管理员成功！2秒后自动跳转到列表界面!")
-                setTimeout(goAdminList, 2000);
-            });
-        }
-
-        /**
-         * 弹出modal,并显示信息
-         * @param msg 需要展示的信息
-         */
-        function showModal(msg) {
-
-            $('#modalResultTextID').empty(); //清空上一次追加的内容
-
-            $('#modalResultTextID').append(msg);
-            $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-
-            $('#modal-result').modal({
-                keyboard: true
-            });
-        }
-
-    </script>
 </head>
 <body>
 
@@ -317,6 +219,101 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/admin/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/admin/js/modal-operate.js"/>"></script>
-<%--<script src="/admin/js/jquery-form.js"></script>--%>
+
+<script type="text/javascript">
+
+    function goAdminList() {
+        window.location.href = '${pageContext.request.contextPath}/admin?type=list';
+    }
+
+    function adminUpdate(element) {
+
+        var parentTr = element.parentNode.parentNode;
+
+        function AdminInfo() {
+            this.id = parentTr.cells[0].innerHTML.trim("");
+            this.adminName = parentTr.cells[1].innerHTML.trim("");
+            this.adminRole = parentTr.cells[2].innerHTML.trim("");
+        }
+
+        adminInfo = new AdminInfo();
+        $('#updateAdminModalID').modal({
+            keyboard: true
+        });
+
+        //为修改框modal中的设置默认的值
+        $('#updateIdID').attr('value', adminInfo.id);
+        $('#updateAdminNameID').attr('value', adminInfo.adminName);
+        //设置flightType的select中的值
+        if (adminInfo.adminRole == '（2）高级管理员') {
+            $('#updateAdminRoleID').attr('value', 2);
+        } else if (adminInfo.adminRole) {
+            $('#updateAdminRoleID').attr('value', 3);
+        }
+
+        var btnAdd = $('#saveAdd');
+        if (btnAdd == null) {
+            alert("not found");
+        } else {
+            btnAdd.on('click', function () {
+                var form = $('#adminUpdateFormID');
+                modalUpdateRequest('${pageContext.request.contextPath}/admin?type=update', form)
+                $('#updateAdminModalID').modal('hide');
+                showModal("更新管理员成功！2秒后自动跳转到列表界面!")
+                setTimeout(goAdminList, 2000);
+            });
+        }
+    }
+
+    function adminDelete(element) {
+
+        var confirmDeleteDialog = $('<div class="modal fade" style="width: 40%; margin: auto;margin-top: 10%;"><div class="modal-dialog" style="width: 100%; margin: auto">'
+                + '<div class="modal-content"><div class="modal-header"><button type="button" class="close" '
+                + 'data-dismiss="modal" aria-hidden="true">&times;</button>'
+                + '<h4 class="modal-title">确认删除</h4></div><div class="modal-body">'
+                + '<div class="alert alert-warning">确认要删除吗？删除之后无法恢复哦！</div></div><div class="modal-footer">'
+                + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
+                + '<button type="button" class="btn btn-success" id="deleteOK">删除</button></div></div>'
+                + '</div></div>');
+
+        confirmDeleteDialog.modal({
+            keyboard: false
+        }).on({
+            'hidden.bs.modal': function () {
+                $(this).remove();
+            }
+        });
+
+        var deleteConfirm = confirmDeleteDialog.find('#deleteOK');
+        deleteConfirm.on('click', function () {
+            confirmDeleteDialog.modal('hide'); //隐藏dialog
+            //需要回调的函数
+            var idToDel = element.parentNode.parentNode.cells[0].innerHTML.trim("")
+            var url = '${pageContext.request.contextPath}/admin?type=delete&id=' + idToDel;
+
+            $.get(url, function (result) {
+            }, "json");
+            showModal("删除管理员成功！2秒后自动跳转到列表界面!")
+            setTimeout(goAdminList, 2000);
+        });
+    }
+
+    /**
+     * 弹出modal,并显示信息
+     * @param msg 需要展示的信息
+     */
+    function showModal(msg) {
+
+        $('#modalResultTextID').empty(); //清空上一次追加的内容
+
+        $('#modalResultTextID').append(msg);
+        $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+
+        $('#modal-result').modal({
+            keyboard: true
+        });
+    }
+
+</script>
 </body>
 </html>
