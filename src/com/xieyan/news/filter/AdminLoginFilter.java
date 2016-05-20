@@ -35,7 +35,7 @@ public class AdminLoginFilter implements Filter {
             String requstUrl = request.getServletPath(); //获取请求的url地址
             String type = request.getParameter("type"); //获取请求的方法
             if (!(AdminConstant.BACK_ADMIN_LOGIN.equals(requstUrl) && type.equals("login"))) { //不是后台管理登陆的请求,就是没有真正的登录
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/admin-login.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/jsp/admin-login.jsp");//页面重定向
                 try {
                     dispatcher.forward(request, response);
                     return;

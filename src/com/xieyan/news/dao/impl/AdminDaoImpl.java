@@ -19,13 +19,9 @@ public class AdminDaoImpl implements AdminDao {
     public Admin select(Admin admin) throws SQLException {
         String sql = "select * from admin where adminName = ? and adminPassword = ?";
         QueryRunner qr = new TxQueryRunner();
-
-//        QueryRunner qr = new QueryRunner();
-//        Connection connection = DBUtil.getConn();
-//        qr.update(connection,sql);
-
+        
         Admin result = qr.query(sql, new BeanHandler<Admin>(Admin.class), admin.getAdminName(), admin.getAdminPassword());
-        System.out.println(result.toString());
+        System.out.println(result.toString());//转换成字符串打印出来
         if (null != result) {
             return result;
         } else {

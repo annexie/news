@@ -9,8 +9,3 @@
 
 <%--用户登录的缓存--%>
 <%@ page import="com.xieyan.news.bean.Admin" %>
-<%
-    Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
-    if (null == admin) {
-    }
-%>

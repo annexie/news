@@ -38,7 +38,7 @@ public class AdminServlet extends BaseServlet {
         String adminPassword = req.getParameter("adminPassword");
 
         Admin admin = new Admin(adminName, adminPassword);
-        Admin result = null;
+        Admin result = null;//用于保存根据用户名和密码查询出来的用户
         try {
             result = adminController.login(admin);
         } catch (SQLException e) {

@@ -35,7 +35,7 @@ public class VerifyCodeServlet extends BaseServlet {
     public void checkCode(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();//后台向前台打印输出的对象
 
         //获取缓存中存放的真实的验证码
         String realVerifyCode = (String) request.getSession().getAttribute("vCode");
