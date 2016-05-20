@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * 判断管理员是否登录的过滤器
- * Created by xuliugen on 16/5/19.
+ * Created by xieyan on 16/5/19.
  */
 public class AdminLoginFilter implements Filter {
 
