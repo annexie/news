@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<c:url value='/news/css/jquery.mobile.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/news/css/theme/theme.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/news/css/styles.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/news/css/banner.css'/>"/>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/mobileinit.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
@@ -353,38 +354,21 @@
                 </nav>
 
                 <%--轮播图 开始--%>
-                <div id='slide' class='swipe'>
-                    <div class='swipe-wrap' id="banner-content">
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/83.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/84.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/85.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/86.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/87.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/83.png'/>"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-lable">
-                    <span id="banner-title">apicloud重新定义移动应用开发</span>
+                <div id="main" class="relative">
 
-                    <div id="pointer">
-                        <a class="active"></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                        <a class=""></a>
+                    <div id="slide" class="slide_wrap">
+                        <ul class="slide_imglist conbox">
+                            <li class="i1"><img alt="" src="/news/image/88.png"></li>
+                            <li class="i2"><img alt="" src="/news/image/85.png"></li>
+                            <li class="i3"><img alt="" src="/news/image/86.png"></li>
+                            <li class="i4"><img alt="" src="/news/image/87.png"></li>
+                        </ul>
+                        <div class="switcher">
+                            <a href="#" class="cur"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                        </div>
                     </div>
                 </div>
                 <%--轮播图 结束--%>
@@ -415,9 +399,11 @@
                                 <img style="width: 80px;height: 60px" src="<%=news.getImageUrl()%>"/>
                             </div>
                             <div class="listView-text">
-                                <p class="listView-text-title" style="font-weight: 500;font-size: 13px"><%=news.getNewsTitle()%>
+                                <p class="listView-text-title"
+                                   style="font-weight: 500;font-size: 13px"><%=news.getNewsTitle()%>
                                 </p>
-                                <span class="listView-text-tips" style="font-weight: 500;font-size: 13px"><%=news.getDate()%></span>
+                                    <span class="listView-text-tips"
+                                          style="font-weight: 500;font-size: 13px"><%=news.getDate()%></span>
                             </div>
                         </a>
                     </li>
@@ -441,7 +427,8 @@
                     <%
                     } else {
                     %>
-                    <button type="button" onclick="loadMore('<%=newsList == null?1:newsList.get(0).getNewsKind()%>')">
+                    <button type="button"
+                            onclick="loadMore('<%=newsList == null?1:newsList.get(0).getNewsKind()%>')">
                         下一页
                     </button>
                     <%
@@ -456,5 +443,38 @@
 <script type="text/javascript" src="<c:url value='/news/script/api.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/iscroll.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/swipe.js'/>"></script>
+
+<%--轮播图使用的js--%>
+<script src="/news/js/jquery.Xslider.js"></script>
+<script>
+
+    // 焦点图片淡隐淡现
+    $("#slide").Xslider({
+        affect: 'fade',
+        ctag: 'li', //内容标签 默认为<a>
+        speed: 800, //动画速度
+        space: 4000, //时间间隔
+        auto: true, //自动滚动
+        trigger: 'mouseover', //触发事件 注意用mouseover代替hover
+        conbox: '.conbox', //内容容器id或class
+        switcher: '.switcher', //切换触发器id或class
+        stag: 'a', //切换器标签 默认为a
+        current: 'cur', //当前切换器样式名称
+        rand: false //是否随机指定默认幻灯图片
+    });
+
+
+    //统计代码
+    $(document).delegate('a', 'click', function (ev) {
+
+        var target = ev.target, $target = $(target);
+        var action, info, url;
+
+        info = encodeURIComponent($target.attr('title'));
+        url = encodeURIComponent($target.attr('href'));
+
+    });
+
+</script>
 </body>
 </html>
