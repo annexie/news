@@ -20,7 +20,7 @@
     <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/fastclick.js'/>"></script>
     <link href="<c:url value='/news/css/bootstrap.min.css'/>" rel="stylesheet"/>
-    <script src="/admin/assets/js/bootstrap.min.js"></script>
+    <script src="<c:url value='/news/js/bootstrap.min.js'/>"></script>
 
     <style>
 
@@ -221,7 +221,7 @@
                 </div>
 
                 <%--新闻的详细信息展示div 开始--%>
-                <div style="height: auto; min-height: 280px; margin: auto; width: 90%;">
+                <div style="height: auto; margin: auto; width: 90%;">
                     <%
                         News news = (News) request.getAttribute("newsDetail");
                         if (null == news) {
@@ -232,8 +232,9 @@
                     <%
                     } else {
                     %>
-                    <div style="width: 100%;height: 180px; margin: auto; line-height: 40px; text-align: center">
-                        <div style="width: 320px;height: 30px;  line-height: 20px; text-align: center" id="newTitleID">
+                    <div style="width: 100%;height: 160px; margin: auto; line-height: 40px; text-align: center">
+                        <div style="width: 320px;height: 30px;  margin-top: 10px; line-height: 30px; text-align: center"
+                             id="newTitleID">
                             <%=news.getNewsTitle()%>
                         </div>
                         <div style="width: 320px;height: 30px; ">新闻作者：<%=news.getNewsAuthor()%>
@@ -241,16 +242,16 @@
                         </div>
                     </div>
 
-                    <div style="width: 90%;height: auto; margin: auto;">
+                    <div style="width: 90%;height: auto; margin: auto; margin-bottom: 20px;">
                         <%=news.getNewsText()%>
                     </div>
                     <input type="hidden" value="<%=news.getId()%>" id="newsIdHiddenID"/>
                     <input type="hidden" value="<%=news.getNewsTitle()%>" id="newsTitleHiddenID"/>
 
                     <%--新闻的详细信息展示div 结束--%>
-                    <div style="margin: auto; width: 80%;">
-                        <button class="btn btn-green " onclick="collection()">收藏</button>
-                        <button class="btn  btn-green " onclick="newBack(<%=news.getNewsKind()%>)">返回</button>
+                    <div style="margin: auto; height: 100px; width: 80%;">
+                        <button class="btn btn-success" onclick="collection()">收藏</button>
+                        <button class="btn btn-info" onclick="newBack(<%=news.getNewsKind()%>)">返回</button>
                     </div>
                     <%
                         }

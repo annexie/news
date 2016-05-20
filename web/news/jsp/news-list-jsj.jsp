@@ -422,9 +422,9 @@
                         <a class="listView-item newsLi" onclick="showNewsDetail('<%=news.getId()%>')">
                             <div class="listView-img"><img style="width: 80px;height: 60px" src="<%=news.getImageUrl()%>"/></div>
                             <div class="listView-text">
-                                <p class="listView-text-title"><%=news.getNewsTitle()%></p>
-                                <%--<p class="listView-text-subtitle"><%=news.getNewsText().substring(0, 8)%></p>--%>
-                                <span class="listView-text-tips"><%=news.getDate()%></span>
+                                <p class="listView-text-title" style="font-weight: 500;font-size: 13px"><%=news.getNewsTitle()%>
+                                </p>
+                                <span class="listView-text-tips" style="font-weight: 500;font-size: 13px"><%=news.getDate()%></span>
                             </div>
                         </a>
                     </li>
