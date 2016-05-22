@@ -109,7 +109,7 @@
                             </thead>
                             <tbody>
                             <%
-                                List<User> user = (List<User>) request.getAttribute("userList");
+                                List<User> user = (List<User>) request.getAttribute("userList");//前台获取后台返回的数据
                                 for (User u : user) {
                             %>
                             <tr>

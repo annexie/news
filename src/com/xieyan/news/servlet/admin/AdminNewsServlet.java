@@ -49,7 +49,7 @@ public class AdminNewsServlet extends BaseServlet {
 
         //去进行分页查询
         List<News> resultList = newsController.pageByCondition(newsTitle, newsAuthor, newsKind, Integer.parseInt(cur));
-        request.setAttribute("newsList", resultList);
+        request.setAttribute("newsList", resultList);//后台向前台返回数据
 
         return "/admin/jsp/news-list.jsp";
     }
@@ -104,7 +104,7 @@ public class AdminNewsServlet extends BaseServlet {
         //判断管理员是否登录，如果没有登录则会跳转到登陆界面
 //        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
-        response.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");//设置后台向前台传输数据的编码方式
         PrintWriter out = response.getWriter();
         Admin admin = (Admin) request.getSession().getAttribute("ADMIN_LOGIN");
         int role = admin.getAdminRole();

@@ -113,10 +113,17 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/admin/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/admin/js/modal-operate.js"/>"></script>
+
+<%--使用百度富文本编辑器所需要的JS引用--%>
 <script src="../ueditor/ueditor.config.js"></script>
 <script src="../ueditor/ueditor.all.min.js"></script>
 <script src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+
 <script type="text/javascript">
+
+    /**
+     * 使用百度提供的在线富文本编辑器UEditor的初始化js代码
+     */
     $(function () {
         UE.getEditor('editor');
 

@@ -12,9 +12,9 @@ p {
 }
 
 html, body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Î¢ÈíÑÅºÚ, "Microsoft YaHei", ËÎÌå, sans-serif;
     font-size: 100%;
-    background: #000;
+    background: #28292e; /*²à±ßµ¼º½À¸µÄ±³¾°ÑÕÉ«*/
     overflow-x: hidden;
 }
 
@@ -258,7 +258,7 @@ body a {
 }
 
 .navbar-default.sidebar {
-    background-color: #000;
+    background-color: #28292e;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -3071,8 +3071,8 @@ ul.new li.new_right {
     }
 
     .navbar-default .navbar-toggle {
-        border-color: #000;
-        background-color: #000 !important;
+        border-color: #28292e;
+        background-color: #28292e !important;
     }
 
     .navbar-default .navbar-toggle .icon-bar {
