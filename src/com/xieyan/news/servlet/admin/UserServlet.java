@@ -41,11 +41,11 @@ public class UserServlet extends BaseServlet {
         request.setAttribute("totalPage", PageUtil.getPageCount(userCountList.size()));
 
         //选择当前页的数据，返回到前台
-        String cur = (String) request.getParameter("cur");
-        if (null == cur) { //在第一次访问链接的时候，这个参数是没有的，默认设置为1
-            cur = "1";
+        String currentPage = (String) request.getParameter("cur");
+        if (null == currentPage) { //在第一次访问链接的时候，这个参数是没有的，默认设置为1
+            currentPage = "1";
         }
-        List<User> userList = userControl.pageByCondition(username, valid, Integer.parseInt(cur));
+        List<User> userList = userControl.pageByCondition(username, valid, Integer.parseInt(currentPage));
         request.setAttribute("userList", userList);
         return "/admin/jsp/user-list.jsp";
     }

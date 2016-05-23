@@ -273,7 +273,7 @@
                 $.ajax({
                     type: "POST",
                     url: "${ctx}/back/user?type=update",
-                    data: form.serialize(),
+                    data: form.serialize(), //序列化
                     dataType: "html",
                     success: function (data) {
                         $('#modalResultTextID').empty(); //清空上一次追加的内容
