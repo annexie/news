@@ -256,7 +256,7 @@
         /*iscroll*/
 
         .nav_active {
-            color: #6ab494 !important;
+            color: #dd3237 !important;
             font-size: 16px !important;
         }
 
@@ -350,7 +350,6 @@
                             </ul>
                         </div>
                     </div>
-                    <a class="arrow_down" onclick="" tapmode=""></a>
                 </nav>
 
                 <%--轮播图 开始--%>
@@ -444,7 +443,7 @@
 <script type="text/javascript" src="<c:url value='/news/script/iscroll.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/swipe.js'/>"></script>
 
-<%--轮播图使用的js--%>
+<%--轮播图使用的js 开始--%>
 <script src="/news/js/jquery.Xslider.js"></script>
 <script>
 
@@ -476,5 +475,6 @@
     });
 
 </script>
+<%--轮播图使用的js 结束--%>
 </body>
 </html>

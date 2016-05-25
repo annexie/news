@@ -206,7 +206,7 @@
 </div>
 
 <script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
-<script src="/admin/assets/js/bootstrap.min.js"></script>
+<script src="/news/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     function login() {
         $.ajax({

@@ -255,7 +255,7 @@
         /*iscroll*/
 
         .nav_active {
-            color: #6ab494 !important;
+            color: #dd3237 !important;
             font-size: 16px !important;
         }
 
@@ -354,7 +354,6 @@
                             </ul>
                         </div>
                     </div>
-                    <a class="arrow_down" onclick="" tapmode=""></a>
                 </nav>
                 <%--轮播图 开始--%>
                 <div id='slide' class='swipe'>

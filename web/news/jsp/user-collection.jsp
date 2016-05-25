@@ -255,18 +255,7 @@
         <span class="subtitle"><%=news.getNewsTitle()%></span>
         <span class="subtitle" style="width: 180px;border: 1px solid  #dddddd;"><%=news.getCollectionDate()%></span>
     </li>
-    <%--<li tapmode="">--%>
-    <%--<span class="a2 tag">活动</span>--%>
-    <%--<span class="subtitle">办证：挖掘机技术专业证</span>--%>
-    <%--</li>--%>
-    <%--<li tapmode="">--%>
-    <%--<span class="a3 tag">应用</span>--%>
-    <%--<span class="subtitle">挖金币技术哪里强</span>--%>
-    <%--</li>--%>
-    <%--<li tapmode="">--%>
-    <%--<span class="a4 tag">游戏</span>--%>
-    <%--<span class="subtitle">该升级了 带着礼包奔跑吧</span>--%>
-    <%--</li>--%>
+
     <%
         }
     %>

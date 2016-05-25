@@ -212,7 +212,7 @@
             <div id="scrollerIndex" class="scroller">
                 <div id="pullDown" style="display: none">
                 </div>
-                <header style="margin-top: 40px;">
+                <header style="margin-top: 25px;">
                     <div class="header detail-header">
                         <a class="user" tapmode="" href="javascript:onClickUserCenter()"></a>
                     </div>
