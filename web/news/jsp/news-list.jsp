@@ -353,23 +353,7 @@
                 </nav>
 
                 <%--轮播图 开始--%>
-                <div id="main" class="relative">
-
-                    <div id="slide" class="slide_wrap">
-                        <ul class="slide_imglist conbox">
-                            <li class="i1"><img alt="" src="/news/image/88.png"></li>
-                            <li class="i2"><img alt="" src="/news/image/85.png"></li>
-                            <li class="i3"><img alt="" src="/news/image/86.png"></li>
-                            <li class="i4"><img alt="" src="/news/image/87.png"></li>
-                        </ul>
-                        <div class="switcher">
-                            <a href="#" class="cur"></a>
-                            <a href="#"></a>
-                            <a href="#"></a>
-                            <a href="#"></a>
-                        </div>
-                    </div>
-                </div>
+                <jsp:include page="/news/commons/banner.jsp"/>
                 <%--轮播图 结束--%>
 
                 <%--具体的新闻展示界面 开始--%>
@@ -445,36 +429,7 @@
 
 <%--轮播图使用的js 开始--%>
 <script src="/news/js/jquery.Xslider.js"></script>
-<script>
-
-    // 焦点图片淡隐淡现
-    $("#slide").Xslider({
-        affect: 'fade',
-        ctag: 'li', //内容标签 默认为<a>
-        speed: 800, //动画速度
-        space: 4000, //时间间隔
-        auto: true, //自动滚动
-        trigger: 'mouseover', //触发事件 注意用mouseover代替hover
-        conbox: '.conbox', //内容容器id或class
-        switcher: '.switcher', //切换触发器id或class
-        stag: 'a', //切换器标签 默认为a
-        current: 'cur', //当前切换器样式名称
-        rand: false //是否随机指定默认幻灯图片
-    });
-
-
-    //统计代码
-    $(document).delegate('a', 'click', function (ev) {
-
-        var target = ev.target, $target = $(target);
-        var action, info, url;
-
-        info = encodeURIComponent($target.attr('title'));
-        url = encodeURIComponent($target.attr('href'));
-
-    });
-
-</script>
+<script src="/news/js/banner.js"></script>
 <%--轮播图使用的js 结束--%>
 </body>
 </html>

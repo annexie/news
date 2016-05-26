@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<c:url value='/news/css/theme/theme.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/news/css/styles.css'/>"/>
     <!-- <link rel="stylesheet" href="css/styles-custom.css" /> -->
+    <link rel="stylesheet" href="<c:url value='/news/css/banner.css'/>"/>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/mobileinit.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/news/js/jquery.mobile.min.js'/>"></script>
@@ -356,40 +357,7 @@
                     </div>
                 </nav>
                 <%--轮播图 开始--%>
-                <div id='slide' class='swipe'>
-                    <div class='swipe-wrap' id="banner-content">
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/83.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/84.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/85.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/86.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/87.png'/>"/>
-                        </div>
-                        <div onclick="" tapmode="" data-value="apicloud重新定义移动应用开发">
-                            <img src="<c:url value='/news/image/83.png'/>"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-lable">
-                    <span id="banner-title">apicloud重新定义移动应用开发</span>
-
-                    <div id="pointer">
-                        <a class="active"></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                        <a class=""></a>
-                    </div>
-                </div>
+                <jsp:include page="/news/commons/banner.jsp"/>
                 <%--轮播图 结束--%>
 
                 <%--具体的新闻展示界面 开始--%>
@@ -461,5 +429,10 @@
 <script type="text/javascript" src="<c:url value='/news/script/api.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/iscroll.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/news/script/swipe.js'/>"></script>
+
+<%--轮播图使用的js 开始--%>
+<script src="/news/js/jquery.Xslider.js"></script>
+<script src="/news/js/banner.js"></script>
+<%--轮播图使用的js 结束--%>
 </body>
 </html>
