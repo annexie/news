@@ -202,9 +202,7 @@
             <%
             } else {
             %>
-            <div class="login-header-btn nologin-user" id="user" tapmode="" onclick="toLogin()"></div>
-            <div class="login">立即登录</div>
-            <div class="score">赢积分抢大礼!</div>
+
             <%
                 }
             %>
@@ -213,11 +211,7 @@
     </div>
 </header>
 <ul class="mine">
-    <li class="read" onclick="toSetting()" tapmode="">
-        <span>
-            阅读
-        </span>
-    </li>
+
     <%
         if (null != user) {
     %>
@@ -238,11 +232,7 @@
         }
     %>
 
-    <li class="comment" onclick="toSetting()" tapmode="">
-        <span>
-            跟帖
-        </span>
-    </li>
+
 </ul>
 <ul class="activity">
     <%
@@ -261,33 +251,7 @@
     %>
 
 </ul>
-<ul class="bottom hidden">
-    <li class="plugin">
-        <span>
-            13°/-1°
-        </span>
-    </li>
-    <li class="offline">
-        <span>
-            离线
-        </span>
-    </li>
-    <li class="night">
-        <span>
-            夜间
-        </span>
-    </li>
-    <li class="search">
-        <span>
-            搜索
-        </span>
-    </li>
-    <li class="more">
-        <span>
-            更多
-        </span>
-    </li>
-</ul>
+
 
 
 <!-- 模态框（Modal） -->

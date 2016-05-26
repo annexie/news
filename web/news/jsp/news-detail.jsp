@@ -157,8 +157,7 @@
                         $('#modalResultTextID').append("收藏成功！");
                     } else if (data == "loginError") {
                         $('#modalResultTextID').append("对不起！还没有进行登录！请登录！");
-                        $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                        <%--window.location.href = '<c:url value='${IP}/app/news/jsp/register.jsp'/>';--%>
+                        $('#modalFooterId').css({display: 'block'});
                     } else {
                         $('#modalResultTextID').append("对不起！收藏失败！");
                         $('#modalFooterId').css({display: 'none'});

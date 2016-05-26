@@ -152,9 +152,6 @@ public class NewsServlet extends BaseServlet {
         }
         NewsController newsController = new NewsControllerImpl();
         if (newsKind.equals("3")) {
-
-//            int loadCount = Integer.parseInt(request.getSession().getAttribute("LOAD_COUNT_RW") + "");
-
             int loadCount = 0;
             if (null == request.getSession().getAttribute("LOAD_COUNT_RW")) {
                 loadCount = 5;
@@ -295,15 +292,15 @@ public class NewsServlet extends BaseServlet {
             throws ServletException, IOException {
 
         response.setCharacterEncoding("utf-8");
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();//获取输出对象
 
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        int userId = Integer.parseInt(request.getParameter("userId"));//把字符串类型强转为Int
         NewsController newsController = new NewsControllerImpl();
         User user = (User) request.getSession().getAttribute("CLIENT_USER");
 
         //判断用户是否登录，如果没有登录的话要进行登录,提示用户进行登录之后操作
         if (null == user) {
-            out.write("loginError");
+            out.write("loginError");//后台返回给前台
             return;
         }
 

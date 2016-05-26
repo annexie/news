@@ -210,11 +210,7 @@
     </div>
 </header>
 <ul class="mine">
-    <li class="read" onclick="toSetting()" tapmode="">
-        <span>
-            阅读
-        </span>
-    </li>
+
     <%
         if (null != user) {
     %>
@@ -236,57 +232,8 @@
         }
     %>
 
-    <li class="comment" onclick="toSetting()" tapmode="">
-        <span>
-            跟帖
-        </span>
-    </li>
 </ul>
-<ul class="activity">
-    <li onclick="toSetting()" tapmode="">
-        <span class="a1 tag">商城</span>
-        <span class="subtitle">敬孝心,带着爸妈免费体检</span>
-    </li>
-    <li onclick="toSetting()" tapmode="">
-        <span class="a2 tag">活动</span>
-        <span class="subtitle">办证：挖掘机技术专业证</span>
-    </li>
-    <li onclick="toSetting()" tapmode="">
-        <span class="a3 tag">应用</span>
-        <span class="subtitle">挖金币技术哪里强</span>
-    </li>
-    <li onclick="toSetting()" tapmode="">
-        <span class="a4 tag">游戏</span>
-        <span class="subtitle">该升级了 带着礼包奔跑吧</span>
-    </li>
-</ul>
-<ul class="bottom hidden">
-    <li class="plugin">
-        <span>
-            13°/-1°
-        </span>
-    </li>
-    <li class="offline">
-        <span>
-            离线
-        </span>
-    </li>
-    <li class="night">
-        <span>
-            夜间
-        </span>
-    </li>
-    <li class="search">
-        <span>
-            搜索
-        </span>
-    </li>
-    <li class="more">
-        <span>
-            更多
-        </span>
-    </li>
-</ul>
+
 <script src="../script/zepto.min.js"></script>
 <script>
     /*setTimeout(function () {
