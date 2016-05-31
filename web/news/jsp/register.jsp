@@ -29,7 +29,7 @@
 
         .detail-header {
             border-bottom: 1px solid #CDCDCD;
-            background-color: #DD3237;
+            background-color: #454545;
         }
 
         .back {
@@ -177,7 +177,7 @@
 
     /**
      * 用户注册请求
-     * dataType这里的设置为html格式的可以直接接受；来自servlet返回的数据
+     * dataType这里的设置为html格式的可以直接接收；来自servlet返回的数据
      */
     function register() {
         $.ajax({

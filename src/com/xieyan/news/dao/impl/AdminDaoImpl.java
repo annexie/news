@@ -27,26 +27,6 @@ public class AdminDaoImpl implements AdminDao {
         } else {
             return null;
         }
-
-//        Connection connection = DBUtil.getConn();
-//        String sql = "select * from admin where adminName = ? and adminPassword = ?";
-//        PreparedStatement preparedStatement = null;
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, admin.getAdminName() + "");
-//            preparedStatement.setString(2, admin.getAdminPassword() + "");
-//            ResultSet rs = preparedStatement.executeQuery();
-//            if (rs.next()) {
-//                return new Admin(rs.getString("adminName"), null, rs.getInt("adminRole"));
-//            } else {
-//                return null;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return null;
     }
 
     @Override
@@ -60,27 +40,6 @@ public class AdminDaoImpl implements AdminDao {
         } else {
             return null;
         }
-//        Connection connection = DBUtil.getConn();
-//        String sql = getSqlUrl(adminName, adminRole);
-//        PreparedStatement preparedStatement = null;
-//        List<Admin> admins = new ArrayList<Admin>();
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                Admin admin = new Admin();
-//                admin.setAdminName(rs.getString("adminName"));
-//                admin.setAdminRole(rs.getInt("adminRole"));
-//                admin.setId(rs.getLong("id"));
-//                admins.add(admin);
-//            }
-//            return admins;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return null;
     }
 
     @Override
@@ -100,23 +59,6 @@ public class AdminDaoImpl implements AdminDao {
         } else {
             return 0;
         }
-//        Connection connection = DBUtil.getConn();
-//        PreparedStatement ps = null;
-//        String sql = "insert into admin(`adminName`,`adminPassword`,`adminRole`) values (?,?,?)";
-//        try {
-//            ps = connection.prepareStatement(sql);
-//            ps.setString(1, admin.getAdminName());
-//            ps.setString(2, admin.getAdminPassword());
-//            ps.setInt(3, admin.getAdminRole());
-//            int isOk = ps.executeUpdate();
-//            return isOk > 0 ? 1 : 0;
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, null, ps, null);
-//        }
-//        return 0;
     }
 
     @Override
@@ -127,23 +69,6 @@ public class AdminDaoImpl implements AdminDao {
         int isOk = qr.update(sql, params);//执行
         System.out.println(isOk);
         return isOk == 1 ? true : false;
-//        Connection connection = DBUtil.getConn();
-//        String sql = "delete from admin where id = ?";
-//        PreparedStatement preparedStatement = null;
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1, id);
-//            boolean flag = preparedStatement.execute();
-//            if (flag) {
-//                return true;
-//            }
-//            return false;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return false;
     }
 
     @Override

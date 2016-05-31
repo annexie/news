@@ -20,31 +20,6 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public boolean addNews(News news) {
-//        String sql = "insert into news_list(`newsTitle`, `newsAuthor`, `newsText`, `newsUrl`, `originType`,`date`,`updateDate`, `valid`, `imageUrl`, `newsKind`) values (?,?,?,?,?,?,?,?,?,?)";
-//        QueryRunner qr = new TxQueryRunner();
-//        int isOk = 0;
-//        try {
-//            //开启事务
-//            JdbcUtils.beginTransaction();
-//
-//            //执行的参数
-//            Object[] params = {new BeanHandler<News>(News.class), news.getNewsTitle(), news.getNewsAuthor(), news.getNewsText(),
-//                    news.getNewsUrl(), news.getOriginType(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()),
-//                    news.getValid(), news.getImageUrl(), new Date(System.currentTimeMillis()), news.getNewsKind()};
-//
-//            isOk = qr.update(sql, params);
-//            if (isOk > 0) {
-//
-//            }
-//
-//            JdbcUtils.commitTransaction();//提交事务
-//        } catch (SQLException e) {
-//            try {
-//                JdbcUtils.rollbackTransaction();//回滚事务
-//            } catch (SQLException e1) {
-//            }
-//            e.printStackTrace();
-//        }
 
         Connection connection = null;
         try {
@@ -312,7 +287,7 @@ public class NewsDaoImpl implements NewsDao {
             return news == null ? null : news;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+    }
         return null;
     }
 

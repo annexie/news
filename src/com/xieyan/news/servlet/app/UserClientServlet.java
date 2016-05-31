@@ -45,7 +45,7 @@ public class UserClientServlet extends BaseServlet {
             user.setValid("1");
             UserController userController = new UserControllerImpl();
             if (userController.register(user)) {
-                out.write("success");
+                out.write("success");//向前端写数据
             } else {
                 out.write("failed");
             }

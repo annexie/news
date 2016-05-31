@@ -13,7 +13,6 @@ import java.sql.SQLException;
  */
 public class JdbcUtils {
 
-    // 饿汉式
     private static DataSource ds = new ComboPooledDataSource();
 
     /**

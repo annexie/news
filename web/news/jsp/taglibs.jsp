@@ -10,5 +10,5 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <%--进行统一的设置服务器端IP地址--%>
-<c:set value="http://192.168.31.229:8080" var="IP"/>
+<c:set value="http://192.168.1.100:8080" var="IP"/>
 
