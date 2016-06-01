@@ -23,7 +23,7 @@
 
         .detail-header {
             border-bottom: 1px solid #CDCDCD;
-            background-color: #454545;
+            background-color: #DD3237;
         }
 
         .back {

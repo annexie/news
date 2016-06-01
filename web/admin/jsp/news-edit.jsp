@@ -43,7 +43,7 @@
                 <div class="col-md-12 span_3">
                     <!-- 显示具体的界面信息 start-->
                     <div class="bs-example1" style="padding: 20px;">
-                        <form id="addArticleForm" enctype="multipart/form-data">
+                        <form id="addArticleForm"  action="${ctx}/back/newsedit?type=add" enctype="multipart/form-data">
                             <input type="hidden" name="type" value="add">
                             <table>
                                 <tr>
@@ -110,6 +110,8 @@
 <!--显示成功、失败的modal-->
 <%@include file="/admin/commons/modal-custom.jsp" %>
 
+<script src="../js/jquery-form.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/admin/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/admin/js/modal-operate.js"/>"></script>
@@ -118,6 +120,7 @@
 <script src="../ueditor/ueditor.config.js"></script>
 <script src="../ueditor/ueditor.all.min.js"></script>
 <script src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="../js/jquery-form.js"></script>
 
 <script type="text/javascript">
 
@@ -131,29 +134,20 @@
         UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
         UE.Editor.prototype.getActionUrl = function (action) {
             if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-                return '${ctx}/back/uploadimage';
+                return '${ctx}/uploadimage';
             } else {
                 return this._bkGetActionUrl.call(this, action);
             }
         }
     });
 
-    /**
-     * 点击添加新闻的时候,进行保存操作
-     */
-    $('#articleAddBtn').click(function () {
+//    $('#articleAddBtn').submit(function(data){
+//
+//    });
 
-        $.ajax({
-            type: "POST",
-            url: "${ctx}/back/newsedit?type=add",
-            data: {
-                newsTitle: $('#newsTitleID').val().trim(),
-                newsKind: $('#newsKindID').val().trim(),
-                newsAuthor: $('#newsAuthorID').val().trim(),
-                imageUrl: $('#newsImageUrlID').val().trim(),
-                newsText: $('#newsTextID').val()
-            },
-            dataType: "html",
+    $('#articleAddBtn').click(function () {
+        $("#addArticleForm").ajaxSubmit({
+            url: '${ctx}/back/newsedit?type=add',
             success: function (data) {
                 $('#modalResultTextID').empty(); //清空上一次追加的内容
                 if (data == "success") {
@@ -170,7 +164,30 @@
                     keyboard: true
                 });
             }
-        });
+        })
+    });
+
+    $('#articleAddBtn').click(function () {
+        $("#addArticleForm").ajaxSubmit({
+            type: 'post',
+            url: '${ctx}/back/newsedit?type=add',
+            success: function (data) {
+                $('#modalResultTextID').empty(); //清空上一次追加的内容
+                if (data == "success") {
+                    //向提示框中插入数据
+                    $('#modalResultTextID').append("添加新闻成功！正在为你跳转");
+                    $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                    //2秒后跳转到主界面
+                    setTimeout(goNewsList, 2000);
+                } else {
+                    $('#modalResultTextID').append("对不起！添加失败！");
+                    $('#modalFooterId').css({display: 'none'});
+                }
+                $('#modal-result').modal({
+                    keyboard: true
+                });
+            }
+        })
     });
 
     function goNewsList() {

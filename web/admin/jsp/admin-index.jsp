@@ -44,7 +44,42 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                欢迎来到后台管理系统！
+                                <th>#</th>
+                                <th>Column heading</th>
+                                <th>Column heading</th>
+                                <th>Column heading</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="active">
+                                <th scope="row">1</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr class="success">
+                                <th scope="row">3</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr class="info">
+                                <th scope="row">5</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
                             </tr>
                             </tbody>
                         </table>

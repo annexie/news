@@ -284,7 +284,7 @@
 
         .detail-header {
             border-bottom: 1px solid #CDCDCD;
-            background-color: #454545;
+            background-color: #DD3237;
         }
 
     </style>
@@ -310,9 +310,9 @@
          */
         function loadMore(kind) {
             window.location.href = "${IP}/app/news?type=nextPage&newsKind=" + kind;
-         }
+        }
 
-         /**
+        /**
          * 显示新闻的详细信息，得到请求的数据之后会跳转到news-detail.jsp界面
          * @param newsId 新闻的id
          */

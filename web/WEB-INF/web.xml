@@ -57,7 +57,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
-        <url-pattern>/back/uploadimage</url-pattern>
+        <url-pattern>/uploadimage</url-pattern>
     </servlet-mapping>
     <!-- 后台管理servlet end-->
 

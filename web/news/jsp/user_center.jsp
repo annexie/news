@@ -46,12 +46,12 @@
         }
 
         .login-header {
-            height: 140px;
-            background-color: #454545;
+            height: 240px;
+            background-color: #1C1515;
         }
 
         .title {
-            height: 100px;
+            height: 200px;
             text-align: center;
             padding-top: 15px;
             display: -webkit-box;
@@ -69,13 +69,13 @@
         }
 
         .mine {
-            background-color: #454545;
+            background-color: #1C1515;
             padding-top: 5px;
         }
 
         .mine li, .bottom li {
             display: inline-block;
-            width:100%;
+            width: 32%;
             text-align: center;
             padding: 20px 0 6px;
             background-size: 30px;
@@ -201,6 +201,7 @@
             %>
             <div class="login-header-btn nologin-user" id="user" tapmode="" onclick="toLogin()"></div>
             <div class="login" onclick="toLogin()">立即登录</div>
+            <div class="score">赢积分抢大礼!</div>
             <%
                 }
             %>
@@ -261,7 +262,7 @@
     }
 
     function toLogin() {
-        window.location.href = '${IP}/news/jsp/login.jsp';//跳转到该页面
+        window.location.href = '${IP}/news/jsp/login.jsp';
     }
     function toSetting() {
         api.openWin({
