@@ -74,28 +74,6 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return null;
-
-//        Connection connection = DBUtil.getConn();
-//        String sql = "select * from user where userName = ? and userPassword = ?";// 编写sql语句，第一个字段不需要插入，是自动增加的
-//        PreparedStatement preparedStatement = null;
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, username + "");
-//            preparedStatement.setString(2, password + "");
-//            ResultSet rs = preparedStatement.executeQuery();
-//            if (rs.next()) {
-//                User user = new User();
-//                user.setUserName(rs.getString("userName"));
-//                user.setId(rs.getLong("id"));
-//                return user;
-//            } else {
-//                return null;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        return null;
     }
 
     @Override
@@ -114,30 +92,6 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return null;
-//
-//        Connection connection = DBUtil.getConn();
-//        String sql = "select * from user where userName = ? and valid = ? ";
-//        PreparedStatement preparedStatement = null;
-//        List<User> users = new ArrayList<User>();
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, username + "");
-//            preparedStatement.setString(2, valid + "");
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                User user = new User();
-//                user.setUserName(rs.getString("userName"));
-//                user.setId(rs.getLong("id"));
-//                user.setValid(rs.getString("valid"));
-//                users.add(user);
-//            }
-//            return users;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return new ArrayList<User>();
     }
 
     @Override
@@ -156,29 +110,6 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return null;
-
-//        Connection connection = DBUtil.getConn();
-//        String sql = "select * from user where userName = ? ";
-//        PreparedStatement preparedStatement = null;
-//        List<User> users = new ArrayList<User>();
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, username + "");
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                User user = new User();
-//                user.setUserName(rs.getString("userName"));
-//                user.setId(rs.getLong("id"));
-//                user.setValid(rs.getString("valid"));
-//                users.add(user);
-//            }
-//            return users;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return new ArrayList<User>();
     }
 
     @Override
@@ -197,29 +128,6 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return null;
-
-//        Connection connection = DBUtil.getConn();
-//        String sql = "select * from user where valid = ? ";
-//        PreparedStatement preparedStatement = null;
-//        List<User> users = new ArrayList<User>();
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, valid + "");
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                User user = new User();
-//                user.setUserName(rs.getString("userName"));
-//                user.setId(rs.getLong("id"));
-//                user.setValid(rs.getString("valid"));
-//                users.add(user);
-//            }
-//            return users;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return new ArrayList<User>();
     }
 
     @Override
@@ -235,28 +143,6 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return null;
-
-//        Connection connection = DBUtil.getConn();
-//        String sql = "select * from user";
-//        PreparedStatement preparedStatement = null;
-//        List<User> users = new ArrayList<User>();
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                User user = new User();
-//                user.setUserName(rs.getString("userName"));
-//                user.setId(rs.getLong("id"));
-//                user.setValid(rs.getString("valid"));
-//                users.add(user);
-//            }
-//            return users;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return new ArrayList<User>();
     }
 
     @Override
@@ -272,24 +158,6 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return false;
-//        Connection connection = DBUtil.getConn();
-//        String sql = "update user set userName = ? , valid =? where id =?";
-//        PreparedStatement preparedStatement = null;
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, user.getUserName() + "");
-//            preparedStatement.setString(2, user.getValid() + "");
-//            preparedStatement.setLong(3, user.getId());
-//            int flag = preparedStatement.executeUpdate();
-//            if (flag == 1) {
-//                return true;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return false;
     }
 
     @Override

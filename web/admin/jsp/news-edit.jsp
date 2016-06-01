@@ -141,10 +141,6 @@
         }
     });
 
-//    $('#articleAddBtn').submit(function(data){
-//
-//    });
-
     $('#articleAddBtn').click(function () {
         $("#addArticleForm").ajaxSubmit({
             url: '${ctx}/back/newsedit?type=add',

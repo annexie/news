@@ -96,27 +96,6 @@ public class NewsDaoImpl implements NewsDao {
             }
         }
         return false;
-
-//        String sql2 = "insert into news_kinds_list(`news_kinds`,`news_id`) values (?,?)";
-//        PreparedStatement ps2 = null;
-//        try {
-//            ps2 = connection.prepareStatement(sql2);
-//            ps2.setString(1, newsKind);
-//            ps2.setLong(2, geneNewsId);
-//            int isOk = ps2.executeUpdate();
-//            return isOk > 0 ? true : false;
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            ps2.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, null, ps2, null);
-//        }
-//        return false;
     }
 
     @Override
@@ -136,37 +115,6 @@ public class NewsDaoImpl implements NewsDao {
         } else {
             return null;
         }
-
-//        Connection connection = DBUtil.getConn();
-//        String sql = getSqlUrl(newsTitle, newsAuthor, newsKind);
-//        PreparedStatement preparedStatement = null;
-//        List<News> newsList = new ArrayList<News>();
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                News news = new News();
-//                news.setId(rs.getLong("id"));
-//                news.setNewsTitle(rs.getString("news_title"));
-//                news.setNewsAuthor(rs.getString("news_author"));
-//                news.setNewsKind(rs.getString("news_kind"));
-//                news.setNewsText(rs.getString("news_text"));
-//                news.setDate(rs.getDate("date"));
-//                news.setValid(rs.getInt("valid"));
-//                news.setNewsUrl(rs.getString("image_url"));
-//                newsList.add(news);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            preparedStatement.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, null, preparedStatement, null);
-//        }
-//        return newsList;
     }
 
     @Override
@@ -185,26 +133,6 @@ public class NewsDaoImpl implements NewsDao {
             e.printStackTrace();
         }
         return false;
-//
-//        Connection connection = DBUtil.getConn();
-//        String sql = "update news_list set news_title = ? , news_author =? , news_kind =? where id =?";
-//        PreparedStatement preparedStatement = null;
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, news.getNewsTitle() + "");
-//            preparedStatement.setString(2, news.getNewsAuthor() + "");
-//            preparedStatement.setString(3, news.getNewsKind());
-//            preparedStatement.setLong(4, news.getId());
-//            int flag = preparedStatement.executeUpdate();
-//            if (flag == 1) {
-//                return true;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            DBUtil.close(connection, preparedStatement, preparedStatement, null);
-//        }
-//        return false;
     }
 
     @Override
