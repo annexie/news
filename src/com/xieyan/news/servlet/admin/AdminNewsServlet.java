@@ -55,8 +55,6 @@ public class AdminNewsServlet extends BaseServlet {
      */
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -73,8 +71,6 @@ public class AdminNewsServlet extends BaseServlet {
 
     public void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -97,8 +93,6 @@ public class AdminNewsServlet extends BaseServlet {
 
     public void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");//设置后台向前台传输数据的编码方式
         PrintWriter out = response.getWriter();

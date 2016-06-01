@@ -28,9 +28,6 @@ public class UserServlet extends BaseServlet {
     public String list(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
-
         String username = request.getParameter("username");
         String valid = request.getParameter("valid");
 
@@ -55,8 +52,6 @@ public class UserServlet extends BaseServlet {
      */
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         //获取返回前端的out
         PrintWriter out = response.getWriter();
@@ -80,8 +75,6 @@ public class UserServlet extends BaseServlet {
 
     public void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -113,8 +106,6 @@ public class UserServlet extends BaseServlet {
 
     public void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
 
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();

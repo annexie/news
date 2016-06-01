@@ -61,8 +61,6 @@ public class AdminServlet extends BaseServlet {
 
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminController adminController = new AdminControllerImpl();
-        //判断管理员是否登录，如果未登录进入登录界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
 
         resp.setCharacterEncoding("utf-8");
         PrintWriter out = resp.getWriter();
@@ -87,8 +85,6 @@ public class AdminServlet extends BaseServlet {
 
     public String list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminController adminController = new AdminControllerImpl();
-        //判断管理员是否登录，如果未登录进入登录界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
 
         //获取用去请求参数
         String adminName = req.getParameter("adminName");
@@ -106,8 +102,6 @@ public class AdminServlet extends BaseServlet {
 
     public String delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminController adminController = new AdminControllerImpl();
-        //判断管理员是否登录，如果未登录进入登录界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
 
         String id = req.getParameter("id");
 
@@ -121,8 +115,6 @@ public class AdminServlet extends BaseServlet {
 
     public String update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminController adminController = new AdminControllerImpl();
-        //判断管理员是否登录，如果未登录进入登录界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(req, resp);
 
         String adminName = req.getParameter("adminName");
         String adminRole = req.getParameter("adminRole");
