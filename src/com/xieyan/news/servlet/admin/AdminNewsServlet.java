@@ -27,10 +27,6 @@ public class AdminNewsServlet extends BaseServlet {
 
     public String list(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //判断管理员是否登录，如果没有登录则会跳转到登陆界面
-//        CheckAdminLoginUtil.CheckAdminLoginUtil(request, response);
-
         NewsController newsController = new NewsControllerImpl();
         String newsTitle = request.getParameter("newsTitle");
         String newsAuthor = request.getParameter("newsAuthor");
@@ -69,9 +65,9 @@ public class AdminNewsServlet extends BaseServlet {
         News news = assemberNews(request);
         boolean flag = newsController.addNews(news);
         if (flag) {
-            out.write("success"); //添加成功
+            out.write("添加新闻成功！正在为你跳转"); //添加成功
         } else {
-            out.write("error"); //添加失败
+            out.write("新闻添加失败!"); //添加失败
         }
     }
 

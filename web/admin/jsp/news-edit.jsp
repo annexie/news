@@ -43,7 +43,7 @@
                 <div class="col-md-12 span_3">
                     <!-- 显示具体的界面信息 start-->
                     <div class="bs-example1" style="padding: 20px;">
-                        <form id="addArticleForm"  action="${ctx}/back/newsedit?type=add" enctype="multipart/form-data">
+                        <form id="addArticleForm" enctype="multipart/form-data">
                             <input type="hidden" name="type" value="add">
                             <table>
                                 <tr>
@@ -144,41 +144,14 @@
     $('#articleAddBtn').click(function () {
         $("#addArticleForm").ajaxSubmit({
             url: '${ctx}/back/newsedit?type=add',
+            dataType: 'html',
             success: function (data) {
                 $('#modalResultTextID').empty(); //清空上一次追加的内容
-                if (data == "success") {
-                    //向提示框中插入数据
-                    $('#modalResultTextID').append("添加新闻成功！正在为你跳转");
-                    $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                    //2秒后跳转到主界面
-                    setTimeout(goNewsList, 2000);
-                } else {
-                    $('#modalResultTextID').append("对不起！添加失败！");
-                    $('#modalFooterId').css({display: 'none'});
-                }
-                $('#modal-result').modal({
-                    keyboard: true
-                });
-            }
-        })
-    });
-
-    $('#articleAddBtn').click(function () {
-        $("#addArticleForm").ajaxSubmit({
-            type: 'post',
-            url: '${ctx}/back/newsedit?type=add',
-            success: function (data) {
-                $('#modalResultTextID').empty(); //清空上一次追加的内容
-                if (data == "success") {
-                    //向提示框中插入数据
-                    $('#modalResultTextID').append("添加新闻成功！正在为你跳转");
-                    $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
-                    //2秒后跳转到主界面
-                    setTimeout(goNewsList, 2000);
-                } else {
-                    $('#modalResultTextID').append("对不起！添加失败！");
-                    $('#modalFooterId').css({display: 'none'});
-                }
+                //向提示框中插入数据
+                $('#modalResultTextID').append(data);
+                $('#modalFooterId').css({display: 'block'}); //当注册成功的时候将登录按钮的位置显示出来
+                //2秒后跳转到主界面
+                setTimeout(goNewsList, 2000);
                 $('#modal-result').modal({
                     keyboard: true
                 });
